@@ -16,7 +16,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    You are logged in!
+                    <form class='search-form' method="POST" action="{{ route('search') }}">
+                         @csrf
+                        <input class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search'>
+                        <button class='btn btn-link search-btn' type="submit">
+                        <i class='glyphicon glyphicon-search'></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
