@@ -32,6 +32,10 @@ Route::get('/', function () {
         Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
         Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
+// Admin
+
+        Route::get('dashboard/superadmin','Dashboard\SuperadminController@index');
+        Route::get('dashboard/admin','Dashboard\AdminController@index');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

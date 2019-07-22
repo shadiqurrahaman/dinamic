@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="main-slider">
-    <div class="container" >
+    <section class="welcome">
+        <div class="container" >
         @role('admin')
         <h1>You are the Admin</h1>
         @endrole
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div> 
-    </div>
+        </div>
     </section>
     <section class="recently portfolio">
         <div class="container">
