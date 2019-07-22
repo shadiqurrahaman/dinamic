@@ -90,8 +90,8 @@
                 <div class="top-social hidden-sm-down">
                     <div class="login-wrap">
                         <ul class="d-flex">
-                            <li><a href="login.html"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="register.html"><i class="fa fa-sign-in"></i> Register</a></li>
+                            <!-- <li><a href="login.html"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="register.html"><i class="fa fa-sign-in"></i> Register</a></li> -->
                         </ul>
                     </div>
                     <div class="social-icons-header">
@@ -154,30 +154,30 @@
                             </div>
                             <div class="collapse" id="home">
                                 <div class="card card-block">
-                                    <a class="dropdown-item" href="index.html">Home Map</a>
-                                    <a class="dropdown-item" href="index-2.html">Home Image</a>
+                                    <a  href="index.html">Home Map</a>
+                                   <!--  <a class="dropdown-item" href="index-2.html">Home Image</a>
                                     <a class="dropdown-item" href="index-3.html">Home Video</a>
-                                    <a class="dropdown-item" href="index-4.html">Home Slider</a>
+                                    <a class="dropdown-item" href="index-4.html">Home Slider</a> -->
                                     
                                 </div>
                             </div>
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown hidden-md-down">
-                            <a class="active dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Home</a>
-                            <div class="dropdown-menu">
+                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Home</a>
+                            <!-- <div class="dropdown-menu">
                                 <a class="dropdown-item" href="index.html">Home Map</a>
                                 <a class="dropdown-item" href="index-2.html">Home Image</a>
                                 <a class="dropdown-item" href="index-3.html">Home Video</a>
                               
-                            </div>
+                            </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
                             <div class="po">
-                                <a data-toggle="collapse" href="#listing" aria-expanded="false">Properties</a>
+                                <a  href="#listing" aria-expanded="false">Basics</a>
                             </div>
-                            <div class="collapse" id="listing">
+                            <!-- <div class="collapse" id="listing">
                                 <div class="card card-block">
                                     <a class="dropdown-item" href="properties-full-list.html">Full List</a>
                                     <a class="dropdown-item" href="properties-list-right-sidebar.html">List Right Sidebar </a>
@@ -187,12 +187,12 @@
                                     <a class="dropdown-item" href="properties-map.html">Listing With Map</a>
                                     <a class="dropdown-item" href="properties-details.html">Property Details</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown hidden-md-down">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Properties</a>
-                            <div class="dropdown-menu">
+                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Basics</a>
+                           <!--  <div class="dropdown-menu">
                                 <a class="dropdown-item" href="properties-full-list.html">Full List</a>
                                 <a class="dropdown-item" href="properties-list-right-sidebar.html">List Right Sidebar </a>
                                 <a class="dropdown-item" href="properties-full-grid.html">Full Grid</a>
@@ -200,36 +200,36 @@
                                 <a class="dropdown-item" href="properties-half-map.html">Half Map</a>
                                 <a class="dropdown-item" href="properties-map.html">Listing With Map</a>
                                 <a class="dropdown-item" href="properties-details.html">Property Details</a>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
                             <div class="po">
-                                <a data-toggle="collapse" href="#services" aria-expanded="false">Agents</a>
+                                <a data-toggle="collapse" href="#services" aria-expanded="false">Resource</a>
                             </div>
-                            <div class="collapse" id="services">
+                            <!-- <div class="collapse" id="services">
                                 <div class="card card-block">
                                     <a class="dropdown-item" href="agents-listing-grid.html">Agents Listing Grid</a>
                                     <a class="dropdown-item" href="agents-listing-row.html">Agents Listing Row</a>
                                     <a class="dropdown-item" href="agent-details.html">Agent Details</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown hidden-md-down">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Agents</a>
-                            <div class="dropdown-menu">
+                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Resource</a>
+                            <!-- <div class="dropdown-menu">
                                 <a class="dropdown-item" href="agents-listing-grid.html">Agents Listing Grid</a>
                                 <a class="dropdown-item" href="agents-listing-row.html">Agents Listing Row</a>
                                 <a class="dropdown-item" href="agent-details.html">Agent Details</a>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
                             <div class="po">
-                                <a data-toggle="collapse" href="#about" aria-expanded="false">Pages</a>
+                                <a  href="#about" aria-expanded="false">Tools</a>
                             </div>
-                            <div class="collapse" id="about">
+                            <!-- <div class="collapse" id="about">
                                 <div class="card card-block">
                                     <a class="dropdown-item" href="about.html">About Us</a>
                                     <a class="dropdown-item" href="faq.html">Faq</a>
@@ -240,12 +240,12 @@
                                     <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
                                     <a class="dropdown-item" href="under-construction.html">Under Construction</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown hidden-md-down">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Pages</a>
-                            <div class="dropdown-menu">
+                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Tools</a>
+                            <!-- <div class="dropdown-menu">
                                 <a class="dropdown-item" href="about.html">About Us</a>
                                 <a class="dropdown-item" href="faq.html">Faq</a>
                                 <a class="dropdown-item" href="pricing-table.html">Pricing</a>
@@ -254,29 +254,29 @@
                                 <a class="dropdown-item" href="register.html">Register</a>
                                 <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
                                 <a class="dropdown-item" href="under-construction.html">Under Construction</a>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
                             <div class="po">
-                                <a data-toggle="collapse" href="#blog" aria-expanded="false">Blog</a>
+                                <a  href="#blog" aria-expanded="false">My-profile</a>
                             </div>
-                            <div class="collapse" id="blog">
+                            <!-- <div class="collapse" id="blog">
                                 <div class="card card-block">
                                     <a class="dropdown-item" href="blog.html">Blog Default</a>
                                     <a class="dropdown-item" href="blog-rightsidebar.html">Blog Right Sidebar</a>
                                     <a class="dropdown-item" href="blog-details.html">Blog Details</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown hidden-md-down">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Blog</a>
-                            <div class="dropdown-menu">
+                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">My-profile</a>
+                            <!-- <div class="dropdown-menu">
                                 <a class="dropdown-item" href="blog.html">Blog Default</a>
                                 <a class="dropdown-item" href="blog-rightsidebar.html">Blog Right Sidebar</a>
                                 <a class="dropdown-item" href="blog-details.html">Blog Details</a>
-                            </div>
+                            </div> -->
                         </li>
                         <li><a href="contact-us.html">Contact</a></li>
 
@@ -353,6 +353,89 @@
     <script src="{{ asset('revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
     <script src="{{ asset('revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
 
+
+     <script>
+        var tpj = jQuery;
+        var revapi486;
+        tpj(document).ready(function() {
+            if (tpj("#rev_slider_one").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_one");
+            } else {
+                revapi486 = tpj("#rev_slider_one").show().revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "plugins/revolution/js/",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "yes",
+                    delay: 10000,
+                    navigation: {
+                        keyboardNavigation: "off",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        mouseScrollReverse: "default",
+                        onHoverStop: "off",
+                        touch: {
+                            touchenabled: "on",
+                            touchOnDesktop: "off",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 1,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
+                        },
+                        arrows: {
+                            style: "metis",
+                            enable: true,
+                            hide_onmobile: true,
+                            hide_under: 600,
+                            hide_onleave: true,
+                            tmp: '',
+                            left: {
+                                h_align: "left",
+                                v_align: "center",
+                                h_offset: 0,
+                                v_offset: 0
+                            },
+                            right: {
+                                h_align: "right",
+                                v_align: "center",
+                                h_offset: 0,
+                                v_offset: 0
+                            }
+                        }
+
+                    },
+                    responsiveLevels: [1200, 1040, 778, 480],
+                    visibilityLevels: [1200, 1040, 778, 480],
+                    gridwidth: [1170, 1040, 778, 600],
+                    gridheight: [850, 850, 850, 950],
+                    lazyType: "none",
+                    parallax: {
+                        type: "scroll",
+                        origo: "enterpoint",
+                        speed: 400,
+                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 46, 47, 48, 49, 50, 55]
+                    },
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            }
+        }); /*ready*/
+
+    </script>
     <!-- MAIN JS -->
     <script src="js/script.js"></script>
 </body>
