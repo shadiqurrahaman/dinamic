@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
@@ -10,6 +11,12 @@ class SearchController extends Controller
 	
     public function index(Request $request)
     {
+
+    	$value =  Cache::add($request->input('search'), 'value', 60);
+		dd($value);
+
+
+		return "ok";
     	 $address = $request->input('search');
 
     	 $split = explode(',', $address,2);
