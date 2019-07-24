@@ -2,38 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Helper;
 
 class SearchController extends Controller
 {	
 	
     public function index(Request $request)
     {
-    	 $address = $request->input('search');
 
-    	 $split = explode(',', $address,2);
+  		
+    	// $value =  Cache::add($request->input('search'), 'value',now()->addYear(1));
 
-		 $string = 'address='.urlencode($split[0]).'&citystatezip='.urlencode($split[1]);
+    	if(!Cache::has($request->input('search'))){
+
+    	 	 // $id = Helper::apicall($request->input('search'));
+
+    	 	 //save in database
+
+    	 	 //save with id value
+
+    	 	 $id = Cache::add($request->input('search'), '1',now()->addYear(1));
+    	 	 
+    	}else{
+    	
+    		 $id = Cache::get($request->input('search'));
+
+    	}
 
 
-		 $zillourl = 'https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz17rs5qz1gjv_517ck&'.$string;
+    	// return $data;
 
-		 $client = new \GuzzleHttp\Client();
+		dd($id);
 
-		 $response = $client->request('GET',$zillourl);
 
-		 $xml = simplexml_load_string($response->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
+		return "ok";
 
-		 $json = json_encode($xml);
-
-		 $array = json_decode($json, true);
-
-		 $array_dot = array_dot($array);
-
-		 $collection = collect($array);
-
-    	 // return $collection['request']['address'];
-    	 return $collection['response']['results']['result'];
     }
 }

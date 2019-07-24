@@ -36,6 +36,7 @@ Route::get('/', function () {
 
         Route::get('dashboard/superadmin','Dashboard\SuperadminController@index');
         Route::get('dashboard/admin','Dashboard\AdminController@index');
+        Route::post('import', 'Dashboard\AdminController@import')->name('import');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

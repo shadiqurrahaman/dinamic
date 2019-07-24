@@ -13,7 +13,8 @@
         "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "maatwebsite/excel": "^3.1",
+        "zizaco/entrust": "dev-master"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
