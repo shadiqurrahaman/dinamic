@@ -19,13 +19,13 @@ class SearchController extends Controller
 
     	if(!Cache::has($request->input('search'))){
 
-    	 	 $id = Helper::apicall($request->input('search'));
+    	 	 // $id = Helper::apicall($request->input('search'));
 
     	 	 //save in database
 
     	 	 //save with id value
 
-    	 	 Cache::add($request->input('search'), '1',now()->addYear(1));
+    	 	 $id = Cache::add($request->input('search'), '1',now()->addYear(1));
     	 	 
     	}else{
     	
