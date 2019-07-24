@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 use GuzzleHttp\Client;
+use App\Apiinfo;
 
 class Helper
 {
@@ -30,6 +31,32 @@ class Helper
 		 $collection = collect($array);
 
     	 // return $collection['request']['address'];
-    	 return $collection['response']['results']['result'];
+
+    	 //save to database 
+
+    	 $propertyData =  $collection['response']['results']['result'];
+
+    	 // dd($propertyData);
+
+    	 $appinfo = new Apiinfo;
+
+    	 $appinfo->status = 'status';
+    	 $appinfo->MLS ="MLS"; 
+    	 $appinfo->price = "250000";
+    	 $appinfo->photo = "photo.com";
+    	 $appinfo->hometype = $propertyData['useCode'];
+    	 $appinfo->bedroom = $propertyData['bedrooms'];
+    	 $appinfo->bathroom = $propertyData['bathrooms'];
+    	 $appinfo->finishedSqFt =$propertyData['finishedSqFt']; 
+    	 $appinfo->lotSizeSqFt = 2435;
+    	 $appinfo->yearBuilt = '2019-05-50';
+    	 $appinfo->zestimate = '20000';
+    	 $appinfo->rent_zestimate = "50000";
+    	 $appinfo->last_sold_date ="2019-05-05"; 
+    	 $appinfo->last_sold_price =25000; 
+    	 $appinfo->save();
+
+    	 return $appinfo->id;
+
 	}
 }
