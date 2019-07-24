@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-    <link rel="stylesheet" id="color" href="{{ asset('css/default.css') }}">
+    <link rel="stylesheet" id="color" href="{{ asset('css/custom.css') }}">
 
     <!-- new added faile -->
 
@@ -438,6 +438,6 @@
 
     </script>
     <!-- MAIN JS -->
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
