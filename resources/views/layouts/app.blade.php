@@ -17,7 +17,7 @@
     <title>Find Houses - HTML5 Template</title>
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.html">
-    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">
     <!-- FONT AWESOME -->
@@ -104,12 +104,12 @@
                     </div>
                     <div class="dropdown">
                         <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true">
-                            <img src="images/en.png" alt="lang" /> English
+                            <img src="{{ asset('images/en.png') }}" alt="lang" /> English
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownlang">
-                            <li><img src="images/fr.png" alt="lang" />France</li>
-                            <li><img src="images/de.png" alt="lang" /> German</li>
-                            <li><img src="images/it.png" alt="lang" />Italy</li>
+                            <li><img src="{{ asset('images/fr.png') }}" alt="lang" />France</li>
+                            <li><img src="{{ asset('images/de.png') }}" alt="lang" /> German</li>
+                            <li><img src="{{ asset('images/it.png') }}" alt="lang" />Italy</li>
                         </ul>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
         <div class="header-bottom heading sticky-header" id="heading">
             <div class="container">
                 <a href="index.html" class="logo">
-                    <img src="images/logo.svg" alt="realhome">
+                    <img src="{{ asset('images/logo.svg') }}" alt="realhome">
                 </a>
                 <button type="button" class="search-button" data-toggle="collapse" data-target="#bloq-search" aria-expanded="false">
                     <i class="fa fa-search" aria-hidden="true"></i>
