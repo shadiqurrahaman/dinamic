@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApiinfosTable extends Migration
+class CreateAddressInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateApiinfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('apiinfos', function (Blueprint $table) {
+        Schema::create('address_infos', function (Blueprint $table) {
             $table->increments('id');
+             $table->integer('address_list_id')->unsigned();
+              $table->foreign('address_list_id')->references('id')->on('address_lists')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->string('status')->nullable();
             $table->string('MLS')->nullable();
             $table->integer('price')->nullable();
@@ -40,6 +43,6 @@ class CreateApiinfosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apiinfos');
+        Schema::dropIfExists('address_infos');
     }
 }

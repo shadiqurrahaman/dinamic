@@ -1,13 +1,35 @@
 <?php
 namespace App\Helpers;
 use GuzzleHttp\Client;
-use App\Apiinfo;
+use App\AddressList;
+use App\AddressInfo;
+use App\FileList;
+use Carbon\Carbon;
 
 class Helper
 {
-	public static  function apicall($property)
+	public static  function apicall($file_list_id = null,$property)
 	{
-		$address = $property;
+		
+
+        $addressList = new AddressList;
+        
+        $addressList->address = $property;
+        $addressList->search_time = Carbon::now();
+        $addressList->favorite = false;
+
+        if($file_list_id!=null){
+
+            $filelist = FileList::find($file_list_id);
+            $filelist->adress()->save($addressList);
+        }else{
+             $addressList->file_list_id = $file_list_id;
+             $addressList->save();
+        }
+
+        
+
+        $address = $property;
 
     	 $split = explode(',', $address,2);
 
@@ -38,7 +60,7 @@ class Helper
 
     	 // dd($propertyData);
 
-    	 $appinfo = new Apiinfo;
+    	 $appinfo = new AddressInfo;
 
     	 $appinfo->status = 'status';
     	 $appinfo->MLS ="MLS"; 
@@ -54,7 +76,9 @@ class Helper
     	 $appinfo->rent_zestimate = "50000";
     	 $appinfo->last_sold_date ="2019-05-05"; 
     	 $appinfo->last_sold_price =25000; 
-    	 $appinfo->save();
+
+         $addressList->addressInfo()->save($appinfo);
+    	 
 
     	 return $appinfo->id;
 

@@ -15,12 +15,12 @@ class CreateAddressListsTable extends Migration
     {
         Schema::create('address_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('file_list_id')->unsigned();
+            $table->integer('file_list_id')->unsigned()->nullable($value = true);
             $table->foreign('file_list_id')->references('id')->on('file_lists')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->string('address');
-            $table->string('search_time');
-            $table->string('vafourite');
+            $table->dateTime('search_time');
+            $table->boolean('favorite');
             $table->timestamps();
         });
     }

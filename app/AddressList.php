@@ -11,4 +11,9 @@ class AddressList extends Model
     	return $this->belongsTo('App\FileList');
 
     }
+
+    public function addressInfo()
+    {
+    	return $this->hasOne('App\AddressInfo', 'address_list_id');
+    }
 }

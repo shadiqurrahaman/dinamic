@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use App\AddressList;
 use Helper;
 
 class SearchController extends Controller
@@ -20,16 +21,19 @@ class SearchController extends Controller
     	if(!Cache::has($request->input('search'))){
     	 	 
 
-              $id = Helper::apicall($request->input('search'));
+              $id = Helper::apicall(null,$request->input('search'));
 
     	 	 Cache::add($request->input('search'), $id ,now()->addYear(1));
     	 	 
     	}else{
     	
-    		 $id = Cache::get($request->input('search'));
+    		 $id = AddressList::select('id')->where('address','=',$request->input('search'))->first();
 
     	}
 
+
+        ///need to patch with property details page
+        
 		dd($id);
 
 
