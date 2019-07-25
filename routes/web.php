@@ -37,7 +37,7 @@ Route::get('/', function () {
         Route::get('dashboard/superadmin','Dashboard\SuperadminController@index');
         Route::get('dashboard/admin','Dashboard\AdminController@index');
         Route::post('import', 'Dashboard\AdminController@import')->name('import');
-        Route::get('export', 'Dashboard\AdminController@export')->name('export');
+        Route::get('export/{id}', 'Dashboard\AdminController@export')->name('export');
         
 
 

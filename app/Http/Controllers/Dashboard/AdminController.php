@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Imports\UsersImport;
+use App\Imports\ExportData;
 use App\Imports\CsvImport;
 use App\FileList;
 Use App\AddressList;
-// use Maatwebsite\Excel\Facades\Excel;
 use Excel;
 use File;
 
@@ -22,6 +21,7 @@ class AdminController extends Controller
     	 return view('dashboard.admindashboard');
     }
 
+
     public function import(Request $request) 
     {
          $path =request()->file('file');
@@ -33,7 +33,7 @@ class AdminController extends Controller
          $filename->file_name = $name;
          $filename->uploaded_time = "vv";
          $filename->save();
-// dd($name);
+
 
          foreach ($data[0] as  $value) {
              # code...
@@ -46,18 +46,27 @@ class AdminController extends Controller
            
          }
 
-        // return $data[0][1][0];
-
+        
         
 
            
         return "Done";
     }
 
-    public function export()
-    {
-        $all = FileList::with('adress')->get();
 
-        return Excel::download( $all, 'invoices.csv');
+    public function export($id)
+
+    {
+            $file = FileList::where('id','=',$id)->first();
+
+            $addresslist = AddressList::where('file_list_id','=',$file->id)->get();
+
+            foreach ($addresslist as  $address) {
+                $addressarray[] = $address->toArray();
+            }
+            
+            $addressListToExport = new ExportData($addressarray);
+           
+            return Excel::download(  $addressListToExport, $file->file_name);
     }
 }
