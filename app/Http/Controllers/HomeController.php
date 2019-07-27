@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AddressList;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function changeFavorite(Request $request)
+    {
+        $id = $request->id;
+        $favoriteAddress = AddressList::where('id', $id)->first();
+        $favoriteAddress->favorite = $favoriteAddress->favorite==1?0:1;
+        $favoriteAddress->save();
+        return $favoriteAddress->favorite;
     }
 
 

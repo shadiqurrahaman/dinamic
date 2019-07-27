@@ -38,6 +38,9 @@ Route::get('/', function () {
         Route::get('dashboard/admin','Dashboard\AdminController@index');
         Route::post('import', 'Dashboard\AdminController@import')->name('import');
         Route::get('export/{id}', 'Dashboard\AdminController@export')->name('export');
+
+        //property
+        Route::post('/change/favorite','HomeController@changeFavorite');
         
 
 

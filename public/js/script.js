@@ -361,3 +361,41 @@ jQuery(document).on('ready', function ($) {
 	$(".slider_amount").val("Price Range: $" + $(".slider-range").slider("values", 0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + " - $" + $(".slider-range").slider("values", 1).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
 
 }(jQuery));
+
+
+function makeFavorite(id){
+
+	$.ajaxSetup({
+
+		headers: {
+
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+		}
+
+	});
+
+	$.ajax({
+
+		type:'POST',
+
+		url:'/change/favorite',
+
+		data:{id:id},
+
+		success:function(data){
+
+			console.log(data);
+			if(data==0){
+				$('#colorIcon_'+id).removeClass('fas').addClass('far');
+			}else{
+				$('#colorIcon_'+id).removeClass('far').addClass('fas');
+			}
+
+
+		}
+
+	});
+
+
+}

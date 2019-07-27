@@ -14,6 +14,6 @@ class AddressList extends Model
 
     public function addressInfo()
     {
-    	return $this->hasOne('App\AddressInfo', 'address_list_id');
+    	return $this->hasOne('App\AddressInfo');
     }
 }

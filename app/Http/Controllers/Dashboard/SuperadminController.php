@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\AddressList;
 use App\FileList;
 
 use App\Http\Controllers\Controller;
@@ -16,8 +17,12 @@ class SuperadminController extends Controller
     	$fileList = FileList::orderBy('uploaded_time', 'desc')->withCount('adress')
     		->has('adress', '>', 0)
     		->paginate(5);
+    	$addresses = AddressList::with('addressInfo')->get();
 
-    	
-    	 return view('dashboard.superadminDashboard')->with('fileList',$fileList);
+//    	foreach ($addresses as $address){
+//    	    return $address['addressInfo'];
+//        }
+
+    	 return view('dashboard.superadminDashboard')->with('fileList',$fileList)->with('addresses',$addresses);
     }
 }

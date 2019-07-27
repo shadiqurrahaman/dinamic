@@ -151,7 +151,9 @@
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
                             <div class="po">
-                                <a data-toggle="collapse" href="#home" aria-expanded="false">Home</a>
+{{--                                @role('admin')--}}
+                                <a data-toggle="collapse" href="/home" aria-expanded="false">Home</a>
+{{--                                @endrole--}}
                             </div>
                             <div class="collapse" id="home">
                                 <div class="card card-block">
@@ -165,13 +167,23 @@
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown hidden-md-down">
-                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Home</a>
-                            <!-- <div class="dropdown-menu">
-                                <a class="dropdown-item" href="index.html">Home Map</a>
-                                <a class="dropdown-item" href="index-2.html">Home Image</a>
-                                <a class="dropdown-item" href="index-3.html">Home Video</a>
-                              
-                            </div> -->
+
+                            @if(Auth::check())
+                            @role('admin')
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}">Home</a>
+                            @endrole
+                            @role('superadmin')
+                                <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/superadmin')}}">Home</a>
+                            @endrole
+                            @else
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/')}}">Home</a>
+                            @endif
+                                <!-- <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="index.html">Home Map</a>
+                                    <a class="dropdown-item" href="index-2.html">Home Image</a>
+                                    <a class="dropdown-item" href="index-3.html">Home Video</a>
+
+                                </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
@@ -356,6 +368,12 @@
 
 
      <script>
+
+
+
+
+
+
         var tpj = jQuery;
         var revapi486;
         tpj(document).ready(function() {
