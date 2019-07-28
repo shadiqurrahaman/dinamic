@@ -6,7 +6,9 @@ use App\AddressList;
 use App\FileList;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class SuperadminController extends Controller
@@ -25,4 +27,42 @@ class SuperadminController extends Controller
 
     	 return view('dashboard.superadminDashboard')->with('fileList',$fileList)->with('addresses',$addresses);
     }
+
+    public function userManagement()
+    {
+        $users = User::all();
+        return view('dashboard.userManagement')->with('users',$users);
+    }
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+
+        return view('dashboard.editUser')->with('user',$user);
+    }
+
+    public function updateUser(Request $request)
+    {
+
+
+        $user = User::find($request->id);
+
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password!=null){
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect('userManagement');
+    }
+
+    public function adduser()
+    {
+        return view('dashboard.adduser');
+    }
+
+
 }

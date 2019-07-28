@@ -38,9 +38,15 @@ Route::get('/', function () {
         Route::get('dashboard/admin','Dashboard\AdminController@index');
         Route::post('import', 'Dashboard\AdminController@import')->name('import');
         Route::get('export/{id}', 'Dashboard\AdminController@export')->name('export');
+        Route::get('userManagement','Dashboard\SuperadminController@userManagement')->name('userManagement');
+        Route::get('editUser/{id}','Dashboard\SuperadminController@editUser')->name('editUser');
+        Route::post('updateUser','Dashboard\SuperadminController@updateUser')->name('updateUser');
+        Route::get('adduser','Dashboard\SuperadminController@adduser')->name('adduser');
+
 
         //property
         Route::post('/change/favorite','HomeController@changeFavorite');
+        Route::get('/property/result','HomeController@result');
         
 
 

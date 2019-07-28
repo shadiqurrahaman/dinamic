@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.html')}}">
+    <!-- LEAFLET MAP -->
+
+
+
+
+    <!-- ARCHIVES CSS -->
+
+
+
+
+    <link rel="stylesheet" id="color" href="{{ asset('css/default.css')}}">
+
+
+
 
 
     <!-- new added start -->

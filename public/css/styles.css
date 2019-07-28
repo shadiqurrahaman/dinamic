@@ -153,6 +153,18 @@ img {
 /*-----------------------------------*/
 /*------ 2. SECTION HEADINGS ------*/
 /*-----------------------------------*/
+
+
+#firstview{
+  /*background-image: url({{url('/images/slider/home-slider-1.jpg')}});*/
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 1400px;
+  margin-top: -25px;
+  height: 500px;
+}
 .header-top {
   background: #0098ef;
   color: #7f8997;

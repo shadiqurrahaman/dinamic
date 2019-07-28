@@ -1,35 +1,89 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="welcome">
-        <div class="container" >
-        @role('admin')
-        <h1>You are the Admin</h1>
-        @endrole
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Dashboard</div>
+{{--    <section class="welcome">--}}
+{{--        <div class="container" >--}}
+{{--        @role('admin')--}}
+{{--        <h1>You are the Admin</h1>--}}
+{{--        @endrole--}}
+{{--        <div class="row justify-content-center">--}}
+{{--            <div class="col-md-8">--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-header">Dashboard</div>--}}
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+{{--                    <div class="card-body">--}}
+{{--                        @if (session('status'))--}}
+{{--                            <div class="alert alert-success" role="alert">--}}
+{{--                                {{ session('status') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <form class='search-form' method="POST" action="{{ route('search') }}">--}}
+{{--                             @csrf--}}
+{{--                            <input class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search'>--}}
+{{--                            <button class='btn btn-link search-btn' type="submit">--}}
+{{--                            <i class='glyphicon glyphicon-search'></i>--}}
+{{--                            </button>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div> --}}
+{{--        </div>--}}
+{{--    </section>--}}
+
+
+
+
+
+
+
+        <section class="welcome "  id="firstview" style="background-image: url({{url('images/slider/backimage.jpg')}})">
+                <div class="container" >
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+
+
+                            <div class="card-body">
+                                <form class='search-form' method="POST" action="{{ route('search') }}">
+                                     @csrf
+                                    <input class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search'>
+                                    <button class='btn btn-link search-btn' type="submit" style="background-color:#3F3F3F;color:#ffffff; margin-top: -9px;margin-right: -12px;width: 100px;">
+                                        <i class='fas fa-search' ></i>
+                                    </button>
+                                </form>
                             </div>
-                        @endif
-                        <form class='search-form' method="POST" action="{{ route('search') }}">
-                             @csrf
-                            <input class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search'>
-                            <button class='btn btn-link search-btn' type="submit">
-                            <i class='glyphicon glyphicon-search'></i>
-                            </button>
-                        </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header" style="text-align: center;font-weight: bold;">Please enter your info</div>
+
+                            <div class="card-body">
+
+                                <form class='search-form' method="POST" action="{{ route('search') }}">
+                                    @csrf
+                                    <input style="margin: 5px" class='form-control' placeholder='First Name' type='text' name='first_name'/>
+                                    <input style="margin: 5px" class='form-control' placeholder='Last Name' type='text' name='last_name'/>
+                                    <input style="margin: 5px" class='form-control' placeholder='Email' type='email' name='email'/>
+                                    <input style="margin: 5px" class='form-control' placeholder='Phone' type='number' name='last_name'/>
+{{--                                    <input style="margin: 5px" class='form-control' placeholder='Address' type='textarea' name='last_name'/>--}}
+                                    <textarea style="margin: 5px" class='form-control' placeholder='Address' rows="4" cols="50" name="address"></textarea>
+                                    <input style="margin: 5px;background-color: #3F3F3F;color: #ffffff"  type="submit" value="Submit" >
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div> 
-        </div>
-    </section>
+                </div>
+
+</section>
+
+
+
+
+
+
     <section class="recently portfolio">
         <div class="container">
             <div class="section-title">

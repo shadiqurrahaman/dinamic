@@ -11,8 +11,8 @@
 		</div>
 
 		<ul class="list-unstyled components">
-			<li> <a href="#">Dashboard</a> </li>			
-			<li> <a href="#">Listing</a> </li>
+			<li> <a href="{{route('userManagement')}}">All User</a> </li>
+			<li> <a href="{{route('adduser')}}">Add User</a> </li>
 			<li> <a href="#">Batch Upload</a> </li>
 			<!-- <li class="active">
 				<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
