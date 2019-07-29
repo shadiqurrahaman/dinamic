@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AddressInfo;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -21,16 +22,16 @@ class SearchController extends Controller
     	if(!Cache::has($request->input('search'))){
     	 	 
 
-              $id = Helper::apicall(null,$request->input('search'));
+              $addressInfoId = Helper::apicall(null,$request->input('search'));
 
-    	 	 Cache::add($request->input('search'), $id ,now()->addYear(1));
+              Cache::add($request->input('search'), $addressInfoId ,now()->addYear(1));
     	 	 
     	}else{
     	
     		 $address = AddressList::where('address','=',$request->input('search'))->with('addressInfo')->first();
     		 $address->search_time = Carbon::now();
     		 $address->save();
-            $id = $address['addressInfo']->id;
+             $addressInfoId = $address['addressInfo']->id;
 
 
     	}
@@ -38,10 +39,16 @@ class SearchController extends Controller
 
         ///need to patch with property details page
         
-		dd($id );
+//		dd($addressInfoId );
 
 
-		return "ok";
+        return redirect()->route('propertyResult', ['propertyId' => $addressInfoId]);
 
+    }
+
+    public function propertyResult($propertyId)
+    {
+        $addressinfo = AddressInfo::where('id',$propertyId)->first();
+        return view('propertyResult')->with('addressInfo',$addressinfo);
     }
 }

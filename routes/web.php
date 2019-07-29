@@ -47,6 +47,7 @@ Route::get('/', function () {
         //property
         Route::post('/change/favorite','HomeController@changeFavorite');
         Route::get('/property/result','HomeController@result');
+        Route::get('propertyResult/{propertyId}','SearchController@propertyResult')->name('propertyResult');
         
 
 

@@ -131,6 +131,7 @@
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
+													  <th>Mark</th>
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>
@@ -142,6 +143,7 @@
 											      </tr>
 											    </thead>
 											    <tbody>
+
 												@foreach($addresses as $address)
 											      <tr>
 													  @if($address->favorite==0)
@@ -150,13 +152,13 @@
 														  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="fas fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 													@endif
 														  <td>{{$address->address}}</td>
-											        <td>{{$address['addressInfo']->bedroom}}</td>
-											        <td>{{$address['addressInfo']->bathroom}}</td>
-											        <td>${{$address['addressInfo']->zestimate}}</td>
-											        <td>${{$address['addressInfo']->rent_zestimate}}</td>
-											        <td>{{$address['addressInfo']->finishedSqFt}}</td>
-											        <td>{{$address['addressInfo']->lotSizeSqFt}}</td>
-											        <td>{{$address['addressInfo']->last_sold_price}}</td>
+											        <td>{{$address['addressInfo']['bedroom']}}</td>
+											        <td>{{$address['addressInfo']['bathroom']}}</td>
+											        <td>${{$address['addressInfo']['zestimate']}}</td>
+											        <td>${{$address['addressInfo']['rent_zestimate']}}</td>
+											        <td>{{$address['addressInfo']['finishedSqFt']}}</td>
+											        <td>{{$address['addressInfo']['lotSizeSqFt']}}</td>
+											        <td>{{$address['addressInfo']['last_sold_price']}}</td>
 
 
 
