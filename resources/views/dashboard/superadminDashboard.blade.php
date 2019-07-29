@@ -11,9 +11,12 @@
 		</div>
 
 		<ul class="list-unstyled components">
+            @role('superadmin')
 			<li> <a href="{{route('userManagement')}}">All User</a> </li>
 			<li> <a href="{{route('adduser')}}">Add User</a> </li>
+
 			<li> <a href="#">Batch Upload</a> </li>
+            @endrole
 			<!-- <li class="active">
 				<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
 				<ul class="collapse list-unstyled" id="homeSubmenu">

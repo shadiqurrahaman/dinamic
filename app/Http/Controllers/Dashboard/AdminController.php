@@ -16,12 +16,20 @@ use Helper;
 
 
 class AdminController extends Controller
-{	
-	
+{
+
     public function index()
     {
-    	 
-    	 return view('dashboard.admindashboard');
+        $fileList = FileList::orderBy('uploaded_time', 'desc')->withCount('adress')
+            ->has('adress', '>', 0)
+            ->paginate(5);
+        $addresses = AddressList::with('addressInfo')->get();
+
+//    	foreach ($addresses as $address){
+//    	    return $address['addressInfo'];
+//        }
+
+        return view('dashboard.superadminDashboard')->with('fileList',$fileList)->with('addresses',$addresses);
     }
 
 
