@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class SuperadminController extends Controller
 {	
 	
-    public function index(Request $request)
+    public function index()
     {
     	$fileList = FileList::orderBy('uploaded_time', 'desc')->withCount('adress')
     		->has('adress', '>', 0)

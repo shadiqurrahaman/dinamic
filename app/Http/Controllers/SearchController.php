@@ -27,14 +27,18 @@ class SearchController extends Controller
     	 	 
     	}else{
     	
-    		 $id = AddressList::select('id')->where('address','=',$request->input('search'))->first();
+    		 $address = AddressList::where('address','=',$request->input('search'))->with('addressInfo')->first();
+    		 $address->search_time = Carbon::now();
+    		 $address->save();
+            $id = $address['addressInfo']->id;
+
 
     	}
 
 
         ///need to patch with property details page
         
-		dd($id);
+		dd($id );
 
 
 		return "ok";
