@@ -59,7 +59,7 @@ Route::post('search','SearchController@index')->name('search');
 
 
 Route::get('get',function(){
-	return "get ok";
+	return view('welcome');
 });
 
 
