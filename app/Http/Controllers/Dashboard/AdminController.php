@@ -35,7 +35,11 @@ class AdminController extends Controller
 
     public function import(Request $request) 
     {
-         $path =request()->file('file');
+         $path = request()->file('file');
+
+         if ($path==''){
+             return back()->withErrors(['No File Selected']);
+         }
          $name =$request->file->getClientOriginalName();
          $data = \Excel::toArray(new CsvImport, $path);
 

@@ -83,7 +83,12 @@
            							 Batch Upload
         					</div>
 	        				<div class="card-body">
+
+								@if($errors->any())
+									<h5 style="color: #ff5346;">{{$errors->first()}}</h5>
+								@endif
 	            				<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+
 	               					 @csrf
 	               					 <input type="file" name="file" class="form-control">
 	               					 <br>
