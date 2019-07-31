@@ -7269,14 +7269,19 @@ textarea.border,
     margin-left: 0px;
     text-decoration: none;
     -webkit-transition: all .3s ease;
-    transition: all .3s ease; }
+    transition: all .3s ease; 
+    height: 35px;
+    padding-top: 6px;}
 
   #main-menu .dropdown-menu a:hover {
     color: #fff;
     background: #0098ef;
     text-decoration: none;
     border: 0;
-    border-radius: 0px; }
+    border-radius: 0px; 
+    height: 35px;
+    padding-top: 6px;
+  }
 
   .search-button {
     margin-left: 4rem;
