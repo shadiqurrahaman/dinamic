@@ -44,7 +44,17 @@ class AdminController extends Controller
          if ($path==''){
              return back()->withErrors(['No File Selected']);
          }
-         $name =$request->file->getClientOriginalName();
+         $fileName = $request->input('filename');
+
+         if($fileName == ''){
+
+             $name =$request->file->getClientOriginalName();
+         }else{
+             $name=$fileName.'.csv';
+         }
+
+         return $name;
+
          $data = \Excel::toArray(new CsvImport, $path);
 
             $ifExistInDatabase = FileList::where('file_name','=',$name)->first();

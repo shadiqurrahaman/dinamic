@@ -81,7 +81,7 @@
 					<div class="container">
     					<div class="card bg-light mt-3">
        						<div class="card-header">
-           							 Batch Upload
+           							 <h3>Batch Upload</h3>
         					</div>
 	        				<div class="card-body">
 
@@ -93,7 +93,8 @@
 	               					 @csrf
 	               					 <input type="file" name="file" class="form-control">
 	               					 <br>
-	               					 <button class="btn btn-success">Import User Data</button>
+                                    <input type="text" name="filename" placeholder="File Name" style="margin-top: 4px;margin-bottom: 4px;">
+	               					 <button class="btn btn-success">Import Address </button>
 	               
 	            				</form>
 	        				</div>
@@ -107,7 +108,7 @@
 				<div class="container">
     					<div class="card bg-light mt-3">
        						<div class="card-header">
-           							 Search by Address
+           							 <h3>Search by Address</h3>
         					</div>
 	        				<div class="card-body" style="height: 106px;">
 	            				<form class='search-form' method="POST" action="{{ route('search') }}">
@@ -133,7 +134,7 @@
 				<div class="container">
     					<div class="card bg-light mt-3">
        						<div class="card-header">
-           							 Favorite List
+           							 <h3>Favorite List</h3>
         					</div>
 	        				<div class="card-body" >
 	            				
@@ -160,7 +161,7 @@
 											        @else
 														  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="fas fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 													@endif
-														  <td>{{$address->address}}</td>
+                                                      <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">{{$address->address}}</a></td>
 											        <td>{{$address['addressInfo']['bedroom']}}</td>
 											        <td>{{$address['addressInfo']['bathroom']}}</td>
 											        <td>${{$address['addressInfo']['zestimate']}}</td>
@@ -181,11 +182,11 @@
 					</div>
 
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="container">
     					<div class="card bg-light mt-3">
        						<div class="card-header">
-           							 Recent Batches
+           							 <h3>Recent Batches</h3>
         					</div>
 	        				<div class="card-body" >
 	            				
@@ -217,13 +218,13 @@
 					</div>
 
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 				
 
 				<div class="container">
     					<div class="card bg-light mt-3">
        						<div class="card-header">
-           							 Recent search Address
+           							 <h3>Recent search Address</h3>
         					</div>
 	        				<div class="card-body" >
 	            				
@@ -243,7 +244,7 @@
 											    <tbody>
                                                 @foreach($recentSearchAddress as $address)
                                                     <tr>
-                                                        <td>{{$address->address}}</td>
+                                                        <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">{{$address->address}}</a></td>
                                                         <td>{{$address['addressInfo']['bedroom']}}</td>
                                                         <td>{{$address['addressInfo']['bathroom']}}</td>
                                                         <td>${{$address['addressInfo']['zestimate']}}</td>
