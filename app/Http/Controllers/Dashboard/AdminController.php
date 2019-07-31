@@ -23,13 +23,17 @@ class AdminController extends Controller
         $fileList = FileList::orderBy('uploaded_time', 'desc')->withCount('adress')
             ->has('adress', '>', 0)
             ->paginate(5);
-        $addresses = AddressList::with('addressInfo')->get();
+        $favoriteAddress = AddressList::where('favorite','1')->with('addressInfo')->paginate(5);
+        $recentSearchAddress = AddressList::orderBy('search_time','desc')->with('addressInfo')->paginate(5);
 
 //    	foreach ($addresses as $address){
 //    	    return $address['addressInfo'];
 //        }
 
-        return view('dashboard.superadminDashboard')->with('fileList',$fileList)->with('addresses',$addresses);
+        return view('dashboard.superadminDashboard')
+            ->with('fileList',$fileList)
+            ->with('favoriteAddress',$favoriteAddress)
+            ->with('recentSearchAddress',$recentSearchAddress);
     }
 
 

@@ -17,6 +17,7 @@
 
 			<li> <a href="#">Batch Upload</a> </li>
             @endrole
+			<a href="{{route('printPdf')}}">Print PDF</a>
 			<!-- <li class="active">
 				<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
 				<ul class="collapse list-unstyled" id="homeSubmenu">
@@ -139,7 +140,7 @@
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
-													  <th>Mark</th>
+                                                      <th>Mark</th>
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>
@@ -152,7 +153,7 @@
 											    </thead>
 											    <tbody>
 
-												@foreach($addresses as $address)
+												@foreach($favoriteAddress as $address)
 											      <tr>
 													  @if($address->favorite==0)
 													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
@@ -174,7 +175,7 @@
 													@endforeach
 											    </tbody>
 											  </table>
-
+                                {{ $favoriteAddress->links() }}
 	        				</div>
     					</div>
 					</div>
@@ -222,37 +223,42 @@
 				<div class="container">
     					<div class="card bg-light mt-3">
        						<div class="card-header">
-           							 Recent search
+           							 Recent search Address
         					</div>
 	        				<div class="card-body" >
 	            				
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
-											        <th>Firstname</th>
-											        <th>Lastname</th>
-											        <th>Email</th>
+                                                      <th>Address</th>
+                                                      <th>BD</th>
+                                                      <th>BA</th>
+                                                      <th>Zestimate</th>
+                                                      <th>Rent</th>
+                                                      <th>VR</th>
+                                                      <th>R/Z</th>
+                                                      <th>VR/Z</th>
 											      </tr>
 											    </thead>
 											    <tbody>
-											      <tr>
-											        <td>John</td>
-											        <td>Doe</td>
-											        <td>john@example.com</td>
-											      </tr>
-											      <tr>
-											        <td>Mary</td>
-											        <td>Moe</td>
-											        <td>mary@example.com</td>
-											      </tr>
-											      <tr>
-											        <td>July</td>
-											        <td>Dooley</td>
-											        <td>july@example.com</td>
-											      </tr>
+                                                @foreach($recentSearchAddress as $address)
+                                                    <tr>
+                                                        <td>{{$address->address}}</td>
+                                                        <td>{{$address['addressInfo']['bedroom']}}</td>
+                                                        <td>{{$address['addressInfo']['bathroom']}}</td>
+                                                        <td>${{$address['addressInfo']['zestimate']}}</td>
+                                                        <td>${{$address['addressInfo']['rent_zestimate']}}</td>
+                                                        <td>{{$address['addressInfo']['finishedSqFt']}}</td>
+                                                        <td>{{$address['addressInfo']['lotSizeSqFt']}}</td>
+                                                        <td>{{$address['addressInfo']['last_sold_price']}}</td>
+
+
+
+                                                    </tr>
+                                                @endforeach
 											    </tbody>
 											  </table>
-
+                                {{ $recentSearchAddress->links() }}
 	        				</div>
     					</div>
 					</div>
