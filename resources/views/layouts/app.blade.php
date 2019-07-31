@@ -131,10 +131,10 @@
                 <a href="#" class="logo">
                     <img src="{{ asset('images/logo.svg') }}" alt="realhome">
                 </a>
-                <button type="button" class="search-button" data-toggle="collapse" data-target="#bloq-search" aria-expanded="false">
+                <!-- <button type="button" class="search-button" data-toggle="collapse" data-target="#bloq-search" aria-expanded="false">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-                <div class="get-quote hidden-lg-down">
+                </button> -->
+                <!-- <div class="get-quote hidden-lg-down"> -->
                     <!-- <a href="submit-property.html">
                         <p>Submit Property</p>
                     </a> -->
@@ -145,18 +145,18 @@
 
                                 
            
-                </div>
-                <button type="button" class="button-menu hidden-lg-up" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                <!-- </div> -->
+                <!-- <button type="button" class="button-menu hidden-lg-up" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
                     <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
+                </button> -->
 
-                <form action="#" id="bloq-search" class="collapse">
+                <!-- <form action="#" id="bloq-search" class="collapse">
                     <div class="bloq-search">
                         <input type="text" placeholder="search...">
                         <input type="submit" value="Search">
                     </div>
                 </form>
-
+ -->
                 <nav id="main-menu" class="collapse">
                     <ul>
                         <!-- STAR COLLAPSE MOBILE MENU -->
