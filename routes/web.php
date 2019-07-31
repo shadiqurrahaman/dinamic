@@ -48,6 +48,9 @@ Route::get('/', function () {
         Route::post('/change/favorite','HomeController@changeFavorite');
         Route::get('/property/result','HomeController@result');
         Route::get('propertyResult/{propertyId}','SearchController@propertyResult')->name('propertyResult');
+
+        //pdf
+        Route::get('printPdf','PdfGenController@printPdf')->name('printPdf');
         
 
 
