@@ -113,16 +113,7 @@
                             <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                         </div>
                     </div>
-{{--                    <div class="dropdown">--}}
-{{--                        <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true">--}}
-{{--                            <img src="{{ asset('images/en.png') }}" alt="lang" /> English--}}
-{{--                        </button>--}}
-{{--                        <ul class="dropdown-menu" aria-labelledby="dropdownlang">--}}
-{{--                            <li><img src="{{ asset('images/fr.png') }}" alt="lang" />France</li>--}}
-{{--                            <li><img src="{{ asset('images/de.png') }}" alt="lang" /> German</li>--}}
-{{--                            <li><img src="{{ asset('images/it.png') }}" alt="lang" />Italy</li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
+
                 </div>
             </div>
         </div>
@@ -131,44 +122,18 @@
                 <a href="#" class="logo">
                     <img src="{{ asset('images/logo.svg') }}" alt="realhome">
                 </a>
-                <!-- <button type="button" class="search-button" data-toggle="collapse" data-target="#bloq-search" aria-expanded="false">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button> -->
-                <!-- <div class="get-quote hidden-lg-down"> -->
-                    <!-- <a href="submit-property.html">
-                        <p>Submit Property</p>
-                    </a> -->
-
-                        
-
-                        
-
-                                
-           
-                <!-- </div> -->
-                <!-- <button type="button" class="button-menu hidden-lg-up" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button> -->
-
-                <!-- <form action="#" id="bloq-search" class="collapse">
-                    <div class="bloq-search">
-                        <input type="text" placeholder="search...">
-                        <input type="submit" value="Search">
-                    </div>
-                </form>
- -->
                 <nav id="main-menu" class="collapse">
                     <ul>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
                             <div class="po">
 {{--                                @role('admin')--}}
-                                <a data-toggle="collapse" href="/home" aria-expanded="false">Home</a>
+                                <a data-toggle="collapse" href="{{route('/home')}}" aria-expanded="false">Home</a>
 {{--                                @endrole--}}
                             </div>
                             <div class="collapse" id="home">
                                 <div class="card card-block">
-                                    <a  href="index.html">Home Map</a>
+                                    <a  href="#">Home Map</a>
                                    <!--  <a class="dropdown-item" href="index-2.html">Home Image</a>
                                     <a class="dropdown-item" href="index-3.html">Home Video</a>
                                     <a class="dropdown-item" href="index-4.html">Home Slider</a> -->
@@ -177,7 +142,7 @@
                             </div>
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown hidden-md-down">
+                        <li class="dropdown">
 
                             @if(Auth::check())
                             @role('admin')
@@ -197,115 +162,46 @@
                                 </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
-                        <li class="hidden-lg-up">
-                            <div class="po">
-                                <a  href="#listing" aria-expanded="false">Basics</a>
-                            </div>
-                            <!-- <div class="collapse" id="listing">
-                                <div class="card card-block">
-                                    <a class="dropdown-item" href="properties-full-list.html">Full List</a>
-                                    <a class="dropdown-item" href="properties-list-right-sidebar.html">List Right Sidebar </a>
-                                    <a class="dropdown-item" href="properties-full-grid.html">Full Grid</a>
-                                    <a class="dropdown-item" href="properties-grid-right-sidebar.html">Grid Right Sidebar</a>
-                                    <a class="dropdown-item" href="properties-half-map.html">Half Map</a>
-                                    <a class="dropdown-item" href="properties-map.html">Listing With Map</a>
-                                    <a class="dropdown-item" href="properties-details.html">Property Details</a>
-                                </div>
-                            </div> -->
+                        <li class="dropdown">
+
+                                <a  aria-haspopup="true" aria-expanded="false"  href="{{url('/basic')}}" >Basics</a>
+
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown hidden-md-down">
-                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Basics</a>
-                           <!--  <div class="dropdown-menu">
-                                <a class="dropdown-item" href="properties-full-list.html">Full List</a>
-                                <a class="dropdown-item" href="properties-list-right-sidebar.html">List Right Sidebar </a>
-                                <a class="dropdown-item" href="properties-full-grid.html">Full Grid</a>
-                                <a class="dropdown-item" href="properties-grid-right-sidebar.html">Grid Right Sidebar</a>
-                                <a class="dropdown-item" href="properties-half-map.html">Half Map</a>
-                                <a class="dropdown-item" href="properties-map.html">Listing With Map</a>
-                                <a class="dropdown-item" href="properties-details.html">Property Details</a>
-                            </div> -->
+                        <li class="dropdown">
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/basic')}}">Basics</a>
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
-                            <div class="po">
-                                <a data-toggle="collapse" href="#services" aria-expanded="false">Resource</a>
-                            </div>
-                            <!-- <div class="collapse" id="services">
-                                <div class="card card-block">
-                                    <a class="dropdown-item" href="agents-listing-grid.html">Agents Listing Grid</a>
-                                    <a class="dropdown-item" href="agents-listing-row.html">Agents Listing Row</a>
-                                    <a class="dropdown-item" href="agent-details.html">Agent Details</a>
-                                </div>
-                            </div> -->
+
+                                <a data-toggle="collapse" href="{{url('/resource')}}" aria-expanded="false">Resource</a>
+
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown hidden-md-down">
-                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Resource</a>
-                            <!-- <div class="dropdown-menu">
-                                <a class="dropdown-item" href="agents-listing-grid.html">Agents Listing Grid</a>
-                                <a class="dropdown-item" href="agents-listing-row.html">Agents Listing Row</a>
-                                <a class="dropdown-item" href="agent-details.html">Agent Details</a>
-                            </div> -->
+                        <li class="dropdown">
+                            <a  aria-haspopup="true" aria-expanded="false" href="{{url('/resource')}}">Resource</a>
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
-                            <div class="po">
-                                <a  href="#about" aria-expanded="false">Tools</a>
-                            </div>
-                            <!-- <div class="collapse" id="about">
-                                <div class="card card-block">
-                                    <a class="dropdown-item" href="about.html">About Us</a>
-                                    <a class="dropdown-item" href="faq.html">Faq</a>
-                                    <a class="dropdown-item" href="pricing-table.html">Pricing</a>
-                                    <a class="dropdown-item" href="404.html">404</a>
-                                    <a class="dropdown-item" href="login.html">Login</a>
-                                    <a class="dropdown-item" href="register.html">Register</a>
-                                    <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                                    <a class="dropdown-item" href="under-construction.html">Under Construction</a>
-                                </div>
-                            </div> -->
+
+                                <a  href="{{route('tools')}}" aria-expanded="false">Tools</a>
+
+
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown hidden-md-down">
+                        <li class="dropdown">
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}">Tools</a>
 
-
-
-
-                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Tools</a>
-
-                            <!-- <div class="dropdown-menu">
-                                <a class="dropdown-item" href="about.html">About Us</a>
-                                <a class="dropdown-item" href="faq.html">Faq</a>
-                                <a class="dropdown-item" href="pricing-table.html">Pricing</a>
-                                <a class="dropdown-item" href="404.html">404</a>
-                                <a class="dropdown-item" href="login.html">Login</a>
-                                <a class="dropdown-item" href="register.html">Register</a>
-                                <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                                <a class="dropdown-item" href="under-construction.html">Under Construction</a>
-                            </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
-                            <div class="po">
-                                <a  href="#blog" aria-expanded="false">My-profile</a>
-                            </div>
-                            <!-- <div class="collapse" id="blog">
-                                <div class="card card-block">
-                                    <a class="dropdown-item" href="blog.html">Blog Default</a>
-                                    <a class="dropdown-item" href="blog-rightsidebar.html">Blog Right Sidebar</a>
-                                    <a class="dropdown-item" href="blog-details.html">Blog Details</a>
-                                </div>
-                            </div> -->
+
+                                <a  href="#" aria-expanded="false">My-profile</a>
+
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown hidden-md-down">
+                        <li class="dropdown ">
                             <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">My-profile</a>
-                            <!-- <div class="dropdown-menu">
-                                <a class="dropdown-item" href="blog.html">Blog Default</a>
-                                <a class="dropdown-item" href="blog-rightsidebar.html">Blog Right Sidebar</a>
-                                <a class="dropdown-item" href="blog-details.html">Blog Details</a>
-                            </div> -->
                         </li>
                         <li><a href="#">Contact</a></li>
 
@@ -317,7 +213,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="    right: 9px!important;">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -500,14 +396,6 @@
 
 
      <script>
-
-         // This sample uses the Autocomplete widget to help the user select a
-         // place, then it retrieves the address components associated with that
-         // place, and then it populates the form fields with those details.
-         // This sample requires the Places library. Include the libraries=places
-         // parameter when you first load the API. For example:
-         // <script
-         // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
          var placeSearch, autocomplete;
 

@@ -38,6 +38,21 @@ class HomeController extends Controller
         return $favoriteAddress->favorite;
     }
 
+    public function basic()
+    {
+        return view('basic');
+    }
+
+    public function resource()
+    {
+        return view('resource');
+    }
+
+    public function tools()
+    {
+        return view('tools');
+    }
+
     public function result()
     {
         return view('propertyResult');

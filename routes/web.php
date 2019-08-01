@@ -19,6 +19,10 @@
 
 // Auth::routes(['verify' => true]);
         Route::get('/','HomeController@index');
+        Route::get('basic','HomeController@basic');
+        Route::get('resource','HomeController@resource');
+        Route::get('tools','HomeController@tools')->name('tools');
+
 
         Route::get('admin', 'Auth\LoginController@showLoginForm')->name('admin');
         Route::post('admin', 'Auth\LoginController@login');
@@ -57,7 +61,7 @@
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('/home');
 Route::post('search','SearchController@index')->name('search');
 
 
