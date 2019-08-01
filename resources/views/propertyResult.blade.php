@@ -104,7 +104,7 @@
                                 <div class="project-single">
                                     <div class="project-inner project-head">
                                         <div class="project-bottom">
-                                            <h4><a href="properties-details.html">View Property</a><span class="category">Real Estate</span></h4>
+                                            <h4><a href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">View Property</a><span class="category">Real Estate</span></h4>
                                         </div>
                                         <div class="homes">
                                             <!-- homes img -->

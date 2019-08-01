@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('/', function () {
+//
+//
+//    return view('home');
+//});
 
 // Auth::routes(['verify' => true]);
-
+        Route::get('/','HomeController@index');
 
         Route::get('admin', 'Auth\LoginController@showLoginForm')->name('admin');
         Route::post('admin', 'Auth\LoginController@login');

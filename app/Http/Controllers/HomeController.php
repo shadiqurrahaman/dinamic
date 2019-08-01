@@ -24,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $recomendentAddresses = AddressList::inRandomOrder()->limit(4)->get();
+
+        return view('home')->with('recomendentAddresses',$recomendentAddresses);
     }
 
     public function changeFavorite(Request $request)
