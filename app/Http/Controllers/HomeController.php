@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AddressList;
+use App\Homeowner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -56,6 +57,22 @@ class HomeController extends Controller
     public function result()
     {
         return view('propertyResult');
+    }
+
+    public function homeowner(Request $request)
+    {
+        $homeowner = new Homeowner();
+
+        $homeowner->first_name = $request->input('first_name');
+        $homeowner->last_name = $request->input('last_name');
+        $homeowner->email = $request->input('email');
+        $homeowner->phone = $request->input('phone');
+        $homeowner->address = $request->input('address');
+
+        $homeowner->save();
+
+        return back();
+
     }
 
 

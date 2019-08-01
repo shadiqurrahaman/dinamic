@@ -59,6 +59,7 @@
         Route::get('printPdf','PdfGenController@printPdf')->name('printPdf');
         
 
+        Route::post('homeowner','HomeController@homeowner')->name('homeowner');
 
 
 Route::get('/home', 'HomeController@index')->name('/home');

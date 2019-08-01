@@ -32,12 +32,12 @@
 
                             <div class="card-body">
 
-                                <form class='search-form' method="POST" action="{{ route('search') }}">
+                                <form class='search-form' method="POST" action="{{ route('homeowner') }}">
                                     @csrf
                                     <input style="margin: 5px" class='form-control' placeholder='First Name' type='text' name='first_name'/>
                                     <input style="margin: 5px" class='form-control' placeholder='Last Name' type='text' name='last_name'/>
                                     <input style="margin: 5px" class='form-control' placeholder='Email' type='email' name='email'/>
-                                    <input style="margin: 5px" class='form-control' placeholder='Phone' type='number' name='last_name'/>
+                                    <input style="margin: 5px" class='form-control' placeholder='Phone' type='number' name='phone'/>
 {{--                                    <input style="margin: 5px" class='form-control' placeholder='Address' type='textarea' name='last_name'/>--}}
                                     <textarea style="margin: 5px" class='form-control' placeholder='Address' rows="4" cols="50" name="address"></textarea>
                                     <input style="margin: 5px;background-color: #3F3F3F;color: #ffffff"  type="submit" value="Submit" >

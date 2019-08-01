@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use App\AddressList;
 use Helper;
+use mysql_xdevapi\Exception;
 
 class SearchController extends Controller
 {	
@@ -18,6 +19,11 @@ class SearchController extends Controller
 
   		
     	// $value =  Cache::add($request->input('search'), 'value',now()->addYear(1));
+
+
+        try {
+            // Validate the value...
+
 
         $valid_address = preg_match('/^\d.*.\d$/', $request->input('search'));
 
@@ -50,9 +56,10 @@ class SearchController extends Controller
         }
 
 
-        ///need to patch with property details page
-        
-//		dd($addressInfoId );
+        } catch (Exception $e) {
+
+            return "oops something went wrong!! please reset the process and check your input";
+         }
 
 
 
