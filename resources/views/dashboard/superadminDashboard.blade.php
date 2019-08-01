@@ -14,24 +14,8 @@
             @role('superadmin')
 			<li> <a href="{{route('userManagement')}}">All User</a> </li>
 			<li> <a href="{{route('adduser')}}">Add User</a> </li>
-
-			<li> <a href="#">Batch Upload</a> </li>
             @endrole
-{{--			<a href="{{route('printPdf')}}">Print PDF</a>--}}
-			<!-- <li class="active">
-				<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-				<ul class="collapse list-unstyled" id="homeSubmenu">
-					<li>
-						<a href="#">Home 1</a>
-					</li>
-					<li>
-						<a href="#">Home 2</a>
-					</li>
-					<li>
-						<a href="#">Home 3</a>
-					</li>
-				</ul>
-			</li> -->
+
 			
 		</ul>
 
@@ -85,7 +69,7 @@
         					</div>
 	        				<div class="card-body">
 
-								@if($errors->any())
+								@if($errors->has('filerror'))
 									<h5 style="color: #ff5346;">{{$errors->first()}}</h5>
 								@endif
 	            				<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
@@ -111,7 +95,11 @@
            							 <h3>Search by Address</h3>
         					</div>
 	        				<div class="card-body" style="height: 106px;">
+								@if($errors->has('erroraddress'))
+									<h5 style="color: #ff5346;">{{$errors->first()}}</h5>
+								@endif
 	            				<form class='search-form' method="POST" action="{{ route('search') }}">
+
                             		 @csrf
 									<div id="locationField">
 

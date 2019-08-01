@@ -25,7 +25,9 @@ class SuperadminController extends Controller
 //    	    return $address['addressInfo'];
 //        }
 
-    	 return view('dashboard.superadminDashboard')->with('fileList',$fileList)->with('addresses',$addresses);
+    	 return view('dashboard.superadminDashboard')
+             ->with('fileList',$fileList)
+             ->with('addresses',$addresses);
     }
 
     public function userManagement()

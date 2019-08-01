@@ -9,9 +9,12 @@
 
 
                             <div class="card-body">
-
+                                @if($errors->has('erroraddress'))
+                                    <h5 style="color: #ff5346;">{{$errors->first()}}</h5>
+                                @endif
                                 <form class='search-form' method="POST" action="{{ route('search') }}">
-                                     @csrf
+
+                                    @csrf
                                     <div id="locationField">
 
                                         <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search'>

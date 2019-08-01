@@ -42,7 +42,7 @@ class AdminController extends Controller
          $path = request()->file('file');
 
          if ($path==''){
-             return back()->withErrors(['No File Selected']);
+             return back()->withErrors(['filerror'=>'No File Selected']);
          }
          $fileName = $request->input('filename');
 
@@ -53,7 +53,7 @@ class AdminController extends Controller
              $name=$fileName.'.csv';
          }
 
-         return $name;
+
 
          $data = \Excel::toArray(new CsvImport, $path);
 

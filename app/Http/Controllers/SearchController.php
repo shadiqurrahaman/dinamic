@@ -19,13 +19,22 @@ class SearchController extends Controller
   		
     	// $value =  Cache::add($request->input('search'), 'value',now()->addYear(1));
 
+        $valid_address = preg_match('/^\d.*.\d$/', $request->input('search'));
+
+        if($valid_address!=0){
+
+
+
     	if(!Cache::has($request->input('search'))){
     	 	 
 
               $addressInfoId = Helper::apicall(null,$request->input('search'));
 
-              Cache::add($request->input('search'), $addressInfoId ,now()->addYear(1));
-    	 	 
+
+
+                  Cache::add($request->input('search'), $addressInfoId ,now()->addYear(1));
+
+
     	}else{
     	
     		 $address = AddressList::where('address','=',$request->input('search'))->with('addressInfo')->first();
@@ -36,10 +45,15 @@ class SearchController extends Controller
 
     	}
 
+        }else{
+            return back()->withErrors(['erroraddress'=>'Please Provide a valid address']);
+        }
+
 
         ///need to patch with property details page
         
 //		dd($addressInfoId );
+
 
 
         return redirect()->route('propertyResult', ['propertyId' => $addressInfoId]);
