@@ -10,29 +10,36 @@
                 <div style="float: left; margin-top: 20px;"> 
                     <h4 style="font-weight: bold; font-size: 25px;">
                         <span class="heading-icon"><i class="fa fa-map-marker"></i></span>
-                        <span class="hidden-sm-down">995 South Park Avenue</span>
+                        <span class="hidden-sm-down">{{$addressInfo->address}}</span>
                     </h4>
                 </div>                
                 <div style="float: right; margin-top: 20px;">
-                    <i class="far fa-heart" style="font-size: 25px; margin-right: 10px;"></i>
-                    <i class="fa fa-share-alt" style="font-size: 25px;"></i>
+                    @if(Auth::check())
+{{--                    <i class="far fa-heart" style="font-size: 25px; margin-right: 10px;"></i>--}}
+                        @if($addressInfo->favorite==0)
+                            <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}"  class="far fa-heart" aria-hidden="true" style="color:red; font-size: 25px;"></i></a></td>
+                        @else
+                            <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}" class="fas fa-heart" aria-hidden="true" style="color:red;font-size: 25px;"></i></a></td>
+                        @endif
+                    @endif
+                    <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
                 </div>
                 <div class="clearfix"></div>
 
                 <table width="100%" border="0" style="margin-top: 15px;">
                     <tr>
-                        <th>2</th>
-                        <th>2.0</th>
-                        <th>1470</th>
+                        <th>{{$addressInfo['addressInfo']['bedroom']}}</th>
+                        <th>{{$addressInfo['addressInfo']['bathroom']}}</th>
+                        <th>{{$addressInfo['addressInfo']['finishedSqFt']}}</th>
                         <td width="150">Last Sold Date</td>
-                        <td width="80">10/79</td>
+                        <td width="80">{{$addressInfo['addressInfo']['last_sold_date']}}</td>
                     </tr>
                     <tr>
                         <td>BD</td>
                         <td>BA</td>
                         <td>SqFT</td>
                         <td>Last Sold Price</td>
-                        <td>$6,000</td>
+                        <td>${{$addressInfo['addressInfo']['last_sold_price']}}</td>
                     </tr>                    
                 </table>
                 
@@ -90,6 +97,9 @@
                             <h2>Properties</h2>
                         </div>
                         <div class="row portfolio-items">
+
+                            @foreach($recomendentAddresses as $address)
+
                             <div class="item col-lg-3 col-md-6 col-xs-12 landscapes">
                                 <div class="project-single">
                                     <div class="project-inner project-head">
@@ -115,7 +125,7 @@
                                                 <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
                                             </a>
                                         </p>
-                                 
+
                                         <div class="footer">
                                             <!-- Price -->
                                             <div class="price-properties">
@@ -138,6 +148,13 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @endforeach
+
+
+
+
+
                             <div class="item col-lg-3 col-md-6 col-xs-12 people">
                                 <div class="project-single">
                                     <div class="project-inner project-head">
@@ -162,7 +179,7 @@
                                             <a href="properties-details.html">
                                                 <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
                                             </a>
-                                        </p>                            
+                                        </p>
                                         <div class="footer">
                                             <!-- Price -->
                                             <div class="price-properties">
@@ -185,6 +202,12 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
                             <div class="item col-lg-3 col-md-6 col-xs-12 people landscapes no-pb pbp-3">
                                 <div class="project-single no-mb mbp-3">
                                     <div class="project-inner project-head">
@@ -210,7 +233,7 @@
                                                 <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
                                             </a>
                                         </p>
-                                        
+
                                         <div class="footer">
                                             <!-- Price -->
                                             <div class="price-properties">
@@ -258,7 +281,7 @@
                                                 <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
                                             </a>
                                         </p>
-                                        
+
                                         <div class="footer">
                                             <!-- Price -->
                                             <div class="price-properties">

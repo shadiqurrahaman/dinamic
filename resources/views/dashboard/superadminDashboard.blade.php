@@ -17,7 +17,7 @@
 
 			<li> <a href="#">Batch Upload</a> </li>
             @endrole
-			<a href="{{route('printPdf')}}">Print PDF</a>
+{{--			<a href="{{route('printPdf')}}">Print PDF</a>--}}
 			<!-- <li class="active">
 				<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
 				<ul class="collapse list-unstyled" id="homeSubmenu">

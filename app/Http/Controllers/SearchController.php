@@ -48,7 +48,11 @@ class SearchController extends Controller
 
     public function propertyResult($propertyId)
     {
-        $addressinfo = AddressInfo::where('id',$propertyId)->first();
-        return view('propertyResult')->with('addressInfo',$addressinfo);
+        $addressinfo = AddressList::where('id',$propertyId)->with('addressInfo')->first();
+
+        $recomendentAddresses = AddressList::inRandomOrder()->limit(4)->get();
+        return view('propertyResult')
+            ->with('addressInfo',$addressinfo)
+            ->with('recomendentAddresses',$recomendentAddresses);
     }
 }

@@ -184,7 +184,7 @@
                             <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}">Home</a>
                             @endrole
                             @role('superadmin')
-                                <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/superadmin')}}">Home</a>
+                                <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}">Home</a>
                             @endrole
                             @else
                             <a   aria-haspopup="true" aria-expanded="false" href="{{url('/')}}">Home</a>
@@ -307,7 +307,7 @@
                                 <a class="dropdown-item" href="blog-details.html">Blog Details</a>
                             </div> -->
                         </li>
-                        <li><a href="contact-us.html">Contact</a></li>
+                        <li><a href="#">Contact</a></li>
 
                         @guest
                             <p></p>
