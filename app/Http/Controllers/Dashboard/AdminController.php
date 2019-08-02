@@ -76,7 +76,12 @@ class AdminController extends Controller
 
 
          foreach ($data[0] as  $value) {
-            
+
+
+             $valid_address = preg_match('/^\d.*.\d$/', $value[0]);
+
+             if($valid_address!=0){
+
 
             if(!Cache::has($value[0])){
 
@@ -93,6 +98,8 @@ class AdminController extends Controller
                 Cache::add($value[0], $id ,now()->addYear(1));
             }
             
+         }
+
          }
 
         
