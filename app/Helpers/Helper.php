@@ -15,20 +15,20 @@ class Helper
 
 
 
-//        $addressList = new AddressList;
-//
-//        $addressList->address = $property;
-//        $addressList->search_time = Carbon::now();
-//        $addressList->favorite = false;
-//
-//        if($file_list_id!=null){
-//
-//            $filelist = FileList::find($file_list_id);
-//            $filelist->adress()->save($addressList);
-//        }else{
-//             $addressList->file_list_id = $file_list_id;
-//             $addressList->save();
-//        }
+        $addressList = new AddressList;
+
+        $addressList->address = $property;
+        $addressList->search_time = Carbon::now();
+        $addressList->favorite = false;
+
+        if($file_list_id!=null){
+
+            $filelist = FileList::find($file_list_id);
+            $filelist->adress()->save($addressList);
+        }else{
+             $addressList->file_list_id = $file_list_id;
+             $addressList->save();
+        }
 
         
 
@@ -47,7 +47,7 @@ class Helper
         $airdna_property_data = $array['property_stats'];
 
         //zillow property data
-        $zillourl = 'https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz1ha147usbuz_8clop&'.$string;
+        $zillourl = 'https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz1ha147usbuz_8clop&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA';
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET',$zillourl);
         $xml = simplexml_load_string($response->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
@@ -67,29 +67,34 @@ class Helper
 
 //        dd($airdna_property_data);
 //        dd($propertyData);
-        dd($update_property_data);
+//        dd($update_property_data);
 
 
     	 $appinfo = new AddressInfo;
 
-    	 $appinfo->status = 'status';
-    	 $appinfo->MLS ="MLS"; 
-    	 $appinfo->price = "250000";
-    	 $appinfo->photo = $update_collection['response']['images']['image']['url']?$update_collection['response']['images']['image']['url']:null;
-    	 $appinfo->hometype = $propertyData['useCode']?$propertyData['useCode']:null;
-    	 $appinfo->bedroom = $propertyData['bedrooms']?$propertyData['bedrooms']:null;
-    	 $appinfo->bathroom = $propertyData['bathrooms']?$propertyData['bathrooms']:null;
-    	 $appinfo->finishedSqFt =$update_collection['response']['editedFacts']['finishedSqFt']?$update_collection['response']['editedFacts']['finishedSqFt']:null;
-    	 $appinfo->lotSizeSqFt = $update_collection['response']['editedFacts']['lotSizeSqFt']?$update_collection['response']['editedFacts']['lotSizeSqFt']:null;
-    	 $appinfo->yearBuilt = $update_collection['response']['editedFacts']['yearBuilt']?$update_collection['response']['editedFacts']['yearBuilt']:null;
-    	 $appinfo->zestimate = $propertyData['zestimate']['amount']?$propertyData['zestimate']['amount']:null;
-    	 $appinfo->rent_zestimate = "50000";
-    	 $appinfo->last_sold_date =$propertyData['lastSoldDate']?$propertyData['lastSoldDate']:null;
-    	 $appinfo->last_sold_price =$propertyData['lastSoldPrice']?$propertyData['lastSoldPrice']:null;
+        $appinfo->status = 'status';
+        $appinfo->MLS ="MLS";
+        $appinfo->price = "250000";
+        $appinfo->photo = $update_collection['response']['images']['image']['url']?$update_collection['response']['images']['image']['url']:null;
+        $appinfo->hometype = $propertyData['useCode']?$propertyData['useCode']:null;
+        $appinfo->bedroom = $propertyData['bedrooms']?$propertyData['bedrooms']:null;
+        $appinfo->bathroom = $propertyData['bathrooms']?$propertyData['bathrooms']:null;
+        $appinfo->finishedSqFt =$update_collection['response']['editedFacts']['finishedSqFt']?$update_collection['response']['editedFacts']['finishedSqFt']:null;
+        $appinfo->lotSizeSqFt = $update_collection['response']['editedFacts']['lotSizeSqFt']?$update_collection['response']['editedFacts']['lotSizeSqFt']:null;
+        $appinfo->yearBuilt =  $update_collection['response']['editedFacts']['yearBuilt']?$update_collection['response']['editedFacts']['yearBuilt']:'';
+        $appinfo->zestimate = $propertyData['zestimate']['amount']?$propertyData['zestimate']['amount']:null;
+        $appinfo->rent_zestimate = "50000";
+        $appinfo->last_sold_date =\Carbon\Carbon::parse($propertyData['lastSoldDate'])->format('Y/m/d');
+        $appinfo->last_sold_price =$propertyData['lastSoldPrice']?$propertyData['lastSoldPrice']:null;
+        $appinfo->air_dna_anual_revinue = $airdna_property_data['revenue']['ltm'];
+        $appinfo->air_dna_average_daily_ratr =$airdna_property_data['adr']['ltm'];
+        $appinfo->air_dna_accupancy =$airdna_property_data['occupancy']['ltm'];
+        $appinfo->latatude = $update_property_data['address']['latitude'];
+        $appinfo->longitude = $update_property_data['address']['longitude'];
 
          $addressList->addressInfo()->save($appinfo);
     	 
-
+        dd('ok');
     	 return $appinfo->id;
 
 	}

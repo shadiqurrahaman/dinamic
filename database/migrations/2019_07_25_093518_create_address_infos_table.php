@@ -32,6 +32,11 @@ class CreateAddressInfosTable extends Migration
             $table->integer('rent_zestimate')->nullable();
             $table->date('last_sold_date')->nullable();
             $table->integer('last_sold_price')->nullable();
+            $table->string('air_dna_anual_revinue')->nullable();
+            $table->string('air_dna_average_daily_ratr')->nullable();
+            $table->string('air_dna_accupancy')->nullable();
+            $table->string('latatude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }
