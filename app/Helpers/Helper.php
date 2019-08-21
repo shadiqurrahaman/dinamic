@@ -39,61 +39,36 @@ class Helper
 		 $string = 'address='.urlencode($split[0]).'&citystatezip='.urlencode($split[1]);
 
 
-		 $zillourl = 'https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz1ha147usbuz_8clop&'.$string;
+        //airdna response
+        $airdna_api_string = 'https://api.airdna.co/client/v1/rentalizer/ltm?access_token=2c4b008762ca4e8cb9845f8dbf12d35e&address='.$address;
+        $client = new \GuzzleHttp\Client();
+        $airdna_property_result = $client->request('GET',$airdna_api_string);
+        $array = json_decode($airdna_property_result->getBody(), true);
+        $airdna_property_data = $array['property_stats'];
 
-		 $client = new \GuzzleHttp\Client();
-
-		 $response = $client->request('GET',$zillourl);
-
-		 $xml = simplexml_load_string($response->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
-
-		 $json = json_encode($xml);
-
-		 $array = json_decode($json, true);
-
-		 $array_dot = array_dot($array);
-
-		 $collection = collect($array);
-
-    	 // return $collection['request']['address'];
-
-
-
-        //save to database
-
+        //zillow property data
+        $zillourl = 'https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz1ha147usbuz_8clop&'.$string;
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET',$zillourl);
+        $xml = simplexml_load_string($response->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $array = json_decode($json, true);
+        $collection = collect($array);
         $propertyData =  $collection['response']['results']['result'];
 
-//        dd($propertyData);
-        //zillow updated result search
-
+        // update property result
         $updated_search_result_string = 'https://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=X1-ZWz1ha147usbuz_8clop&zpid=48749425';
-
         $update_search_result = $client->request('POST',$updated_search_result_string);
-
-
         $xml_result = simplexml_load_string($update_search_result->getBody(),'SimpleXMLElement',LIBXML_NOCDATA);
-
-
         $json_result = json_encode($xml_result);
-
         $array = json_decode($json_result, true);
-
-//        $array_dot = array_dot($array);
-
         $update_collection = collect($array);
+        $update_property_data = $update_collection['response'];
 
-//        dd($update_collection['response']);
+//        dd($airdna_property_data);
+//        dd($propertyData);
+        dd($update_property_data);
 
-
-        //airdna response
-
-        $airdna_api_string = 'https://api.airdna.co/client/v1/rentalizer/ltm?access_token=2c4b008762ca4e8cb9845f8dbf12d35e&address='.$address;
-
-        $airdna_property_result = $client->request('GET',$airdna_api_string);
-
-        dd($airdna_property_result);
-        //end of zillow updated result search
-    	  dd($propertyData);
 
     	 $appinfo = new AddressInfo;
 
