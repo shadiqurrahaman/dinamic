@@ -15,6 +15,10 @@
         .pac-container {
             z-index: 1100 !important;
         }
+        #map {
+            height: 400px;  /* The height is 400 pixels */
+            width: 100%;  /* The width is the width of the web page */
+        }
     </style>
 
 
@@ -119,8 +123,8 @@
         </div>
         <div class="header-bottom heading sticky-header" id="heading">
             <div class="container">
-                <a href="#" class="logo">
-                    <img src="{{ asset('images/logo.svg') }}" alt="realhome">
+                <a href="{{url('/')}}" class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="realhome">
                 </a>
                 <nav id="main-menu" class="collapse">
                     <ul>
@@ -353,7 +357,10 @@
         {{--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmpgqwB9cKbegTayT18_I8OtjcgL9wFU&libraries=places&callback=initAutocomplete"--}}
 {{--            async defer></script>--}}
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmpgqwB9cKbegTayT18_I8OtjcgL9wFU&libraries=places,geometry&callback=initAutocomplete" async defer></script>
+{{--        <script async defer--}}
+{{--                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&callback=initMap">--}}
+{{--        </script>--}}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmpgqwB9cKbegTayT18_I8OtjcgL9wFU&libraries=places,geometry&callback=initAutocomplete&callback=initMap" async defer></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/tether.min.js') }}"></script>

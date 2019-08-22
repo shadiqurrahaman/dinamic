@@ -91,10 +91,11 @@ class Helper
         $appinfo->air_dna_accupancy =$airdna_property_data['occupancy']['ltm'];
         $appinfo->latatude = $update_property_data['address']['latitude'];
         $appinfo->longitude = $update_property_data['address']['longitude'];
+        $appinfo->home_details = $propertyData['links']['homedetails'];
 
          $addressList->addressInfo()->save($appinfo);
     	 
-        dd('ok');
+
     	 return $appinfo->id;
 
 	}

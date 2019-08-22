@@ -45,6 +45,9 @@
                 
                 <table width="80%" border="0" style="margin: 50px ;">
                     <tr>
+                        <td>Zestimate®</td>
+                    </tr>
+                    <tr>
                         <th>Zestimate</th>
                         <th>$12,678</th>                        
                     </tr>
@@ -63,7 +66,16 @@
                     <tr>
                         <td>Avg Nightly Rate</td>
                         <td>$254</td>                        
-                    </tr>                  
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href=" http://www.zillow.com/"><img src="{{asset('images/Zillowlogo_200x50.gif')}}" alt="Real Estate on Zillow">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{$addressInfo['addressInfo']['home_details']}}">See more details for {{$addressInfo->address}} on Zillow</a>
+                        </td>
+                    </tr>
                 </table>
 
 
@@ -81,10 +93,14 @@
                 </div>
             </div>
             <div class="col-md-6" style="border-top:10px solid #7ad9f5;">
-                <img src="{{asset('images/slider/home-slider-1.jpg')}}" style="margin-left: 0; padding-left: 0" alt="First slide">
+                <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width: 545px; padding-left: 0" alt="First slide">
 
-                <div>maps content</div>
-            </div>           
+{{--                <div>maps content</div>--}}
+            </div>
+            <div class="col-md-12">
+                <div id="map"></div>
+
+            </div>
         </div>
 
         <div class="row">
@@ -372,5 +388,21 @@
         </div>
     </div>
 </section>
+
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        var uluru = {lat: <?php echo $addressInfo['addressInfo']['latatude']?>, lng:<?php echo $addressInfo['addressInfo']['longitude']?>};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 14, center: uluru});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+</script>
+{{--<script async defer--}}
+{{--        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&callback=initMap">--}}
+{{--</script>--}}
 
 @endsection

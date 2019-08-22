@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-        <section class="welcome "  id="firstview" style="background-image: url({{url('images/slider/backimage.jpg')}})">
+        <section class="welcome "  id="firstview" style="background-image: url({{url('images/slider/dynamic.png')}})">
                 <div class="container" >
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" >
+                        <div class="card" style="background-color: #665EFF">
 
 
-                            <div class="card-body">
+                            <div class="card-body" >
                                 @if($errors->has('erroraddress'))
                                     <h5 style="color: #ff5346;">{{$errors->first()}}</h5>
                                 @endif
@@ -26,30 +27,70 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header" style="text-align: center;font-weight: bold;">Please enter your info</div>
+{{--                    <div class="col-md-4">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-header" style="text-align: center;font-weight: bold;">Please enter your info</div>--}}
 
-                            <div class="card-body">
+{{--                            <div class="card-body">--}}
 
-                                <form class='search-form' method="POST" action="{{ route('homeowner') }}">
-                                    @csrf
-                                    <input style="margin: 5px" class='form-control' placeholder='First Name' type='text' name='first_name'/>
-                                    <input style="margin: 5px" class='form-control' placeholder='Last Name' type='text' name='last_name'/>
-                                    <input style="margin: 5px" class='form-control' placeholder='Email' type='email' name='email'/>
-                                    <input style="margin: 5px" class='form-control' placeholder='Phone' type='number' name='phone'/>
+{{--                                <form class='search-form' method="POST" action="{{ route('homeowner') }}">--}}
+{{--                                    @csrf--}}
+{{--                                    <input style="margin: 5px" class='form-control' placeholder='First Name' type='text' name='first_name'/>--}}
+{{--                                    <input style="margin: 5px" class='form-control' placeholder='Last Name' type='text' name='last_name'/>--}}
+{{--                                    <input style="margin: 5px" class='form-control' placeholder='Email' type='email' name='email'/>--}}
+{{--                                    <input style="margin: 5px" class='form-control' placeholder='Phone' type='number' name='phone'/>--}}
 {{--                                    <input style="margin: 5px" class='form-control' placeholder='Address' type='textarea' name='last_name'/>--}}
-                                    <textarea style="margin: 5px" class='form-control' placeholder='Address' rows="4" cols="50" name="address"></textarea>
-                                    <input style="margin: 5px;background-color: #3F3F3F;color: #ffffff"  type="submit" value="Submit" >
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+{{--                                    <textarea style="margin: 5px" class='form-control' placeholder='Address' rows="4" cols="50" name="address"></textarea>--}}
+{{--                                    <input style="margin: 5px;background-color: #3F3F3F;color: #ffffff"  type="submit" value="Submit" >--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 </div>
 
 </section>
 
+            <section class="partners" style="background-color: #b3b3ff" >
+                <div class="container" >
+                    <div class="row">
+                                            <div class="col-md-8 offset-2">
+
+                                                <div class="card" style="margin-top: 25px;margin-bottom: 25px">
+                                                    <div class="card-header" style="text-align: center;font-weight: bold;">Please Be With US</div>
+
+                                                    <div class="card-body">
+                                                        <form method="POST" action="{{ route('homeowner') }}">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">First Name</label>
+                                                                <input  class='form-control' placeholder='First Name' type='text' name='first_name'/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputPassword1">Last Name</label>
+                                                                <input  class='form-control' placeholder='Last Name' type='text' name='last_name'/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputPassword1">Email</label>
+                                                                <input  class='form-control' placeholder='Email' type='email' name='email'/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputPassword1">Phone</label>
+                                                                <input  class='form-control' placeholder='Phone' type='number' name='phone'/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputPassword1">Address</label>
+                                                                <textarea style="margin: 5px" class='form-control' placeholder='Address' rows="4" cols="50" name="address"></textarea>
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-default">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    </div>
+                </div>
+            </section>
 
 
 
