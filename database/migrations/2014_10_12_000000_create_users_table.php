@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('mordgage_downpayment')->default('00');
+            $table->string('mordgage_loanterm')->default('00');
+            $table->string('mordgage_interest')->default('00');
             $table->rememberToken();
             $table->timestamps();
         });

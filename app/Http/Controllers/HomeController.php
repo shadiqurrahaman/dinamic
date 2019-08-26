@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AddressList;
 use App\Homeowner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -73,6 +74,25 @@ class HomeController extends Controller
 
         return back();
 
+    }
+
+    public function mortgageSetings()
+    {
+        return view('dashboard.mortgageSetings');
+    }
+
+    public function postSeringsMortgage(Request $request)
+    {
+
+        $user =  Auth::user();
+
+        $user->mordgage_downpayment = $request->input('doen_payment');
+        $user->mordgage_loanterm = $request->input('loanterm');
+        $user->mordgage_interest = $request->input('interest');
+
+        $user->save();
+
+        return back()->withErrors(['msg', 'Update successfully']);
     }
 
 

@@ -172,9 +172,9 @@
 
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown">
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/basic')}}">Basics</a>
-                        </li>
+{{--                        <li class="dropdown">--}}
+{{--                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/basic')}}">Basics</a>--}}
+{{--                        </li>--}}
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
 

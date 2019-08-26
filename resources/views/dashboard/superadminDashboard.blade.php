@@ -15,6 +15,7 @@
 			<li> <a href="{{route('userManagement')}}">All User</a> </li>
 			<li> <a href="{{route('adduser')}}">Add User</a> </li>
             @endrole
+			<li><a href="{{route('mortgageSetings')}}">Mortgage Setings</a></li>
 
 			
 		</ul>

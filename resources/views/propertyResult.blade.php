@@ -97,12 +97,20 @@
 
 {{--                <div>maps content</div>--}}
             </div>
+            @if(Auth::check())
+            <div col-md-4>
+                <div>
+                    Amount/month = <p id ="amount2" ></p>
+                </div>
+            </div>
+            @endif
+            @if(!Auth::check())
             <div class="col-md-4" >
-                <div style="height: 400px; margin-bottom: 50PX">
+                <div style="height: 400px; margin-bottom: 100PX">
                     <h3>Mortgage Calculator</h3>
 
-                    <p>Amount:</p> <p id="amount" style="color: green"></p>
-                    <form onsubmit="event.preventDefault()">
+                    <p style="font-weight: bold;">Amount per Month:</p> <p id="amount" style="color: green;font-size: large"></p>
+                    <form onsubmit="event.preventDefault()" action="">
                         <div class="form-group">
                             <label>Home Price</label>
                             <input type="number" name="home_price" class="form-control" id="home_price" placeholder="$-00">
@@ -146,15 +154,20 @@
                                 <option value="30">30 year</option>
                             </select>
                         </div>
+{{--                        <input type="button" id="sbt" value="Submit" />--}}
                         <div class="form-group">
                             <label for="exampleInputPassword1">Interest</label>
                             <input type="number" class="form-control" id="interest" placeholder="$-00">
                         </div>
 
                         <button onclick="formsubmit()"  class="btn btn-default">Submit</button>
+                        <input style="width: 25%;background-color: #3F3F3F;" type="reset" id="rst"  class="btn btn-default" value="Reset Form" />
+                        {{--                        <input type="reset" id="rst" value="Reset Form" />--}}
                     </form>
                 </div>
+
             </div>
+                @endif
             <div class="col-md-8">
                 <div id="map"></div>
 
@@ -448,7 +461,18 @@
 </section>
 
 <script>
+    window.onload = formsubmit2();
 
+    function formsubmit2(){
+        @if(Auth::check())
+        p = {{$addressInfo['addressInfo']['last_sold_price']}}-{{Auth::user()->mordgage_downpayment}};
+        i = {{Auth::user()->mordgage_interest}}/100/12;
+        n ={{Auth::user()->mordgage_loanterm}}*12;
+        @endif
+        var monthly_amount2 =  p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
+        alert(monthly_amount2);
+        document.getElementById('amount2').innerHTML=monthly_amount2.toFixed(2);
+    }
     function formsubmit() {
 
         $("form").submit(function(e){
@@ -469,9 +493,9 @@
         console.log(p+i+n);
         var monthly_amount =  p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
 
-        alert(monthly_amount);
 
-        $('#amount').text(monthly_amount);
+
+        $('#amount').text(monthly_amount.toFixed(2));
     }
     // Initialize and add the map
     function initMap() {

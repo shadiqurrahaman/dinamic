@@ -61,6 +61,9 @@
 
         Route::post('homeowner','HomeController@homeowner')->name('homeowner');
 
+        Route::get('mortgageSetings','HomeController@mortgageSetings')->name('mortgageSetings');
+        Route::post('mortgageSetings','HomeController@postSeringsMortgage')->name('mortgageSetings');
+
 
 Route::get('/home', 'HomeController@index')->name('/home');
 Route::post('search','SearchController@index')->name('search');
