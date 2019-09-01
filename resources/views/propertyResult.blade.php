@@ -1,5 +1,5 @@
 
-@extends('layouts.app2')
+@extends('layouts.app')
 
 @section('content')
 
@@ -508,6 +508,8 @@
         var marker = new google.maps.Marker({position: uluru, map: map});
     }
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmpgqwB9cKbegTayT18_I8OtjcgL9wFU&libraries=places,geometry&callback=initMap" async defer></script>
+
 {{--<script async defer--}}
 {{--        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&callback=initMap">--}}
 {{--</script>--}}

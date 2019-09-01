@@ -629,6 +629,7 @@
         }
     }
 </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmpgqwB9cKbegTayT18_I8OtjcgL9wFU&libraries=places,geometry&callback=initAutocomplete" async defer></script>
 
 
 @endsection
