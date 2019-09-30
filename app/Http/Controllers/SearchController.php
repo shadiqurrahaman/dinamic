@@ -27,6 +27,7 @@ class SearchController extends Controller
 
         $valid_address = preg_match('/^\d.*.\d$/', $request->input('search'));
 
+        
         if($valid_address!=0){
 
 
@@ -42,11 +43,13 @@ class SearchController extends Controller
 
 
     	}else{
-    	
+    	       
     		 $address = AddressList::where('address','=',$request->input('search'))->with('addressInfo')->first();
     		 $address->search_time = Carbon::now();
     		 $address->save();
-             $addressInfoId = $address['addressInfo']->id;
+             $addressInfoId = $address->id;
+               // dd($addressInfoId);
+
 
 
     	}
@@ -62,7 +65,7 @@ class SearchController extends Controller
          }
 
 
-
+       // dd($addressInfoId);
         return redirect()->route('propertyResult', ['propertyId' => $addressInfoId]);
 
     }

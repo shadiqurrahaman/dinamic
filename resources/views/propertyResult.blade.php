@@ -25,7 +25,7 @@
                     <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
                 </div>
                 <div class="clearfix"></div>
-
+                    
                 <table width="100%" border="0" style="margin-top: 15px;">
                     <tr>
                         <th>{{$addressInfo['addressInfo']['bedroom']}}</th>
@@ -57,15 +57,15 @@
                     </tr> 
                     <tr>
                         <th>VR Annual Revenue</th>
-                        <th>$352400</th>                        
+                        <th>{{$addressInfo['addressInfo']['air_dna_anual_revinue']}} </th>                        
                     </tr> 
                     <tr>
                         <td>Occupancy</td>
-                        <td>60%</td>                        
+                        <td>${{$addressInfo['addressInfo']['air_dna_accupancy']*100}}% </td>                        
                     </tr> 
                     <tr>
-                        <td>Avg Nightly Rate</td>
-                        <td>$254</td>                        
+                        <td>Avg Daily Rate</td>
+                        <td>${{$addressInfo['addressInfo']['air_dna_average_daily_ratr']}}</td>                        
                     </tr>
                     <tr>
                         <td>

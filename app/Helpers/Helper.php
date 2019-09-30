@@ -32,19 +32,24 @@ class Helper
 
         
 
-        $address = $property;
+        // dd($address);
 
-    	 $split = explode(',', $address,2);
+   //  	 $split = explode(',', $address,2);
 
-		 $string = 'address='.urlencode($split[0]).'&citystatezip='.urlencode($split[1]);
+		 // $string = 'address='.urlencode($split[0]).'&citystatezip='.urlencode($split[1]);
 
-
+        $address = 'address='.urlencode($property);
+         // dd($address);
         //airdna response
         $airdna_api_string = 'https://api.airdna.co/client/v1/rentalizer/ltm?access_token=2c4b008762ca4e8cb9845f8dbf12d35e&address='.$address;
         $client = new \GuzzleHttp\Client();
         $airdna_property_result = $client->request('GET',$airdna_api_string);
         $array = json_decode($airdna_property_result->getBody(), true);
         $airdna_property_data = $array['property_stats'];
+
+
+        // dd($airdna_property_data);
+
 
         //zillow property data
         $zillourl = 'https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz1ha147usbuz_8clop&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA';
