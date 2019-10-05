@@ -11,6 +11,7 @@ use App\AddressList;
 use Helper;
 use mysql_xdevapi\Exception;
 
+
 class SearchController extends Controller
 {	
 	
@@ -24,11 +25,22 @@ class SearchController extends Controller
         try {
             // Validate the value...
 
+        $client = new \GuzzleHttp\Client();
+        $googlestring = 'https://maps.googleapis.com/maps/api/geocode/json?';
 
-        $valid_address = preg_match('/^\d.*.\d$/', $request->input('search'));
+        $address = 'address='.urlencode($request->input('search'));
+        $key = '&key='.'AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA';
+
+        $finalurl = $googlestring.$address.$key;
+
+        $is_valid_address = $client->request('GET',$finalurl);
+
+        $array = json_decode($is_valid_address->getBody(), true);
+        // dd($array['status']);
+        // $valid_address = preg_match('/^\d.*.\d$/', $request->input('search'));
 
         
-        if($valid_address!=0){
+        if($array['status']=='OK'){
 
 
 
