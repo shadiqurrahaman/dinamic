@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use App\AddressList;
 use Helper;
+use Auth;
+use App\CallUser;
 use mysql_xdevapi\Exception;
 
 
@@ -42,7 +44,22 @@ class SearchController extends Controller
         
         if($array['status']=='OK'){
 
+        if (Auth::check()) 
+        {
+            $user = Auth::user();
 
+            $user->user_call = $user->user_call+1;
+            $user->save();
+
+            $CallUser = new CallUser;
+
+            $CallUser->User_id = Auth::id();
+            $CallUser->date = Carbon::now()->toDateTimeString();
+            $CallUser->save();
+
+
+        
+        }
 
     	if(!Cache::has($request->input('search'))){
     	 	 
@@ -86,6 +103,7 @@ class SearchController extends Controller
     {
         $addressinfo = AddressList::where('id',$propertyId)->with('addressInfo')->first();
 
+        // dd($addressinfo);
         $recomendentAddresses = AddressList::inRandomOrder()->limit(4)->get();
         return view('propertyResult')
             ->with('addressInfo',$addressinfo)

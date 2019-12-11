@@ -29,31 +29,31 @@
 			<div class="col-md-3">
 				<div class="card-counter primary">
 					<i class="fa fa-code-fork"></i>
-					<span class="count-numbers">12</span>
-					<span class="count-name">Flowz</span>
+					<span class="count-numbers">{{$this_month_this_user}}</span>
+					<span class="count-name">{{$month}}</span>
 				</div>
 			</div>
 
 			<div class="col-md-3">
 				<div class="card-counter danger">
 					<i class="fa fa-ticket"></i>
-					<span class="count-numbers">599</span>
-					<span class="count-name">Instances</span>
+					<span class="count-numbers">{{$this_month_all_user}}</span>
+					<span class="count-name">{{$month}} (All User)</span>
 				</div>
 			</div>
 
 			<div class="col-md-3">
 				<div class="card-counter success">
 					<i class="fa fa-database"></i>
-					<span class="count-numbers">6875</span>
-					<span class="count-name">Data</span>
+					<span class="count-numbers">{{$total_property}}</span>
+					<span class="count-name">Total properties</span>
 				</div>
 			</div>
 
 			<div class="col-md-3">
 				<div class="card-counter info">
 					<i class="fa fa-users"></i>
-					<span class="count-numbers">35</span>
+					<span class="count-numbers">{{$total_user}}</span>
 					<span class="count-name">Users</span>
 				</div>
 			</div>
@@ -130,7 +130,7 @@
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
-                                                      <th>Mark</th>
+                                                    <th>Mark</th>
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>
@@ -146,9 +146,9 @@
 												@foreach($favoriteAddress as $address)
 											      <tr>
 													  @if($address->favorite==0)
-													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
+													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 											        @else
-														  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="fas fa-heart" aria-hidden="true" style="color:red"></i></a></td>
+														  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} fas fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 													@endif
                                                       <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">{{$address->address}}</a></td>
 											        <td>{{$address['addressInfo']['bedroom']}}</td>
@@ -220,6 +220,7 @@
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
+											      	  <th>Mark</th>
                                                       <th>Address</th>
                                                       <th>BD</th>
                                                       <th>BA</th>
@@ -233,6 +234,11 @@
 											    <tbody>
                                                 @foreach($recentSearchAddress as $address)
                                                     <tr>
+                                                    	@if($address->favorite==0)
+													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
+											        @else
+														  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} fas fa-heart" aria-hidden="true" style="color:red"></i></a></td>
+													@endif
                                                         <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">{{$address->address}}</a></td>
                                                         <td>{{$address['addressInfo']['bedroom']}}</td>
                                                         <td>{{$address['addressInfo']['bathroom']}}</td>
@@ -331,7 +337,7 @@
 	// Bias the autocomplete object to the user's geographical location,
 	// as supplied by the browser's 'navigator.geolocation' object.
 	function geolocate() {
-		console.log("ok");
+		// console.log("ok");
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var geolocation = {
@@ -345,6 +351,7 @@
 		}
 	}
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&libraries=places,geometry&callback=initAutocomplete" async defer></script>
 
 
 

@@ -464,10 +464,17 @@
     window.onload = formsubmit2();
 
     function formsubmit2(){
+        // alert({{Auth::user()}});
         @if(Auth::check())
         p = {{$addressInfo['addressInfo']['last_sold_price']}}-{{Auth::user()->mordgage_downpayment}};
         i = {{Auth::user()->mordgage_interest}}/100/12;
         n ={{Auth::user()->mordgage_loanterm}}*12;
+        if(i==0){i=1;}
+        if (p==0){p=1;}
+        if(n==0){n=1;}
+
+        alert(n);
+
         @endif
         var monthly_amount2 =  p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
         alert(monthly_amount2);
@@ -508,7 +515,7 @@
         var marker = new google.maps.Marker({position: uluru, map: map});
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrmpgqwB9cKbegTayT18_I8OtjcgL9wFU&libraries=places,geometry&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&libraries=places,geometry&callback=initMap" async defer></script>
 
 {{--<script async defer--}}
 {{--        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&callback=initMap">--}}

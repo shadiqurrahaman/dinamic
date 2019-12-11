@@ -20,7 +20,9 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>password</th>
+                                        <th>Call/Day</th>
+                                        <th>Call/Month</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -28,7 +30,9 @@
                                         <tr>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->password}}</td>
+
+                                            <td>{{isset($user->per_day)?$user->per_day:"NA"}}</td>
+                                            <td>{{isset($user->per_month)?$user->per_month:"NA"}}</td>
                                             <td><a href="{{url('editUser/'.$user->id)}}"  class="btn btn-info" role="button">Edit</a></td>
 {{--                                            <td><button id="modal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button></td>--}}
 

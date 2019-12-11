@@ -379,7 +379,7 @@ function makeFavorite(id){
 
 		type:'POST',
 
-		url:'/change/favorite',
+		url:'http://mysoftheaven.com/DynamicHome/change/favorite',
 
 		data:{id:id},
 
@@ -387,9 +387,9 @@ function makeFavorite(id){
 
 			console.log(data);
 			if(data==0){
-				$('#colorIcon_'+id).removeClass('fas').addClass('far');
+				$('.colorIcon_'+id).removeClass('fas').addClass('far');
 			}else{
-				$('#colorIcon_'+id).removeClass('far').addClass('fas');
+				$('.colorIcon_'+id).removeClass('far').addClass('fas');
 			}
 
 

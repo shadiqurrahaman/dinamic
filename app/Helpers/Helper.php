@@ -14,12 +14,20 @@ class Helper
 
 
 
+        $split =explode(",", $property);
+
+        // dd($split);
 
         $addressList = new AddressList;
 
         $addressList->address = $property;
         $addressList->search_time = Carbon::now();
         $addressList->favorite = false;
+        $addressList->p_address = isset($split[0])?$split[0]:null;
+        $addressList->p_address2 = isset($split[1])?$split[1]:null ;
+        $addressList->p_city = isset($split[2])?$split[2]:null ;
+        $addressList->p_state = isset($split[3])?$split[3]:null ;
+        $addressList->p_zipcode = isset($split[4])?$split[4]:null ;
 
         if($file_list_id!=null){
 
