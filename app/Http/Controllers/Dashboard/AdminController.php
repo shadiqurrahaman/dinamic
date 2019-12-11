@@ -11,6 +11,7 @@ use App\Imports\CsvImport;
 use App\FileList;
 use App\User;
 Use App\AddressList;
+use App\AddressInfo;
 // use App\CallUser;
 // use Auth;
 use Excel;
@@ -96,14 +97,17 @@ class AdminController extends Controller
             $filename->uploaded_time = Carbon::now();
             $filename->save();
 
+            $counter = 0;
 
          foreach ($data[0] as  $value) {
 
+            if ($counter>0){
+
             $address = implode(", ", $value);
 
-             $valid_address = preg_match('/^\d.*.\d$/', $address);
+            $valid_address = preg_match('/^\d.*.\d$/', $address);
 
-             if($valid_address!=0){
+            if($valid_address!=0){
 
             if (Auth::check()) 
             {
@@ -135,9 +139,109 @@ class AdminController extends Controller
                 $id = Helper::apicall($filename->id,$address);
 
                 Cache::add($address, $id ,now()->addYear(1));
+            }else{
+
+                $add = AddressList::where('address',$address)->with('addressInfo')->first();
+
+
+            // return $add->addressInfo;
+
+            $split =explode(",", $address);
+
+            $addressList = new AddressList;
+
+            $addressList->address = $address;
+            $addressList->search_time = Carbon::now();
+            $addressList->favorite = false;
+            $addressList->p_address = isset($split[0])?$split[0]:null;
+            $addressList->p_address2 = isset($split[1])?$split[1]:null ;
+            $addressList->p_city = isset($split[2])?$split[2]:null ;
+            $addressList->p_state = isset($split[3])?$split[3]:null ;
+            $addressList->p_zipcode = isset($split[4])?$split[4]:null ;
+            $addressList->file_list_id = $filename->id;
+            $addressList->save();
+
+
+            $appinfo = new AddressInfo;
+
+            $appinfo->status = $add->addressInfo->status;
+            $appinfo->MLS =$add->addressInfo->MLS;
+            $appinfo->price = $add->addressInfo->price;
+            $appinfo->photo = $add->addressInfo->photo;
+            $appinfo->hometype = $add->addressInfo->hometype;
+            $appinfo->bedroom = $add->addressInfo->bedroom;
+            $appinfo->bathroom = $add->addressInfo->bathroom;
+            $appinfo->finishedSqFt =$add->addressInfo->finishedSqFt;
+            $appinfo->lotSizeSqFt = $add->addressInfo->lotSizeSqFt;
+            $appinfo->yearBuilt = $add->addressInfo->yearBuilt;
+            $appinfo->zestimate = $add->addressInfo->zestimate;
+            $appinfo->rent_zestimate = $add->addressInfo->rent_zestimate;
+            $appinfo->last_sold_date =$add->addressInfo->last_sold_date;
+            $appinfo->last_sold_price =$add->addressInfo->last_sold_price;
+            $appinfo->air_dna_anual_revinue = $add->addressInfo->air_dna_anual_revinue;
+            $appinfo->air_dna_average_daily_ratr =$add->addressInfo->air_dna_average_daily_ratr;
+            $appinfo->air_dna_accupancy =$add->addressInfo->air_dna_accupancy;
+            $appinfo->latatude = $add->addressInfo->latatude;
+            $appinfo->longitude = $add->addressInfo->longitude;
+            $appinfo->home_details = $add->addressInfo->home_details;
+
+             $addressList->addressInfo()->save($appinfo);
+
+
+
+
             }
             
+         }else{
+
+            $split =explode(",", $address);
+
+            $addressList = new AddressList;
+
+            $addressList->address = $address;
+            $addressList->search_time = Carbon::now();
+            $addressList->favorite = false;
+            $addressList->p_address = isset($split[0])?$split[0]:null;
+            $addressList->p_address2 = isset($split[1])?$split[1]:null ;
+            $addressList->p_city = isset($split[2])?$split[2]:null ;
+            $addressList->p_state = isset($split[3])?$split[3]:null ;
+            $addressList->p_zipcode = isset($split[4])?$split[4]:null ;
+            $addressList->file_list_id = $filename->id;
+            $addressList->save();
+
+
+            $appinfo = new AddressInfo;
+
+            $appinfo->status = null;
+            $appinfo->MLS = null;
+            $appinfo->price = null;
+            $appinfo->photo = null;
+            $appinfo->hometype = null;
+            $appinfo->bedroom = null;
+            $appinfo->bathroom = null;
+            $appinfo->finishedSqFt =null;
+            $appinfo->lotSizeSqFt = null;
+            $appinfo->yearBuilt =  '';
+            $appinfo->zestimate = null;
+            $appinfo->rent_zestimate = null;
+            $appinfo->last_sold_date =null;
+            $appinfo->last_sold_price =null;
+            $appinfo->air_dna_anual_revinue = null;
+            $appinfo->air_dna_average_daily_ratr =null;
+            $appinfo->air_dna_accupancy =null;
+            $appinfo->latatude = null;
+            $appinfo->longitude = null;
+            $appinfo->home_details = null;
+
+             $addressList->addressInfo()->save($appinfo);
+
          }
+
+
+            }
+
+            $counter++;
+
 
          }
 
