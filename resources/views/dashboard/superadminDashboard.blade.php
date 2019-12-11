@@ -193,7 +193,9 @@
 											      <tr>
 											        <td>{{$file->uploaded_time}}</td>
 											        <td>{{$file->adress_count}}</td>
-											        <td>{{$file->file_name}}</td>
+											        <td><a style="text-decoration: none;color: black;" href="{{url('fileaddress/'.$file->id)}}">
+											        	{{$file->file_name}}
+											        </a></td>
 											        <td><a href="{{ url('export/'.$file->id) }}"><i class="fa fa-download" aria-hidden="true"></i></a></td>
 											        
 											      </tr>

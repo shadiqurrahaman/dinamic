@@ -49,6 +49,7 @@
         Route::post('updateUser','Dashboard\SuperadminController@updateUser')->name('updateUser');
         Route::get('adduser','Dashboard\SuperadminController@adduser')->name('adduser');
 
+        Route::get('fileaddress/{id}','Dashboard\SuperadminController@fileaddress');
 
         //property
         Route::post('/change/favorite','HomeController@changeFavorite');
@@ -57,6 +58,7 @@
 
         //pdf
         Route::get('printPdf','PdfGenController@printPdf')->name('printPdf');
+
         
 
         Route::post('homeowner','HomeController@homeowner')->name('homeowner');
