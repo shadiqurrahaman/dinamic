@@ -3,6 +3,12 @@
 
 @section('content')
 
+<style type="text/css">
+  #map {
+            height: 300px;  /* The height is 400 pixels */
+            width: 100%;  /* The width is the width of the web page */
+        }
+</style>
 <section class="blog details">
     <div class="container">
         <div class="row" >
@@ -44,24 +50,47 @@
                 </table>
                 
                 <table width="80%" border="0" style="margin: 50px ;">
+                   
                     <tr>
-                        <td>Zestimate®</td>
+                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">Zestimate</th>
+                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">$12,678</th>                        
                     </tr>
                     <tr>
-                        <th>Zestimate</th>
-                        <th>$12,678</th>                        
+                        <td>Last Update</td>
+                        <td>01/5/2015</td>
                     </tr>
                     <tr>
-                        <th>Rent Zestimate</th>
-                        <td>$1,000</td>                        
+                        <td>Last sold date</td>
+                        <td>01/5/2017</td>
+                    </tr>
+                    <tr>
+                        <td>Last Sold Price</td>
+                        <td>$203500</td>
+                    </tr>
+                    <tr>
+                        <th style="color:#346eeb;font-size:  15px;font-width:bold;">Rent Zestimate</th>
+                        <td style="color:#346eeb;font-size:  15px;font-weight: bold;"><div> 
+                           $1,000 <span style="margin-left: 40px; color:#4abf4a;">1.85% R/Z</span>
+                        </div></td>
+
                     </tr> 
                     <tr>
-                        <th>VR Annual Revenue</th>
-                        <th>{{$addressInfo['addressInfo']['air_dna_anual_revinue']}} </th>                        
+                        <td>Last Update</td>
+                        <td>$2535</td>
+                    </tr>
+                    <tr>
+                        <th style="color:#34ebc6;font-size:  15px;font-width:bold;">VR Annual Revenue</th>
+                        <th style="color:#34ebc6;font-size:  15px;font-width:bold;">
+
+                            <div> 
+                            ${{$addressInfo['addressInfo']['air_dna_anual_revinue']}} <span style="margin-left: 35px; color:red;">0.49% VR/Z</span>
+
+
+                        </th>                        
                     </tr> 
                     <tr>
                         <td>Occupancy</td>
-                        <td>${{$addressInfo['addressInfo']['air_dna_accupancy']*100}}% </td>                        
+                        <td>{{$addressInfo['addressInfo']['air_dna_accupancy']*100}}% </td>                        
                     </tr> 
                     <tr>
                         <td>Avg Daily Rate</td>
@@ -81,29 +110,41 @@
 
                 <div style="border-top:10px solid #7b88ff; padding-top: 20px; margin-bottom: 30px">
                     <div class="row">
-                        <div class="col-md-6">
-                            We are here to help.
-                            We wamt to understood form this server.
-                        </div>
-                        <div class="col-md-6">
-                            We are here to help.
-                            We wamt to understood form this server.
+                        <div class="col-md-12">
+                             @if(Auth::check())
+                                    <div col-md-4 style="text-align: center;">
+                                        <div>
+                                            Amount/month <p id ="amount2" ></p>
+                                        </div>
+                                    </div>
+                                @endif
+                            <table style="text-align: center;">
+                                <tr>
+                                    <th style="padding-left: 2px;">Mortgage amount</td>
+                                    <th style="padding-left:  20px;">Down Payment</td>
+                                    <th style="padding-left:  20px;">Interest Rate</td>
+                                    <th style="padding-left:  20px;">Period</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px;font-size: 15px;font-weight: bold;">$239154</td>
+                                    <td style="padding-left: 20px;font-size: 15px;font-weight: bold;">$0 </td>
+                                    <td style="padding-left: 20px;font-size: 15px;font-weight: bold;">3.92</td>
+                                    <td style="padding-left: 20px;font-size: 15px;font-weight: bold;">30</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6" style="border-top:10px solid #7ad9f5;">
-                <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width: 545px; padding-left: 0" alt="First slide">
+                <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width:100%;height: 45%; padding-left: 0" alt="First slide">
 
-{{--                <div>maps content</div>--}}
-            </div>
-            @if(Auth::check())
-            <div col-md-4>
-                <div>
-                    Amount/month = <p id ="amount2" ></p>
+                <div style="margin-top: 5px;">
+                <div id="map"></div>
+                    
                 </div>
             </div>
-            @endif
+           
             @if(!Auth::check())
             <div class="col-md-4" >
                 <div style="height: 400px; margin-bottom: 100PX">
@@ -168,10 +209,10 @@
 
             </div>
                 @endif
-            <div class="col-md-8">
+            <!-- <div class="col-md-8">
                 <div id="map"></div>
 
-            </div>
+            </div> -->
         </div>
 
         <div class="row">
@@ -473,11 +514,11 @@
         if (p==0){p=1;}
         if(n==0){n=1;}
 
-        alert(n);
+        // alert(n);
 
         @endif
         var monthly_amount2 =  p * i * (Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
-        alert(monthly_amount2);
+        // alert(monthly_amount2);
         document.getElementById('amount2').innerHTML=monthly_amount2.toFixed(2);
     }
     function formsubmit() {
