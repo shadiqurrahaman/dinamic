@@ -69,7 +69,13 @@
 
 Route::get('/home', 'HomeController@index')->name('/home');
 Route::post('search','SearchController@index')->name('search');
+Route::get('learnMore','HomeController@learnMore');
+Route::get('learnMore2','HomeController@learnMore2');
+Route::get('learnMore3','HomeController@learnMore3');
 
+Route::get('byesellresource','HomeController@byesellresource');
+Route::get('longTermresource','HomeController@longTermresource');
+Route::get('vacancyResource','HomeController@vacancyResource');
 
 
 

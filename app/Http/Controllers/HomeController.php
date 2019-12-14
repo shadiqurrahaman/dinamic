@@ -95,5 +95,31 @@ class HomeController extends Controller
         return back()->withErrors(['msg', 'Update successfully']);
     }
 
+    public function learnMore()
+    {
+        return view('learnMore1');
+    }
+    public function learnMore2()
+    {
+        return view('learnMore2');
+    }
+     public function learnMore3()
+    {
+        return view('learnMore3');
+    }
+
+    public function byesellresource()
+    {
+        return view('byesellresource');
+    }
+    public function longTermresource()
+    {
+        return view('longTermresource');
+    }
+    public function vacancyResource()
+    {
+        return view('vacancyResource');
+    }
+
 
 }

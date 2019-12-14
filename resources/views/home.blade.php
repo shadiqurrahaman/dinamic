@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <section class="welcome "  id="firstview" style="background-image: url({{url('images/slider/dynamic.png')}})">
+        <section class="welcome "  id="firstview" style="background-image: url({{url('images/slider/dynamic.png')}});">
                 <div class="container" >
                 <div class="row">
                     <div class="col-md-2"></div>
@@ -27,26 +27,20 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="col-md-4">--}}
-{{--                        <div class="card">--}}
-{{--                            <div class="card-header" style="text-align: center;font-weight: bold;">Please enter your info</div>--}}
 
-{{--                            <div class="card-body">--}}
 
-{{--                                <form class='search-form' method="POST" action="{{ route('homeowner') }}">--}}
-{{--                                    @csrf--}}
-{{--                                    <input style="margin: 5px" class='form-control' placeholder='First Name' type='text' name='first_name'/>--}}
-{{--                                    <input style="margin: 5px" class='form-control' placeholder='Last Name' type='text' name='last_name'/>--}}
-{{--                                    <input style="margin: 5px" class='form-control' placeholder='Email' type='email' name='email'/>--}}
-{{--                                    <input style="margin: 5px" class='form-control' placeholder='Phone' type='number' name='phone'/>--}}
-{{--                                    <input style="margin: 5px" class='form-control' placeholder='Address' type='textarea' name='last_name'/>--}}
-{{--                                    <textarea style="margin: 5px" class='form-control' placeholder='Address' rows="4" cols="50" name="address"></textarea>--}}
-{{--                                    <input style="margin: 5px;background-color: #3F3F3F;color: #ffffff"  type="submit" value="Submit" >--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
+                    <div style="width: 100%;height: 50%;opacity: 1;margin: 20px;padding: 20px; background-color: rgba(255,255,255,0.90);border-radius: 10px;text-align: center;">
+                        <p style="text-align: center;font-size: 40px;font-weight: bold;">What is the highest and best use of your property?</p>
+                    
+                        <p style="text-align: center;font-size: 20px;margin-top:20px; "><b>Our mission</b> is to help you understand,leverage and take advantage of the power of real estate. We will calculate the numbers and partner with you to help you aligh with your chosen strategy.</p>
+
+                        <a style="margin: 10px;padding: 10px;" class="btn btn-info"  role="button" href="{{url('/learnMore')}}">Learn More</a>
+                    </div>
+
+                   <!--  <div style="width: 100%;height: 50%;opacity: 1;margin: 20px;padding: 20px; background-color: #ffffff">
+                        
+                    </div> -->
                 </div>
 
 </section>

@@ -123,7 +123,7 @@
                 <a href="{{url('/')}}" class="logo">
                     <img src="{{ asset('images/logo.png') }}" alt="realhome">
                 </a>
-                <nav id="main-menu" class="collapse">
+                <nav id="main-menu" class="collapse" style="margin-left: 0;width: 85%">
                     <ul>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
@@ -147,13 +147,13 @@
 
                             @if(Auth::check())
                             @role('admin')
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}">Home</a>
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}"><i class="fa fa-home" aria-hidden="true"></i></br>Home</a>
                             @endrole
                             @role('superadmin')
-                                <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}">Home</a>
+                                <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}"><i class="fa fa-home" aria-hidden="true"></i></br>Home</a>
                             @endrole
                             @else
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/')}}">Home</a>
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i></i></br>Home</a>
                             @endif
                                 <!-- <div class="dropdown-menu">
                                     <a class="dropdown-item" href="index.html">Home Map</a>
@@ -165,7 +165,7 @@
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="dropdown">
 
-                                <a  aria-haspopup="true" aria-expanded="false"  href="{{url('/basic')}}" >Basics</a>
+                                <a  aria-haspopup="true" aria-expanded="false"  href="{{url('/basic')}}" ><i class="fa fa-info-circle" aria-hidden="true"></i> </br>Basics</a>
 
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
@@ -175,42 +175,47 @@
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
 
-                                <a data-toggle="collapse" href="{{url('/resource')}}" aria-expanded="false">Resource</a>
+                                <a data-toggle="collapse" href="{{url('/resource')}}" aria-expanded="false"><i class="fa fa-money" aria-hidden="true"></i></br>Resource</a>
 
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown">
-                            <a  aria-haspopup="true" aria-expanded="false" href="{{url('/resource')}}">Resource</a>
+                            <a  aria-haspopup="true" aria-expanded="false" href="{{url('/resource')}}"><i class="fa fa-money" aria-hidden="true"></i></br>Resource</a>
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
 
-                                <a  href="{{route('tools')}}" aria-expanded="false">Tools</a>
+                                <a  href="{{route('tools')}}" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i></br>Tools</a>
 
 
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown">
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}">Tools</a>
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}"><i class="fa fa-cogs" aria-hidden="true"></i></br>Tools</a>
+
+                        </li>
+
+                         <li class="dropdown">
+                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}"><i class="fa fa-hourglass-o" aria-hidden="true"></i></br>Action</a>
 
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <li class="hidden-lg-up">
 
-                                <a  href="#" aria-expanded="false">My-profile</a>
+                                <a  href="#" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i></br>My-profile</a>
 
                         </li>
                         <!-- END COLLAPSE MOBILE MENU -->
                         <li class="dropdown ">
-                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">My-profile</a>
+                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-user-o" aria-hidden="true"></i></br>My-profile</a>
                         </li>
-                        <li><a href="#">Contact</a></li>
+                       
 
                         @guest
-                            <p></p>
+                            <li class="nav-item dropdown" style="text-align: center;margin-left: 30%;"></li>
                         @else
-                            <li class="nav-item dropdown" >
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown" style="text-align: center;margin-left: 12%;" >
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user-o" aria-hidden="true"></i></br>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -227,6 +232,9 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item dropdown" style="padding-top: 7px;">
+                            <img src="{{ asset('images/zillow.png') }}" alt="realhome">
+                        </li>
 
                     </ul>
                 </nav>
