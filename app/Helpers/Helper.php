@@ -172,30 +172,42 @@ class Helper
             $propertyData = array();
 //            return $e->getMessage();
         }
-        // dd($estated_data);
+        // dd($propertyData);
 
     	 $appinfo = new AddressInfo;
 
         $appinfo->status = 'status';
         $appinfo->MLS ="MLS";
         $appinfo->price = "250000";
-        $appinfo->photo = $update_collection['response']['images']['image']['url']?$update_collection['response']['images']['image']['url']:null;
-        $appinfo->hometype = $propertyData['useCode']?$propertyData['useCode']:null;
-        $appinfo->bedroom = $propertyData['bedrooms']?$propertyData['bedrooms']:null;
-        $appinfo->bathroom = $propertyData['bathrooms']?$propertyData['bathrooms']:null;
-        $appinfo->finishedSqFt =$update_collection['response']['editedFacts']['finishedSqFt']?$update_collection['response']['editedFacts']['finishedSqFt']:null;
-        $appinfo->lotSizeSqFt = $update_collection['response']['editedFacts']['lotSizeSqFt']?$update_collection['response']['editedFacts']['lotSizeSqFt']:null;
-        $appinfo->yearBuilt =  $update_collection['response']['editedFacts']['yearBuilt']?$update_collection['response']['editedFacts']['yearBuilt']:'';
-        $appinfo->zestimate = $propertyData['zestimate']['amount']?$propertyData['zestimate']['amount']:null;
+        $appinfo->hometype = isset($propertyData['useCode'])?$propertyData['useCode']:null;
+        $appinfo->bedroom = isset($propertyData['bedrooms'])?$propertyData['bedrooms']:null;
+        $appinfo->bathroom = isset($propertyData['bathrooms'])?$propertyData['bathrooms']:null;
+        $appinfo->zestimate = isset($propertyData['zestimate']['amount'])?$propertyData['zestimate']['amount']:null;
+        $appinfo->last_sold_price =isset($propertyData['lastSoldPrice'])?$propertyData['lastSoldPrice']:null;
+        $appinfo->last_sold_date = \Carbon\Carbon::parse(isset($propertyData['lastSoldDate'])?$propertyData['lastSoldDate']:'20-12-2020')->format('Y/m/d');
+        $appinfo->home_details = isset($propertyData['links']['homedetails'])?$propertyData['links']['homedetails']:null;
+        $appinfo->air_dna_anual_revinue = isset($airdna_property_data['revenue']['ltm'])?$airdna_property_data['revenue']['ltm']:null;
+        $appinfo->air_dna_average_daily_ratr =isset($airdna_property_data['adr']['ltm'])?$airdna_property_data['adr']['ltm']:null;
+        $appinfo->air_dna_accupancy =isset($airdna_property_data['occupancy']['ltm'])?$airdna_property_data['occupancy']['ltm']:null;
         $appinfo->rent_zestimate = "50000";
-        $appinfo->last_sold_date =\Carbon\Carbon::parse($propertyData['lastSoldDate'])->format('Y/m/d');
-        $appinfo->last_sold_price =$propertyData['lastSoldPrice']?$propertyData['lastSoldPrice']:null;
-        $appinfo->air_dna_anual_revinue = $airdna_property_data['revenue']['ltm'];
-        $appinfo->air_dna_average_daily_ratr =$airdna_property_data['adr']['ltm'];
-        $appinfo->air_dna_accupancy =$airdna_property_data['occupancy']['ltm'];
-        $appinfo->latatude = $update_property_data['address']['latitude'];
-        $appinfo->longitude = $update_property_data['address']['longitude'];
-        $appinfo->home_details = $propertyData['links']['homedetails'];
+        $appinfo->photo = null;
+
+        $appinfo->pool_type = isset($estated_data->structure->pool_type)?$estated_data->structure->pool_type:null;
+        $appinfo->total_area_sq_feet = isset($estated_data->structure->total_area_sq_ft)?$estated_data->structure->total_area_sq_ft:null;
+        $appinfo->valuation_value = isset($estated_data->valuation->value)?$estated_data->valuation->value:null;
+        $appinfo->valuation_high = isset($estated_data->valuation->high)?$estated_data->valuation->high:null;
+        $appinfo->valuation_low = isset($estated_data->valuation->low)?$estated_data->valuation->low:null;
+        $appinfo->standardized_land_use_type = isset($estated_data->parcel->standardized_land_use_type)?$estated_data->parcel->standardized_land_use_type:null;
+        $appinfo->yearBuilt = isset($estated_data->structure->year_built)?$estated_data->structure->year_built:null;
+        $appinfo->taxes_year = isset($estated_data->taxes[0]->year)?$estated_data->taxes[0]->year:null;
+        $appinfo->taxes_amount = isset($estated_data->taxes[0]->amount)?$estated_data->taxes[0]->amount:null;
+        $appinfo->latatude = isset($estated_data->address->latitude)?$estated_data->address->latitude:null;
+        $appinfo->longitude =isset($estated_data->address->longitude)?$estated_data->address->longitude:null;
+
+        // $appinfo->finishedSqFt =$update_collection['response']['editedFacts']['finishedSqFt']?$update_collection['response']['editedFacts']['finishedSqFt']:null;
+        // $appinfo->lotSizeSqFt = $update_collection['response']['editedFacts']['lotSizeSqFt']?$update_collection['response']['editedFacts']['lotSizeSqFt']:null;
+          $appinfo->finishedSqFt = null;
+        $appinfo->lotSizeSqFt = null;
 
          $addressList->addressInfo()->save($appinfo);
     	 
