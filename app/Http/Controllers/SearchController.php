@@ -30,6 +30,8 @@ class SearchController extends Controller
         $client = new \GuzzleHttp\Client();
         $googlestring = 'https://maps.googleapis.com/maps/api/geocode/json?';
 
+
+  
         $address = 'address='.urlencode($request->input('search'));
         $key = '&key='.'AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA';
 
