@@ -70,7 +70,7 @@ class SearchController extends Controller
 
 
 
-                  Cache::add($request->input('search'), $addressInfoId ,now()->addYear(1));
+              Cache::add($request->input('search'), $addressInfoId ,now()->addYear(1));
 
 
     	}else{

@@ -67,6 +67,11 @@ class Helper
              $addressList->save();
         }
 
+            // dd($split);
+            $state_zip = explode(' ',$split[2]);
+            // dd($state_zip);
+            $address_estade = 'street_address='.$split[0].'&city='.$split[1].'&state='.$state_zip[1].'&zip_code='.$state_zip[2];
+            // dd($address_estade);
             $split2 = explode(',', $property,2);
             $string_for_zillow = 'address='.urlencode($split2[0]).'&citystatezip='.urlencode($split2[1]);
 
@@ -113,10 +118,11 @@ class Helper
              $addressList->save();
         }
           
-              
+              $address_estade = 'street_address='.$add.'&city='.$city.'&state='.$state.'&zip_code='.$zip;
             $string_for_zillow = 'address='.urlencode(trim($add)).'&citystatezip='.urlencode(trim($city2));
             
         }
+
 
    //  	 $split = explode(',', $address,2);
 
@@ -160,7 +166,7 @@ class Helper
         // $update_property_data = $update_collection['response'];
         //Estated
         try{
-        $estated = 'https://apis.estated.com/v4/property?token=HuwT9a1eiCT3FcLZ98mnxGbE4ZRpUG&street_address=151 Battle Green Dr&city=Rochester&state=NY&zip_code=14624';
+        $estated = 'https://apis.estated.com/v4/property?token=HuwT9a1eiCT3FcLZ98mnxGbE4ZRpUG&'.$address_estade;
 
         $client = new \GuzzleHttp\Client();
         $response2 = $client->request('GET',$estated);
@@ -168,12 +174,14 @@ class Helper
         $response2 = json_decode($response2->getBody());
 
         $estated_data = $response2->data;
+
+
         }catch (\Exception $e){
-            $propertyData = array();
+            $estated_data = array();
 //            return $e->getMessage();
         }
-        // dd($propertyData);
-
+        // dd($estated_data);
+  
     	 $appinfo = new AddressInfo;
 
         $appinfo->status = 'status';
@@ -182,7 +190,7 @@ class Helper
         $appinfo->hometype = isset($propertyData['useCode'])?$propertyData['useCode']:null;
         $appinfo->bedroom = isset($propertyData['bedrooms'])?$propertyData['bedrooms']:null;
         $appinfo->bathroom = isset($propertyData['bathrooms'])?$propertyData['bathrooms']:null;
-        $appinfo->zestimate = isset($propertyData['zestimate']['amount'])?$propertyData['zestimate']['amount']:null;
+        $appinfo->zestimate =1200;
         $appinfo->last_sold_price =isset($propertyData['lastSoldPrice'])?$propertyData['lastSoldPrice']:null;
         $appinfo->last_sold_date = \Carbon\Carbon::parse(isset($propertyData['lastSoldDate'])?$propertyData['lastSoldDate']:'20-12-2020')->format('Y/m/d');
         $appinfo->home_details = isset($propertyData['links']['homedetails'])?$propertyData['links']['homedetails']:null;
@@ -209,10 +217,10 @@ class Helper
           $appinfo->finishedSqFt = null;
         $appinfo->lotSizeSqFt = null;
 
+    	  // dd($appinfo);
          $addressList->addressInfo()->save($appinfo);
-    	 
 
-    	 return $appinfo->id;
+    	 return $addressList->id;
 
 	}
 }

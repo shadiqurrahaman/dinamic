@@ -241,7 +241,7 @@
 											        @else
 														  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} fas fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 													@endif
-                                                        <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">{{$address->address}}</a></td>
+                                                        <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['id']])}}">{{$address->address}}</a></td>
                                                         <td>{{$address['addressInfo']['bedroom']}}</td>
                                                         <td>{{$address['addressInfo']['bathroom']}}</td>
                                                         <td>${{$address['addressInfo']['zestimate']}}</td>

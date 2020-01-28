@@ -136,8 +136,16 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-6" style="border-top:10px solid #7ad9f5;">
-                <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width:100%;height: 45%; padding-left: 0" alt="First slide">
+                <!-- <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width:100%;height: 45%; padding-left: 0" alt="First slide"> -->
+
+                <?php 
+                $lat_long = $addressInfo['addressInfo']['latatude'].','.$addressInfo['addressInfo']['longitude'];
+
+                $link = "https://www.google.com/maps/embed/v1/streetview?location=".$lat_long."&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";
+                 ?>
+                <iframe width="600" height="450" frameborder="0" style="border:0" src="{{$link}}" allowfullscreen></iframe>
 
                 <div style="margin-top: 5px;">
                 <div id="map"></div>
@@ -209,10 +217,7 @@
 
             </div>
                 @endif
-            <!-- <div class="col-md-8">
-                <div id="map"></div>
-
-            </div> -->
+           
         </div>
 
         <div class="row">
