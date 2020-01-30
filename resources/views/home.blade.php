@@ -18,7 +18,7 @@
                                     @csrf
                                     <div id="locationField">
 
-                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search'>
+                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with Format (street-addess, postcode, zipcode)' type='text' name='search'>
                                     </div>
                                     <button class='btn btn-link search-btn' type="submit" style="background-color:#3F3F3F;color:#ffffff; margin-top: -9px;margin-right: -12px;width: 100px;">
                                         <i class='fas fa-search' ></i>

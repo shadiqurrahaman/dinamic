@@ -99,7 +99,7 @@
 								@if($errors->has('erroraddress'))
 									<h5 style="color: #ff5346;">{{$errors->first()}}</h5>
 								@endif
-	            				<form class='search-form' method="POST" action="{{ route('search') }}">
+	            				<form class='search-form' method="POST" action="{{ route('search') }} " onsubmit="return validateForm()">
 
                             		 @csrf
 									<div id="locationField">
@@ -288,6 +288,24 @@
 	// parameter when you first load the API. For example:
 	// <script
 	// src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+
+function validateForm(){
+        // var patt =^\d+.*.\d$;
+        
+        const paragraph = document.getElementById('autocomplete').value;
+        const regex = /^\d+.*.\d$/g;
+        const found = paragraph.match(regex);
+        if(found){
+
+            return true
+        }else{
+        alert("Warning!!! This is not a valid format.\n please try like:\n street-address,city,state zipcode");
+        return false;
+        }
+        
+    }
+
 
 	var placeSearch, autocomplete;
 
