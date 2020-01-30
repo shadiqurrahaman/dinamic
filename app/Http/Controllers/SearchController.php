@@ -111,4 +111,9 @@ class SearchController extends Controller
             ->with('addressInfo',$addressinfo)
             ->with('recomendentAddresses',$recomendentAddresses);
     }
+
+    public function validaddress($address)
+    {
+        
+    }
 }

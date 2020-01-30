@@ -131,11 +131,15 @@ class Helper
         $address = 'address='.urlencode($property);
          // dd($address);
         //airdna response
+        try{
         $airdna_api_string = 'https://api.airdna.co/client/v1/rentalizer/ltm?access_token=2c4b008762ca4e8cb9845f8dbf12d35e&address='.$address;
         $client = new \GuzzleHttp\Client();
         $airdna_property_result = $client->request('GET',$airdna_api_string);
         $array = json_decode($airdna_property_result->getBody(), true);
         $airdna_property_data = $array['property_stats'];
+        }catch(\Exception $e){
+            $airdna_property_data  = array();
+        }
 
 
         // dd($airdna_property_data);
