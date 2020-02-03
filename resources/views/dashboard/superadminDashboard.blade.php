@@ -104,7 +104,9 @@
                             		 @csrf
 									<div id="locationField">
 
-										<input id="autocomplete"  onFocus="geolocate()" class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search' style="margin-top: 16px;">
+										 <input type="hidden" name="search" value='' id="autocomplete_hidden">
+
+										<input id="autocomplete"  onFocus="geolocate()" class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search2' style="margin-top: 16px;">
 									</div>
                             		 <button class='btn btn-link search-btn' type="submit" style="color: #3e3737;margin:-7px;">
                            			 	<i class='fa fa-search'></i>
@@ -338,6 +340,21 @@ function validateForm(){
 		// Get the place details from the autocomplete object.
 		var place = autocomplete.getPlace();
 
+
+        if (place.address_components.length>=8){
+        var street_name = place.address_components[0].long_name;
+        var street = place.address_components[1].long_name;
+        var city = place.address_components[3].long_name;
+        var state = place.address_components[5].short_name;
+        var zip = place.address_components[7].long_name;
+        var fulladdress = street_name+' '+street+', '+city+', '+state+' '+zip;
+
+        }else{
+            var fulladdress = "";
+        }
+
+        document.getElementById('autocomplete_hidden').value = fulladdress;
+        
 		for (var component in componentForm) {
 			document.getElementById(component).value = '';
 			document.getElementById(component).disabled = false;

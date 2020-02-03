@@ -19,7 +19,7 @@ class Helper
         $addressList = new AddressList;
 
 
-         // dd($address);
+
         if (strpos($property, ',') !== false) {
 
             //address with comma
@@ -137,6 +137,7 @@ class Helper
 //            return $e->getMessage();
         }
 
+        // dd($propertyData);
         // dd($propertyData['zestimate']['amount']);
         // update property result
         // $updated_search_result_string = 'https://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=X1-ZWz1ha147usbuz_8clop&zpid=48749425';
@@ -167,7 +168,7 @@ class Helper
 //            return $e->getMessage();
         }
 
-
+        // dd($estated_data);
 
         try{
             $api_url  = 'https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address='.$address;
@@ -189,7 +190,7 @@ class Helper
 
    
 
-        // dd($estated_data);
+        // dd(is_array($propertyData['zestimate']['amount']));
   
     	 $appinfo = new AddressInfo;
 
@@ -203,7 +204,7 @@ class Helper
         $appinfo->hometype = isset($propertyData['useCode'])?$propertyData['useCode']:null;
         $appinfo->bedroom = isset($propertyData['bedrooms'])?$propertyData['bedrooms']:null;
         $appinfo->bathroom = isset($propertyData['bathrooms'])?$propertyData['bathrooms']:null;
-        $appinfo->zestimate = isset($propertyData['zestimate']['amount'])?$propertyData['zestimate']['amount']:00;
+        $appinfo->zestimate = !is_array($propertyData['zestimate']['amount'])?$propertyData['zestimate']['amount']:1;
         $appinfo->last_sold_price =isset($propertyData['lastSoldPrice'])?$propertyData['lastSoldPrice']:null;
         $appinfo->last_sold_date = \Carbon\Carbon::parse(isset($propertyData['lastSoldDate'])?$propertyData['lastSoldDate']:'20-12-2020')->format('Y/m/d');
         $appinfo->home_details = isset($propertyData['links']['homedetails'])?$propertyData['links']['homedetails']:null;

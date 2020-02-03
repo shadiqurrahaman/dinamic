@@ -18,7 +18,9 @@
                                     @csrf
                                     <div id="locationField">
 
-                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with Format (street-addess, postcode, zipcode)' type='text' name='search'>
+                                        <input type="hidden" name="search" value='' id="autocomplete_hidden">
+
+                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with Format (street-addess, postcode, zipcode)' type='text' name='search2'>
                                     </div>
                                     <button class='btn btn-link search-btn' type="submit" style="background-color:#3F3F3F;color:#ffffff; margin-top: -9px;margin-right: -12px;width: 100px;">
                                         <i class='fas fa-search' ></i>
@@ -562,14 +564,14 @@
     function validateForm(){
         // var patt =^\d+.*.\d$;
         
-        const paragraph = document.getElementById('autocomplete').value;
+        const paragraph = document.getElementById('autocomplete_hidden').value;
         const regex = /^\d+.*.\d$/g;
         const found = paragraph.match(regex);
         if(found){
 
             return true
         }else{
-        alert("Warning!!! This is not a valid format.\n please try like:\n street-address,city,state zipcode");
+        alert("please enter a valid street address");
         return false;
         }
         
@@ -606,6 +608,22 @@
     function fillInAddress() {
         // Get the place details from the autocomplete object.
         var place = autocomplete.getPlace();
+        // console.log(place.address_components.length);
+        // console.log(place.address_components);
+
+        if (place.address_components.length>=8){
+        var street_name = place.address_components[0].long_name;
+        var street = place.address_components[1].long_name;
+        var city = place.address_components[3].long_name;
+        var state = place.address_components[5].short_name;
+        var zip = place.address_components[7].long_name;
+        var fulladdress = street_name+' '+street+', '+city+', '+state+' '+zip;
+
+        }else{
+            var fulladdress = "";
+        }
+
+        document.getElementById('autocomplete_hidden').value = fulladdress;
 
         for (var component in componentForm) {
             document.getElementById(component).value = '';
