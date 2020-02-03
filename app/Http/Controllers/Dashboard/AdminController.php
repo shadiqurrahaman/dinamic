@@ -153,7 +153,7 @@ class AdminController extends Controller
             $add = AddressList::where('address',$address)->with('addressInfo')->first();
 
 
-            // return $add->addressInfo;
+          
 
             $split =explode(",", $address);
 
@@ -162,6 +162,7 @@ class AdminController extends Controller
             $addressList->address = $address;
             $addressList->search_time = Carbon::now();
             $addressList->favorite = false;
+            $addressList->file_list_id = $filename->id;
             $addressList->p_address = isset($split[0])?$split[0]:null;
             $addressList->p_address2 = null ;
             $addressList->p_city = isset($split[1])?$split[1]:null ;
@@ -173,34 +174,37 @@ class AdminController extends Controller
      
             $appinfo = new AddressInfo;
 
-            $appinfo->rent = $add->addressInfo->rent;
-            $appinfo->rentRangeLow =$add->addressInfo->rentRangeLow;
-            $appinfo->rentRangeHigh = $add->addressInfo->rentRangeHigh;
-            $appinfo->hometype = $add->addressInfo->hometype;
-            $appinfo->bedroom = $add->addressInfo->bedroom;
-            $appinfo->bathroom = $add->addressInfo->bathroom;
-            $appinfo->zestimate = $add->addressInfo->zestimate;
-            $appinfo->last_sold_price =$add->addressInfo->last_sold_price;
-            $appinfo->last_sold_date = $add->addressInfo->last_sold_date;
-            $appinfo->home_details = $add->addressInfo->home_details;
-            $appinfo->air_dna_anual_revinue = $add->addressInfo->air_dna_anual_revinue;
-            $appinfo->air_dna_average_daily_ratr = $add->addressInfo->air_dna_average_daily_ratr;
-            $appinfo->air_dna_accupancy =$add->addressInfo->air_dna_accupancy;
-            $appinfo->rent_zestimate =$add->addressInfo->rent_zestimate;
-            $appinfo->photo = $add->addressInfo->photo;
-            $appinfo->pool_type =$add->addressInfo->pool_type;
-            $appinfo->total_area_sq_feet =$add->addressInfo->total_area_sq_feet;
-            $appinfo->valuation_value = $add->addressInfo->valuation_value;
-            $appinfo->valuation_high = $add->addressInfo->valuation_high;
-            $appinfo->valuation_low = $add->addressInfo->valuation_low;
-            $appinfo->standardized_land_use_type = $add->addressInfo->standardized_land_use_type;
-            $appinfo->yearBuilt = $add->addressInfo->yearBuilt;
-            $appinfo->taxes_year = $add->addressInfo->taxes_year;
-            $appinfo->taxes_amount = $add->addressInfo->taxes_amount;
-            $appinfo->latatude = $add->addressInfo->latatude;
-            $appinfo->longitude = $add->addressInfo->longitude;
-            $appinfo->finishedSqFt = $add->addressInfo->finishedSqFt;
-            $appinfo->lotSizeSqFt = $add->addressInfo->lotSizeSqFt;
+            $appinfo->rent = isset($add->addressInfo->rent)?$add->addressInfo->rent:null;
+            $appinfo->rentRangeLow = isset($add->addressInfo->rentRangeLow)?$add->addressInfo->rentRangeLow:null;
+            $appinfo->rentRangeHigh = isset($add->addressInfo->rentRangeHigh)?$add->addressInfo->rentRangeHigh:null;
+            $appinfo->hometype = isset($add->addressInfo->hometype)?$add->addressInfo->hometype:null;
+            $appinfo->bedroom = isset($add->addressInfo->bedroom)?$add->addressInfo->bedroom:null;
+            $appinfo->bathroom = isset($add->addressInfo->bathroom)?$add->addressInfo->bathroom:null;
+            $appinfo->zestimate = isset($add->addressInfo->zestimate)?$add->addressInfo->zestimate:null;
+            $appinfo->last_sold_price =isset($add->addressInfo->last_sold_price)?$add->addressInfo->last_sold_price:null;
+            $appinfo->last_sold_date = isset($add->addressInfo->last_sold_date)?$add->addressInfo->last_sold_date:null;
+            $appinfo->home_details = isset($add->addressInfo->home_details)?$add->addressInfo->home_details:null;
+            $appinfo->air_dna_anual_revinue = isset($add->addressInfo->air_dna_anual_revinue)?$add->addressInfo->air_dna_anual_revinue:null;
+
+            $appinfo->air_dna_average_daily_ratr = isset($add->addressInfo->air_dna_average_daily_ratr)?$add->addressInfo->air_dna_average_daily_ratr:null;
+            $appinfo->air_dna_accupancy =isset($add->addressInfo->air_dna_accupancy)?$add->addressInfo->air_dna_accupancy:null;
+            $appinfo->rent_zestimate =isset($add->addressInfo->rent_zestimate)?$add->addressInfo->rent_zestimate:null;
+            $appinfo->photo = isset($add->addressInfo->photo)?$add->addressInfo->photo:null;
+            $appinfo->pool_type =isset($add->addressInfo->pool_type)?$add->addressInfo->pool_type:null;
+            $appinfo->total_area_sq_feet =isset($add->addressInfo->total_area_sq_feet)?$add->addressInfo->total_area_sq_feet:null;
+            $appinfo->valuation_value = isset($add->addressInfo->valuation_value)?$add->addressInfo->valuation_value:null;
+            $appinfo->valuation_high = isset($add->addressInfo->valuation_high)?$add->addressInfo->valuation_high:null;
+
+            $appinfo->valuation_low = isset($add->addressInfo->valuation_low)?$add->addressInfo->valuation_low:null;
+            $appinfo->standardized_land_use_type = isset($add->addressInfo->standardized_land_use_type)?$add->addressInfo->standardized_land_use_type:null;
+
+            $appinfo->yearBuilt = isset($add->addressInfo->yearBuilt)?$add->addressInfo->yearBuilt:null;
+            $appinfo->taxes_year = isset($add->addressInfo->taxes_year)?$add->addressInfo->taxes_year:null;
+            $appinfo->taxes_amount = isset($add->addressInfo->taxes_amount)?$add->addressInfo->taxes_amount:null;
+            $appinfo->latatude = isset($add->addressInfo->latatude)?$add->addressInfo->latatude:null;
+            $appinfo->longitude = isset($add->addressInfo->longitude)?$add->addressInfo->longitude:null;
+            $appinfo->finishedSqFt = isset($add->addressInfo->finishedSqFt)?$add->addressInfo->longitude:null;
+            $appinfo->lotSizeSqFt = isset($add->addressInfo->lotSizeSqFt)?$add->addressInfo->lotSizeSqFt:null;
 
              $addressList->addressInfo()->save($appinfo);
 
