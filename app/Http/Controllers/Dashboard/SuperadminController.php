@@ -22,7 +22,7 @@ class SuperadminController extends Controller
     		->paginate(5);
     	$addresses = AddressList::with('addressInfo')->get();
 
-
+        
     	 return view('dashboard.superadminDashboard')
              ->with('fileList',$fileList)
              ->with('addresses',$addresses);

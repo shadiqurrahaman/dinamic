@@ -32,45 +32,42 @@
                 </div>
                 <div class="clearfix"></div>
                     
-                <table width="100%" border="0" style="margin-top: 15px;">
+                <table width="80%" border="0" style="margin: 50px;">
                     <tr>
                         <th>{{$addressInfo['addressInfo']['bedroom']}}</th>
                         <th>{{$addressInfo['addressInfo']['bathroom']}}</th>
-                        <th>{{$addressInfo['addressInfo']['finishedSqFt']}}</th>
-                        <td width="150">Last Sold Date</td>
-                        <td width="80">{{$addressInfo['addressInfo']['last_sold_date']}}</td>
+                        <th>{{$addressInfo['addressInfo']['total_area_sq_feet']}}</th>
+                        
                     </tr>
                     <tr>
                         <td>BD</td>
                         <td>BA</td>
                         <td>SqFT</td>
-                        <td>Last Sold Price</td>
-                        <td>${{$addressInfo['addressInfo']['last_sold_price']}}</td>
                     </tr>                    
                 </table>
                 
                 <table width="80%" border="0" style="margin: 50px ;">
                    
                     <tr>
-                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">Zestimate</th>
-                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">$12,678</th>                        
+                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">Estimated Value</th>
+                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">${{$addressInfo['addressInfo']['zestimate']}}</th>                        
                     </tr>
                     <tr>
-                        <td>Last Update</td>
-                        <td>01/5/2015</td>
+                        <td>Year Built</td>
+                        <td>{{$addressInfo['addressInfo']['yearBuilt']}}</td>
                     </tr>
                     <tr>
                         <td>Last sold date</td>
-                        <td>01/5/2017</td>
+                        <td>{{$addressInfo['addressInfo']['last_sold_date']}}</td>
                     </tr>
                     <tr>
                         <td>Last Sold Price</td>
-                        <td>$203500</td>
+                        <td>${{$addressInfo['addressInfo']['last_sold_price']}}</td>
                     </tr>
                     <tr>
-                        <th style="color:#346eeb;font-size:  15px;font-width:bold;">Rent Zestimate</th>
+                        <th style="color:#346eeb;font-size:  15px;font-width:bold;">Estimated Rents</th>
                         <td style="color:#346eeb;font-size:  15px;font-weight: bold;"><div> 
-                           $1,000 <span style="margin-left: 40px; color:#4abf4a;">1.85% R/Z</span>
+                          ${{$addressInfo['addressInfo']['rent']}}<span style="margin-left: 40px; color:#4abf4a;">{{number_format((isset($addressInfo['addressInfo']['rent'])>0?$addressInfo['addressInfo']['rent']*12:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1),4,'.','')}} Rental Cap</span>
                         </div></td>
 
                     </tr> 
@@ -79,11 +76,11 @@
                         <td>$2535</td>
                     </tr>
                     <tr>
-                        <th style="color:#34ebc6;font-size:  15px;font-width:bold;">VR Annual Revenue</th>
+                        <th style="color:#34ebc6;font-size:  15px;font-width:bold;">STR Annual Revenue</th>
                         <th style="color:#34ebc6;font-size:  15px;font-width:bold;">
 
                             <div> 
-                            ${{$addressInfo['addressInfo']['air_dna_anual_revinue']}} <span style="margin-left: 35px; color:red;">0.49% VR/Z</span>
+                            ${{$addressInfo['addressInfo']['air_dna_anual_revinue']}} <span style="margin-left: 35px; color:red;">{{number_format((isset($addressInfo['addressInfo']['air_dna_anual_revinue'])>0?$addressInfo['addressInfo']['air_dna_anual_revinue']:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1),4,'.','')}} STR Cap</span>
 
 
                         </th>                        
@@ -96,42 +93,14 @@
                         <td>Avg Daily Rate</td>
                         <td>${{$addressInfo['addressInfo']['air_dna_average_daily_ratr']}}</td>                        
                     </tr>
-                    <tr>
-                        <td>
-                            <a href=" http://www.zillow.com/"><img src="{{asset('images/Zillowlogo_200x50.gif')}}" alt="Real Estate on Zillow">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{$addressInfo['addressInfo']['home_details']}}">See more details for {{$addressInfo->address}} on Zillow</a>
-                        </td>
-                    </tr>
+                   
                 </table>
 
 
                 <div style="border-top:10px solid #7b88ff; padding-top: 20px; margin-bottom: 30px">
                     <div class="row">
                         <div class="col-md-12">
-                             @if(Auth::check())
-                                    <div col-md-4 style="text-align: center;">
-                                        <div>
-                                            Amount/month <p id ="amount2" ></p>
-                                        </div>
-                                    </div>
-                                @endif
-                            <table style="text-align: center;">
-                                <tr>
-                                    <th style="padding-left: 2px;">Mortgage amount</td>
-                                    <th style="padding-left:  20px;">Down Payment</td>
-                                    <th style="padding-left:  20px;">Interest Rate</td>
-                                    <th style="padding-left:  20px;">Period</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 2px;font-size: 15px;font-weight: bold;">$239154</td>
-                                    <td style="padding-left: 20px;font-size: 15px;font-weight: bold;">$0 </td>
-                                    <td style="padding-left: 20px;font-size: 15px;font-weight: bold;">3.92</td>
-                                    <td style="padding-left: 20px;font-size: 15px;font-weight: bold;">30</td>
-                                </tr>
-                            </table>
+                            <div style="width:185px; text-align:center;"><p style="text-align:center;"><a href="https://www.mortgagecalculator.biz/c/" target="_blank"><img src="https://www.mortgagecalculator.biz/img/mlogo.gif" border="0" alt="http://mortgagecalculator.biz"/></a><br/><iframe src="https://www.mortgagecalculator.biz/c/mini.php" frameborder="0" width="185px" height="240px" scrolling="no"></iframe><br/><a href="https://www.mortgagecalculator.biz/c/free.php" target="_blank"><font size="1" color="#000000">wp loan calculator plugin</font></a></p></div>
                         </div>
                     </div>
                 </div>

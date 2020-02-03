@@ -134,11 +134,11 @@
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>
-											        <th>Zestimate</th>
+											        <th>Estimate Value</th>
 											        <th>Rent</th>
-											        <th>VR</th>
-											        <th>R/Z</th>
-											        <th>VR/Z</th>
+											        <th>STR Annual</th>
+											        <th>Rental Cap</th>
+											        <th>STR Cap</th>
 											      </tr>
 											    </thead>
 											    <tbody>
@@ -154,10 +154,10 @@
 											        <td>{{$address['addressInfo']['bedroom']}}</td>
 											        <td>{{$address['addressInfo']['bathroom']}}</td>
 											        <td>${{$address['addressInfo']['zestimate']}}</td>
-											        <td>${{$address['addressInfo']['rent_zestimate']}}</td>
-											        <td>{{$address['addressInfo']['finishedSqFt']}}</td>
-											        <td>{{$address['addressInfo']['lotSizeSqFt']}}</td>
-											        <td>{{$address['addressInfo']['last_sold_price']}}</td>
+											        <td>${{$address['addressInfo']['rent']}}</td>
+											        <td>{{$address['addressInfo']['air_dna_anual_revinue']}}</td>
+											        <td>{{number_format((isset($address['addressInfo']['rent'])>0?$address['addressInfo']['rent']*12:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
+											        <td>{{number_format((isset($address['addressInfo']['air_dna_anual_revinue'])>0?$address['addressInfo']['air_dna_anual_revinue']:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
 
 
 
@@ -222,15 +222,15 @@
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
-											      	  <th>Mark</th>
-                                                      <th>Address</th>
-                                                      <th>BD</th>
-                                                      <th>BA</th>
-                                                      <th>Zestimate</th>
-                                                      <th>Rent</th>
-                                                      <th>VR</th>
-                                                      <th>R/Z</th>
-                                                      <th>VR/Z</th>
+											      	<th>Mark</th>
+											        <th>Address</th>
+											        <th>BD</th>
+											        <th>BA</th>
+											        <th>Estimate Value</th>
+											        <th>Rent</th>
+											        <th>STR Annual</th>
+											        <th>Rental Cap</th>
+											        <th>STR Cap</th>
 											      </tr>
 											    </thead>
 											    <tbody>
@@ -245,10 +245,10 @@
                                                         <td>{{$address['addressInfo']['bedroom']}}</td>
                                                         <td>{{$address['addressInfo']['bathroom']}}</td>
                                                         <td>${{$address['addressInfo']['zestimate']}}</td>
-                                                        <td>${{$address['addressInfo']['rent_zestimate']}}</td>
-                                                        <td>{{$address['addressInfo']['finishedSqFt']}}</td>
-                                                        <td>{{$address['addressInfo']['lotSizeSqFt']}}</td>
-                                                        <td>{{$address['addressInfo']['last_sold_price']}}</td>
+											        <td>${{$address['addressInfo']['rent']}}</td>
+											        <td>{{$address['addressInfo']['air_dna_anual_revinue']}}</td>
+											        <td>{{number_format((isset($address['addressInfo']['rent'])>0?$address['addressInfo']['rent']*12:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
+											        <td>{{number_format((isset($address['addressInfo']['air_dna_anual_revinue'])>0?$address['addressInfo']['air_dna_anual_revinue']:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
 
 
 

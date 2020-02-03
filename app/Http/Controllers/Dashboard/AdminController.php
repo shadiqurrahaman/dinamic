@@ -41,7 +41,7 @@ class AdminController extends Controller
         $this_month_all_user = CallUser::whereMonth('date',$date->month)->count();
 
         
-
+        
 
         return view('dashboard.superadminDashboard')
             ->with('fileList',$fileList)
@@ -99,9 +99,20 @@ class AdminController extends Controller
 
          foreach ($data[0] as  $value) {
 
+
+            
+
+
             if ($counter>0){
 
-            $address = implode(", ", $value);
+            // $address = isset($value[0])?$value[0].',':'';
+            $address = (isset($value[0])?$value[0].',':'').(isset($value[2])?$value[2].',':'').(isset($value[3])?$value[3].' '.$value[4]:'');
+
+
+
+            // dd($address);
+
+            // $address = implode(", ", $value);
 
             $valid_address = preg_match('/^\d.*.\d$/', $address);
 
@@ -139,7 +150,7 @@ class AdminController extends Controller
                 Cache::add($address, $id ,now()->addYear(1));
             }else{
 
-                $add = AddressList::where('address',$address)->with('addressInfo')->first();
+            $add = AddressList::where('address',$address)->with('addressInfo')->first();
 
 
             // return $add->addressInfo;
@@ -152,36 +163,44 @@ class AdminController extends Controller
             $addressList->search_time = Carbon::now();
             $addressList->favorite = false;
             $addressList->p_address = isset($split[0])?$split[0]:null;
-            $addressList->p_address2 = isset($split[1])?$split[1]:null ;
-            $addressList->p_city = isset($split[2])?$split[2]:null ;
-            $addressList->p_state = isset($split[3])?$split[3]:null ;
-            $addressList->p_zipcode = isset($split[4])?$split[4]:null ;
-            $addressList->file_list_id = $filename->id;
+            $addressList->p_address2 = null ;
+            $addressList->p_city = isset($split[1])?$split[1]:null ;
+            $state_and_zip = explode(" ", trim($split[2]));
+            $addressList->p_state = isset($state_and_zip[0])?$state_and_zip[0]:null ;
+            $addressList->p_zipcode = isset($state_and_zip[1])?$state_and_zip[1]:null ;
             $addressList->save();
 
-
+     
             $appinfo = new AddressInfo;
 
-            $appinfo->status = $add->addressInfo->status;
-            $appinfo->MLS =$add->addressInfo->MLS;
-            $appinfo->price = $add->addressInfo->price;
-            $appinfo->photo = $add->addressInfo->photo;
+            $appinfo->rent = $add->addressInfo->rent;
+            $appinfo->rentRangeLow =$add->addressInfo->rentRangeLow;
+            $appinfo->rentRangeHigh = $add->addressInfo->rentRangeHigh;
             $appinfo->hometype = $add->addressInfo->hometype;
             $appinfo->bedroom = $add->addressInfo->bedroom;
             $appinfo->bathroom = $add->addressInfo->bathroom;
-            $appinfo->finishedSqFt =$add->addressInfo->finishedSqFt;
-            $appinfo->lotSizeSqFt = $add->addressInfo->lotSizeSqFt;
-            $appinfo->yearBuilt = $add->addressInfo->yearBuilt;
             $appinfo->zestimate = $add->addressInfo->zestimate;
-            $appinfo->rent_zestimate = $add->addressInfo->rent_zestimate;
-            $appinfo->last_sold_date =$add->addressInfo->last_sold_date;
             $appinfo->last_sold_price =$add->addressInfo->last_sold_price;
+            $appinfo->last_sold_date = $add->addressInfo->last_sold_date;
+            $appinfo->home_details = $add->addressInfo->home_details;
             $appinfo->air_dna_anual_revinue = $add->addressInfo->air_dna_anual_revinue;
-            $appinfo->air_dna_average_daily_ratr =$add->addressInfo->air_dna_average_daily_ratr;
+            $appinfo->air_dna_average_daily_ratr = $add->addressInfo->air_dna_average_daily_ratr;
             $appinfo->air_dna_accupancy =$add->addressInfo->air_dna_accupancy;
+            $appinfo->rent_zestimate =$add->addressInfo->rent_zestimate;
+            $appinfo->photo = $add->addressInfo->photo;
+            $appinfo->pool_type =$add->addressInfo->pool_type;
+            $appinfo->total_area_sq_feet =$add->addressInfo->total_area_sq_feet;
+            $appinfo->valuation_value = $add->addressInfo->valuation_value;
+            $appinfo->valuation_high = $add->addressInfo->valuation_high;
+            $appinfo->valuation_low = $add->addressInfo->valuation_low;
+            $appinfo->standardized_land_use_type = $add->addressInfo->standardized_land_use_type;
+            $appinfo->yearBuilt = $add->addressInfo->yearBuilt;
+            $appinfo->taxes_year = $add->addressInfo->taxes_year;
+            $appinfo->taxes_amount = $add->addressInfo->taxes_amount;
             $appinfo->latatude = $add->addressInfo->latatude;
             $appinfo->longitude = $add->addressInfo->longitude;
-            $appinfo->home_details = $add->addressInfo->home_details;
+            $appinfo->finishedSqFt = $add->addressInfo->finishedSqFt;
+            $appinfo->lotSizeSqFt = $add->addressInfo->lotSizeSqFt;
 
              $addressList->addressInfo()->save($appinfo);
 
@@ -210,26 +229,36 @@ class AdminController extends Controller
 
             $appinfo = new AddressInfo;
 
-            $appinfo->status = null;
-            $appinfo->MLS = null;
-            $appinfo->price = null;
-            $appinfo->photo = null;
+            $appinfo->rent = null;
+            $appinfo->rentRangeLow =null;
+            $appinfo->rentRangeHigh = null;
             $appinfo->hometype = null;
             $appinfo->bedroom = null;
             $appinfo->bathroom = null;
-            $appinfo->finishedSqFt =null;
-            $appinfo->lotSizeSqFt = null;
-            $appinfo->yearBuilt =  '';
             $appinfo->zestimate = null;
-            $appinfo->rent_zestimate = null;
-            $appinfo->last_sold_date =null;
             $appinfo->last_sold_price =null;
+
+            $appinfo->last_sold_date = null;
+            $appinfo->home_details = null;
             $appinfo->air_dna_anual_revinue = null;
-            $appinfo->air_dna_average_daily_ratr =null;
+            $appinfo->air_dna_average_daily_ratr = null;
             $appinfo->air_dna_accupancy =null;
+            $appinfo->rent_zestimate =null;
+            $appinfo->photo = null;
+            $appinfo->pool_type =null;
+            $appinfo->total_area_sq_feet =null;
+            $appinfo->valuation_value = null;
+            $appinfo->valuation_high = null;
+            $appinfo->valuation_low = null;
+            $appinfo->standardized_land_use_type =null;
+            $appinfo->yearBuilt = null;
+            $appinfo->taxes_year = null;
+            $appinfo->taxes_amount =null; 
             $appinfo->latatude = null;
             $appinfo->longitude = null;
-            $appinfo->home_details = null;
+            $appinfo->finishedSqFt = null;
+            $appinfo->lotSizeSqFt = null;
+
 
              $addressList->addressInfo()->save($appinfo);
 

@@ -91,13 +91,13 @@
             <div class="container">
                 <div class="top-info hidden-sm-down">
                     <div class="call-header">
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> (234) 0200 17813</p>
+                        <p><i class="fa fa-phone" aria-hidden="true"></i> (480)866-6000</p>
                     </div>
                     <div class="address-header">
-                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> 95 South Park Ave, USA</p>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> 2303 N 44th St Ste 12-1489 Phoenix, AZ 85008</p>
                     </div>
                     <div class="mail-header">
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i> info@findhouses.com</p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> admin@dynamic.re</p>
                     </div>
                 </div>
                 <div class="top-social hidden-sm-down">
@@ -200,15 +200,15 @@
 
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
-                        <li class="hidden-lg-up">
+                        <!-- <li class="hidden-lg-up">
 
                                 <a  href="#" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i></br>My-profile</a>
 
-                        </li>
+                        </li> -->
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown ">
+                        <!-- <li class="dropdown ">
                             <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-user-o" aria-hidden="true"></i></br>My-profile</a>
-                        </li>
+                        </li> -->
                        
 
                         @guest
@@ -232,9 +232,7 @@
                                 </div>
                             </li>
                         @endguest
-                        <li class="nav-item dropdown" style="padding-top: 7px;">
-                            <img src="{{ asset('images/zillow.png') }}" alt="realhome">
-                        </li>
+                        
 
                     </ul>
                 </nav>

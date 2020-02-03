@@ -14,34 +14,9 @@ class Helper
 
 
 
-        // $split =explode(",", $property);
 
-        // dd($split);
 
         $addressList = new AddressList;
-
-        // $addressList->address = $property;
-        // $addressList->search_time = Carbon::now();
-        // $addressList->favorite = false;
-        // $addressList->p_address = isset($split[0])?$split[0]:null;
-        // $addressList->p_address2 = isset($split[1])?$split[1]:null ;
-        // $addressList->p_city = isset($split[2])?$split[2]:null ;
-        // $addressList->p_state = isset($split[3])?$split[3]:null ;
-        // $addressList->p_zipcode = isset($split[4])?$split[4]:null ;
-
-        // if($file_list_id!=null){
-
-        //     $filelist = FileList::find($file_list_id);
-        //     $filelist->adress()->save($addressList);
-        // }else{
-        //      $addressList->file_list_id = $file_list_id;
-        //      $addressList->save();
-        // }
-
-        
-
-        // dd($address);
-
 
 
          // dd($address);
@@ -53,10 +28,11 @@ class Helper
             $addressList->search_time = Carbon::now();
             $addressList->favorite = false;
             $addressList->p_address = isset($split[0])?$split[0]:null;
-            $addressList->p_address2 = isset($split[1])?$split[1]:null ;
-            $addressList->p_city = isset($split[2])?$split[2]:null ;
-            $addressList->p_state = isset($split[3])?$split[3]:null ;
-            $addressList->p_zipcode = isset($split[4])?$split[4]:null ;
+            $addressList->p_address2 = null ;
+            $addressList->p_city = isset($split[1])?$split[1]:null ;
+            $state_and_zip = explode(" ", trim($split[2]));
+            $addressList->p_state = isset($state_and_zip[0])?$state_and_zip[0]:null ;
+            $addressList->p_zipcode = isset($state_and_zip[1])?$state_and_zip[1]:null ;
 
         if($file_list_id!=null){
 
@@ -68,9 +44,9 @@ class Helper
         }
 
             // dd($split);
-            $state_zip = explode(' ',$split[2]);
+            // $state_zip = explode(' ',$split[2]);
             // dd($state_zip);
-            $address_estade = 'street_address='.$split[0].'&city='.$split[1].'&state='.$state_zip[1].'&zip_code='.$state_zip[2];
+            $address_estade = 'street_address='.$split[0].'&city='.$split[1].'&state='.$state_and_zip[0].'&zip_code='.$state_and_zip[1];
             // dd($address_estade);
             $split2 = explode(',', $property,2);
             $string_for_zillow = 'address='.urlencode($split2[0]).'&citystatezip='.urlencode($split2[1]);
@@ -160,6 +136,8 @@ class Helper
             $propertyData = array();
 //            return $e->getMessage();
         }
+
+        // dd($propertyData['zestimate']['amount']);
         // update property result
         // $updated_search_result_string = 'https://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=X1-ZWz1ha147usbuz_8clop&zpid=48749425';
         // $update_search_result = $client->request('POST',$updated_search_result_string);
@@ -169,6 +147,10 @@ class Helper
         // $update_collection = collect($array);
         // $update_property_data = $update_collection['response'];
         //Estated
+
+
+
+
         try{
         $estated = 'https://apis.estated.com/v4/property?token=HuwT9a1eiCT3FcLZ98mnxGbE4ZRpUG&'.$address_estade;
 
@@ -184,17 +166,44 @@ class Helper
             $estated_data = array();
 //            return $e->getMessage();
         }
+
+
+
+        try{
+            $api_url  = 'https://realtymole-rental-estimate-v1.p.rapidapi.com/rentalPrice?address='.$address;
+
+             $client = new \GuzzleHttp\Client([
+                'headers' => [
+                    "x-rapidapi-host"=> "realtymole-rental-estimate-v1.p.rapidapi.com",
+                    "x-rapidapi-key"=> "248a0c6046mshf441f2359af738bp1db7c6jsnb13f6d553889"
+                ]]);
+              $real_response2 = $client->request('GET',$api_url);
+            
+              $real_response2 = json_decode($real_response2->getBody());
+
+              $real_data = $real_response2;   
+
+        }catch(\Exception $e){
+            $real_data = array();
+        }
+
+   
+
         // dd($estated_data);
   
     	 $appinfo = new AddressInfo;
 
-        $appinfo->status = 'status';
-        $appinfo->MLS ="MLS";
-        $appinfo->price = "250000";
+        $appinfo->rent = isset( $real_data->rent)?$real_data->rent:00;
+        $appinfo->rentRangeLow =isset( $real_data->rentRangeLow)?$real_data->rentRangeLow:00;
+        $appinfo->rentRangeHigh = isset( $real_data->rentRangeHigh)?$real_data->rentRangeHigh:00;
+
+
+
+
         $appinfo->hometype = isset($propertyData['useCode'])?$propertyData['useCode']:null;
         $appinfo->bedroom = isset($propertyData['bedrooms'])?$propertyData['bedrooms']:null;
         $appinfo->bathroom = isset($propertyData['bathrooms'])?$propertyData['bathrooms']:null;
-        $appinfo->zestimate =1200;
+        $appinfo->zestimate = isset($propertyData['zestimate']['amount'])?$propertyData['zestimate']['amount']:00;
         $appinfo->last_sold_price =isset($propertyData['lastSoldPrice'])?$propertyData['lastSoldPrice']:null;
         $appinfo->last_sold_date = \Carbon\Carbon::parse(isset($propertyData['lastSoldDate'])?$propertyData['lastSoldDate']:'20-12-2020')->format('Y/m/d');
         $appinfo->home_details = isset($propertyData['links']['homedetails'])?$propertyData['links']['homedetails']:null;
