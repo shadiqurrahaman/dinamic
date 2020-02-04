@@ -295,14 +295,21 @@
 function validateForm(){
         // var patt =^\d+.*.\d$;
         
-        const paragraph = document.getElementById('autocomplete').value;
+         var paragraph = document.getElementById('autocomplete_hidden').value;
+        var paragraph2 = document.getElementById('autocomplete').value;
+
+        if (paragraph==''||paragraph==null){
+            paragraph = paragraph2;
+            document.getElementById('autocomplete_hidden').value = paragraph2;
+        }
+        
         const regex = /^\d+.*.\d$/g;
         const found = paragraph.match(regex);
         if(found){
 
             return true
         }else{
-        alert("Warning!!! This is not a valid format.\n please try like:\n street-address,city,state zipcode");
+       alert("please enter a valid street address");
         return false;
         }
         

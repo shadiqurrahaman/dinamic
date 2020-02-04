@@ -20,7 +20,7 @@
 
                                         <input type="hidden" name="search" value='' id="autocomplete_hidden">
 
-                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with Format (street-addess, postcode, zipcode)' type='text' name='search2'>
+                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with Format (street-addess, city, postcode, zipcode)' type='text' name='search2'>
                                     </div>
                                     <button class='btn btn-link search-btn' type="submit" style="background-color:#3F3F3F;color:#ffffff; margin-top: -9px;margin-right: -12px;width: 100px;">
                                         <i class='fas fa-search' ></i>
@@ -564,11 +564,18 @@
     function validateForm(){
         // var patt =^\d+.*.\d$;
         
-        const paragraph = document.getElementById('autocomplete_hidden').value;
+        var paragraph = document.getElementById('autocomplete_hidden').value;
+        var paragraph2 = document.getElementById('autocomplete').value;
+
+        if (paragraph==''||paragraph==null){
+            paragraph = paragraph2;
+            document.getElementById('autocomplete_hidden').value = paragraph2;
+        }
+        
         const regex = /^\d+.*.\d$/g;
         const found = paragraph.match(regex);
         if(found){
-
+          
             return true
         }else{
         alert("please enter a valid street address");
@@ -618,8 +625,8 @@
         var state = place.address_components[5].short_name;
         var zip = place.address_components[7].long_name;
         var fulladdress = street_name+' '+street+', '+city+', '+state+' '+zip;
+               }else{
 
-        }else{
             var fulladdress = "";
         }
 
