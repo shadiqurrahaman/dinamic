@@ -50,7 +50,7 @@
                    
                     <tr>
                         <th style="color:#6234eb;font-size:  15px;font-width:bold;">Estimated Value</th>
-                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">${{$addressInfo['addressInfo']['zestimate']}}</th>                        
+                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">${{number_format($addressInfo['addressInfo']['zestimate'])}}</th>                        
                     </tr>
                     <tr>
                         <td>Year Built</td>
@@ -62,25 +62,37 @@
                     </tr>
                     <tr>
                         <td>Last Sold Price</td>
-                        <td>${{$addressInfo['addressInfo']['last_sold_price']}}</td>
+                        <td>${{number_format($addressInfo['addressInfo']['last_sold_price'])}}</td>
                     </tr>
                     <tr>
                         <th style="color:#346eeb;font-size:  15px;font-width:bold;">Estimated Rents</th>
                         <td style="color:#346eeb;font-size:  15px;font-weight: bold;"><div> 
-                          ${{$addressInfo['addressInfo']['rent']}}<span style="margin-left: 40px; color:#4abf4a;">{{number_format((isset($addressInfo['addressInfo']['rent'])>0?$addressInfo['addressInfo']['rent']*12:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1),4,'.','')}} Rental Cap</span>
+                          ${{number_format($addressInfo['addressInfo']['rent'])}}<span style="margin-left: 40px; color:#4abf4a;"><?php 
+                                                        if ($addressInfo['addressInfo']['zestimate']>1){
+                                                            echo number_format(((isset($addressInfo['addressInfo']['rent'])>0?$addressInfo['addressInfo']['rent']*12:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1)*100),1);
+                                                        }else{
+                                                            echo 0;
+                                                        }
+                                                         ?> % Rental Cap</span>
                         </div></td>
 
                     </tr> 
-                    <tr>
-                        <td>Last Update</td>
-                        <td>$2535</td>
-                    </tr>
+                    
                     <tr>
                         <th style="color:#34ebc6;font-size:  15px;font-width:bold;">STR Annual Revenue</th>
                         <th style="color:#34ebc6;font-size:  15px;font-width:bold;">
 
                             <div> 
-                            ${{$addressInfo['addressInfo']['air_dna_anual_revinue']}} <span style="margin-left: 35px; color:red;">{{number_format((isset($addressInfo['addressInfo']['air_dna_anual_revinue'])>0?$addressInfo['addressInfo']['air_dna_anual_revinue']:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1),4,'.','')}} STR Cap</span>
+                            ${{number_format($addressInfo['addressInfo']['air_dna_anual_revinue'])}} <span style="margin-left: 35px; color:red;">
+
+                                <?php 
+                                                        if($addressInfo['addressInfo']['zestimate']>1){
+                                                            echo number_format(((isset($addressInfo['addressInfo']['air_dna_anual_revinue'])>0?$addressInfo['addressInfo']['air_dna_anual_revinue']:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1)*100),1);
+                                                        }else{
+                                                            echo 0;
+                                                        }
+                                                         ?>
+                             % STR Cap</span>
 
 
                         </th>                        
@@ -91,7 +103,7 @@
                     </tr> 
                     <tr>
                         <td>Avg Daily Rate</td>
-                        <td>${{$addressInfo['addressInfo']['air_dna_average_daily_ratr']}}</td>                        
+                        <td>${{number_format($addressInfo['addressInfo']['air_dna_average_daily_ratr'])}}</td>                        
                     </tr>
                    
                 </table>
@@ -100,7 +112,7 @@
                 <div style="border-top:10px solid #7b88ff; padding-top: 20px; margin-bottom: 30px">
                     <div class="row">
                         <div class="col-md-12">
-                            <div style="width:185px; text-align:center;"><p style="text-align:center;"><a href="https://www.mortgagecalculator.biz/c/" target="_blank"><img src="https://www.mortgagecalculator.biz/img/mlogo.gif" border="0" alt="http://mortgagecalculator.biz"/></a><br/><iframe src="https://www.mortgagecalculator.biz/c/mini.php" frameborder="0" width="185px" height="240px" scrolling="no"></iframe><br/><a href="https://www.mortgagecalculator.biz/c/free.php" target="_blank"><font size="1" color="#000000">wp loan calculator plugin</font></a></p></div>
+                            <div style="width:185px; text-align:center;"><p style="text-align:center;"><a href="https://www.mortgagecalculator.biz/c/" target="_blank"><img src="https://www.mortgagecalculator.biz/img/mlogo.gif" border="0" alt="http://mortgagecalculator.biz"/></a><br/><iframe src="https://www.mortgagecalculator.biz/c/mini.php" frameborder="0" width="185px" height="240px" scrolling="no"></iframe><br/><a href="https://www.mortgagecalculator.biz/c/free.php" target="_blank"><font size="1" color="#000000"></font></a></p></div>
                         </div>
                     </div>
                 </div>

@@ -163,42 +163,42 @@
                                 </div> -->
                         </li>
                         <!-- STAR COLLAPSE MOBILE MENU -->
-                        <li class="dropdown">
+                        <!-- <li class="dropdown">
 
                                 <a  aria-haspopup="true" aria-expanded="false"  href="{{url('/basic')}}" ><i class="fa fa-info-circle" aria-hidden="true"></i> </br>Basics</a>
 
-                        </li>
+                        </li> -->
                         <!-- END COLLAPSE MOBILE MENU -->
 {{--                        <li class="dropdown">--}}
 {{--                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/basic')}}">Basics</a>--}}
 {{--                        </li>--}}
                         <!-- STAR COLLAPSE MOBILE MENU -->
-                        <li class="hidden-lg-up">
+                       <!--  <li class="hidden-lg-up">
 
                                 <a data-toggle="collapse" href="{{url('/resource')}}" aria-expanded="false"><i class="fa fa-money" aria-hidden="true"></i></br>Resource</a>
 
-                        </li>
+                        </li> -->
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown">
+                        <!-- <li class="dropdown">
                             <a  aria-haspopup="true" aria-expanded="false" href="{{url('/resource')}}"><i class="fa fa-money" aria-hidden="true"></i></br>Resource</a>
-                        </li>
+                        </li> -->
                         <!-- STAR COLLAPSE MOBILE MENU -->
-                        <li class="hidden-lg-up">
+                        <!-- <li class="hidden-lg-up">
 
                                 <a  href="{{route('tools')}}" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i></br>Tools</a>
 
 
-                        </li>
+                        </li> -->
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown">
+                      <!--   <li class="dropdown">
                             <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}"><i class="fa fa-cogs" aria-hidden="true"></i></br>Tools</a>
 
-                        </li>
+                        </li> -->
 
-                         <li class="dropdown">
+                         <!-- <li class="dropdown">
                             <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}"><i class="fa fa-hourglass-o" aria-hidden="true"></i></br>Action</a>
 
-                        </li>
+                        </li> -->
                         <!-- STAR COLLAPSE MOBILE MENU -->
                         <!-- <li class="hidden-lg-up">
 
@@ -214,7 +214,7 @@
                         @guest
                             <li class="nav-item dropdown" style="text-align: center;margin-left: 30%;"></li>
                         @else
-                            <li class="nav-item dropdown" style="text-align: center;margin-left: 12%;" >
+                            <li class="nav-item dropdown" style="text-align: center;margin-left: 70%; float: right;" >
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user-o" aria-hidden="true"></i></br>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -456,7 +456,7 @@
          // Bias the autocomplete object to the user's geographical location,
          // as supplied by the browser's 'navigator.geolocation' object.
          function geolocate() {
-             console.log("ok");
+             // console.log("ok");
              if (navigator.geolocation) {
                  navigator.geolocation.getCurrentPosition(function(position) {
                      var geolocation = {

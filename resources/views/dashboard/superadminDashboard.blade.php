@@ -106,7 +106,7 @@
 
 										 <input type="hidden" name="search" value='' id="autocomplete_hidden">
 
-										<input id="autocomplete"  onFocus="geolocate()" class='form-control' placeholder='Search with addess, postcode, zipcode' type='text' name='search2' style="margin-top: 16px;">
+										<input id="autocomplete"  onFocus="geolocate()" class='form-control' placeholder='Enter street address' type='text' name='search2' style="margin-top: 16px;">
 									</div>
                             		 <button class='btn btn-link search-btn' type="submit" style="color: #3e3737;margin:-7px;">
                            			 	<i class='fa fa-search'></i>
@@ -155,11 +155,35 @@
                                                       <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['addressInfo']['id']])}}">{{$address->address}}</a></td>
 											        <td>{{$address['addressInfo']['bedroom']}}</td>
 											        <td>{{$address['addressInfo']['bathroom']}}</td>
-											        <td>${{$address['addressInfo']['zestimate']}}</td>
-											        <td>${{$address['addressInfo']['rent']}}</td>
-											        <td>{{$address['addressInfo']['air_dna_anual_revinue']}}</td>
-											        <td>{{number_format((isset($address['addressInfo']['rent'])>0?$address['addressInfo']['rent']*12:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
-											        <td>{{number_format((isset($address['addressInfo']['air_dna_anual_revinue'])>0?$address['addressInfo']['air_dna_anual_revinue']:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
+											        <td>${{number_format(($address['addressInfo']['zestimate']>1?$address['addressInfo']['zestimate']:0))}}</td>
+											        <td>${{number_format($address['addressInfo']['rent'])}}</td>
+											        <td>${{number_format($address['addressInfo']['air_dna_anual_revinue'])}}</td>
+											        <td>
+
+											        	<?php 
+											        	if ($address['addressInfo']['zestimate']>1){
+											        		echo number_format(((isset($address['addressInfo']['rent'])>0?$address['addressInfo']['rent']*12:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1)*100),1);
+											        	}else{
+											        		echo 0;
+											        	}
+											        	 ?>
+											        	
+
+											        	%</td>
+											        <td>
+
+
+											        	<?php 
+											        	if($address['addressInfo']['zestimate']>1){
+											        		echo number_format(((isset($address['addressInfo']['air_dna_anual_revinue'])>0?$address['addressInfo']['air_dna_anual_revinue']:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1)*100),1);
+											        	}else{
+											        		echo 0;
+											        	}
+											        	 ?>
+											        	
+			%</td>
+
+
 
 
 
@@ -246,11 +270,33 @@
                                                         <td><a style="text-decoration: none; color: #060606" href="{{route('propertyResult',['propertyId' => $address['id']])}}">{{$address->address}}</a></td>
                                                         <td>{{$address['addressInfo']['bedroom']}}</td>
                                                         <td>{{$address['addressInfo']['bathroom']}}</td>
-                                                        <td>${{$address['addressInfo']['zestimate']}}</td>
-											        <td>${{$address['addressInfo']['rent']}}</td>
-											        <td>{{$address['addressInfo']['air_dna_anual_revinue']}}</td>
-											        <td>{{number_format((isset($address['addressInfo']['rent'])>0?$address['addressInfo']['rent']*12:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
-											        <td>{{number_format((isset($address['addressInfo']['air_dna_anual_revinue'])>0?$address['addressInfo']['air_dna_anual_revinue']:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1),4,'.','')}}</td>
+                                                        <td>${{number_format(($address['addressInfo']['zestimate']>1?$address['addressInfo']['zestimate']:0))}}</td>
+											        <td>${{number_format($address['addressInfo']['rent'])}}</td>
+											        <td>${{number_format($address['addressInfo']['air_dna_anual_revinue'])}}</td>
+											        <td>
+
+											        	<?php 
+											        	if ($address['addressInfo']['zestimate']>1){
+											        		echo number_format(((isset($address['addressInfo']['rent'])>0?$address['addressInfo']['rent']*12:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1)*100),1);
+											        	}else{
+											        		echo 0;
+											        	}
+											        	 ?>
+											        	
+
+											        	%</td>
+											        <td>
+
+
+											        	<?php 
+											        	if($address['addressInfo']['zestimate']>1){
+											        		echo number_format(((isset($address['addressInfo']['air_dna_anual_revinue'])>0?$address['addressInfo']['air_dna_anual_revinue']:1)/(isset($address['addressInfo']['zestimate'])>0?$address['addressInfo']['zestimate']:1)*100),1);
+											        	}else{
+											        		echo 0;
+											        	}
+											        	 ?>
+											        	
+			%</td>
 
 
 
@@ -295,20 +341,22 @@
 function validateForm(){
         // var patt =^\d+.*.\d$;
         
-         var paragraph = document.getElementById('autocomplete_hidden').value;
+        var paragraph = document.getElementById('autocomplete_hidden').value;
         var paragraph2 = document.getElementById('autocomplete').value;
 
         if (paragraph==''||paragraph==null){
             paragraph = paragraph2;
             document.getElementById('autocomplete_hidden').value = paragraph2;
         }
-        
-        const regex = /^\d+.*.\d$/g;
+
+        const regex = /^\d+.*$/g;
         const found = paragraph.match(regex);
         if(found){
 
             return true
         }else{
+        	 document.getElementById('autocomplete_hidden').value = '';
+        document.getElementById('autocomplete').value = '';
        alert("please enter a valid street address");
         return false;
         }
@@ -336,7 +384,7 @@ function validateForm(){
 		console.log(autocomplete)
 		// Avoid paying for data that you don't need by restricting the set of
 		// place fields that are returned to just the address components.
-		autocomplete.setFields(['address_component']);
+		autocomplete.setFields(['address_component','formatted_address']);
 
 		// When the user selects an address from the drop-down, populate the
 		// address fields in the form.
@@ -347,35 +395,34 @@ function validateForm(){
 		// Get the place details from the autocomplete object.
 		var place = autocomplete.getPlace();
 
+		var team = place.formatted_address.split(',');
 
-        if (place.address_components.length>=8){
-        var street_name = place.address_components[0].long_name;
-        var street = place.address_components[1].long_name;
-        var city = place.address_components[3].long_name;
-        var state = place.address_components[5].short_name;
-        var zip = place.address_components[7].long_name;
-        var fulladdress = street_name+' '+street+', '+city+', '+state+' '+zip;
+        if (team.length>=3){
+        
+       
+        var fulladdress = team[0]+", "+team[1]+", "+team[2];
 
-        }else{
+               }else{
+
             var fulladdress = "";
         }
 
         document.getElementById('autocomplete_hidden').value = fulladdress;
         
-		for (var component in componentForm) {
-			document.getElementById(component).value = '';
-			document.getElementById(component).disabled = false;
-		}
+		// for (var component in componentForm) {
+		// 	document.getElementById(component).value = '';
+		// 	document.getElementById(component).disabled = false;
+		// }
 
 		// Get each component of the address from the place details,
 		// and then fill-in the corresponding field on the form.
-		for (var i = 0; i < place.address_components.length; i++) {
-			var addressType = place.address_components[i].types[0];
-			if (componentForm[addressType]) {
-				var val = place.address_components[i][componentForm[addressType]];
-				document.getElementById(addressType).value = val;
-			}
-		}
+		// for (var i = 0; i < place.address_components.length; i++) {
+		// 	var addressType = place.address_components[i].types[0];
+		// 	if (componentForm[addressType]) {
+		// 		var val = place.address_components[i][componentForm[addressType]];
+		// 		document.getElementById(addressType).value = val;
+		// 	}
+		// }
 	}
 
 	// Bias the autocomplete object to the user's geographical location,

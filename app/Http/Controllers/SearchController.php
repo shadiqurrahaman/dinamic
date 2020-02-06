@@ -29,8 +29,6 @@ class SearchController extends Controller
 
         $client = new \GuzzleHttp\Client();
         $googlestring = 'https://maps.googleapis.com/maps/api/geocode/json?';
-
-
   
         $address = 'address='.urlencode($request->input('search'));
         $key = '&key='.'AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA';
@@ -40,8 +38,14 @@ class SearchController extends Controller
         $is_valid_address = $client->request('GET',$finalurl);
 
         $array = json_decode($is_valid_address->getBody(), true);
-        // dd($array['status']);
-        // $valid_address = preg_match('/^\d.*.\d$/', $request->input('search'));
+        $formated_address = explode(',',$array['results'][0]['formatted_address']);
+        $final_address = $formated_address[0].','.$formated_address[1].','.$formated_address[2];
+
+        $valid_address = preg_match('/^\d.*.\d$/', $final_address);
+        
+        if(!$valid_address){
+            return back()->withErrors(['erroraddress'=>'Please Provide a valid address']);
+        }
 
         
         if($array['status']=='OK'){
@@ -63,19 +67,19 @@ class SearchController extends Controller
         
         }
 
-    	if(!Cache::has($request->input('search'))){
+    	if(!Cache::has($final_address)){
     	 	 
 
-              $addressInfoId = Helper::apicall(null,$request->input('search'));
+              $addressInfoId = Helper::apicall(null,$final_address);
 
 
 
-              Cache::add($request->input('search'), $addressInfoId ,now()->addYear(1));
+              Cache::add($final_address, $addressInfoId ,now()->addYear(1));
 
 
     	}else{
     	       
-    		 $address = AddressList::where('address','=',$request->input('search'))->with('addressInfo')->first();
+    		 $address = AddressList::where('address','=',$final_address)->with('addressInfo')->first();
     		 $address->search_time = Carbon::now();
     		 $address->save();
              $addressInfoId = $address->id;
@@ -100,6 +104,7 @@ class SearchController extends Controller
         return redirect()->route('propertyResult', ['propertyId' => $addressInfoId]);
 
     }
+
 
     public function propertyResult($propertyId)
     {

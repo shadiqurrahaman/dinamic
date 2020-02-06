@@ -20,7 +20,7 @@
 
                                         <input type="hidden" name="search" value='' id="autocomplete_hidden">
 
-                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Search with Format (street-addess, city, postcode, zipcode)' type='text' name='search2'>
+                                        <input id="autocomplete" onFocus="geolocate()" class='form-control' placeholder='Enter street address' type='text' name='search2'>
                                     </div>
                                     <button class='btn btn-link search-btn' type="submit" style="background-color:#3F3F3F;color:#ffffff; margin-top: -9px;margin-right: -12px;width: 100px;">
                                         <i class='fas fa-search' ></i>
@@ -572,12 +572,14 @@
             document.getElementById('autocomplete_hidden').value = paragraph2;
         }
         
-        const regex = /^\d+.*.\d$/g;
+        const regex = /^\d+.*$/g;
         const found = paragraph.match(regex);
         if(found){
           
             return true
         }else{
+        document.getElementById('autocomplete_hidden').value = '';
+        document.getElementById('autocomplete').value = ''
         alert("please enter a valid street address");
         return false;
         }
@@ -605,7 +607,7 @@
         console.log(autocomplete)
         // Avoid paying for data that you don't need by restricting the set of
         // place fields that are returned to just the address components.
-        autocomplete.setFields(['address_component']);
+        autocomplete.setFields(['address_component','formatted_address']);
 
         // When the user selects an address from the drop-down, populate the
         // address fields in the form.
@@ -617,14 +619,14 @@
         var place = autocomplete.getPlace();
         // console.log(place.address_components.length);
         // console.log(place.address_components);
+        // console.log(place);
+        var team = place.formatted_address.split(',');
 
-        if (place.address_components.length>=8){
-        var street_name = place.address_components[0].long_name;
-        var street = place.address_components[1].long_name;
-        var city = place.address_components[3].long_name;
-        var state = place.address_components[5].short_name;
-        var zip = place.address_components[7].long_name;
-        var fulladdress = street_name+' '+street+', '+city+', '+state+' '+zip;
+        if (team.length>=3){
+        
+       
+        var fulladdress = team[0]+", "+team[1]+", "+team[2];
+
                }else{
 
             var fulladdress = "";
@@ -632,20 +634,20 @@
 
         document.getElementById('autocomplete_hidden').value = fulladdress;
 
-        for (var component in componentForm) {
-            document.getElementById(component).value = '';
-            document.getElementById(component).disabled = false;
-        }
+        // for (var component in componentForm) {
+        //     document.getElementById(component).value = '';
+        //     document.getElementById(component).disabled = false;
+        // }
 
         // Get each component of the address from the place details,
         // and then fill-in the corresponding field on the form.
-        for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];
-            if (componentForm[addressType]) {
-                var val = place.address_components[i][componentForm[addressType]];
-                document.getElementById(addressType).value = val;
-            }
-        }
+        // for (var i = 0; i < place.address_components.length; i++) {
+        //     var addressType = place.address_components[i].types[0];
+        //     if (componentForm[addressType]) {
+        //         var val = place.address_components[i][componentForm[addressType]];
+        //         // document.getElementById(addressType).value = val;
+        //     }
+        // }
     }
 
     // Bias the autocomplete object to the user's geographical location,
