@@ -488,12 +488,13 @@ img {
 
 #main-menu ul a {
   display: block;
-  padding: .8rem 0;
   text-align: center;
-  color: #fff;
+  color: black;
   text-transform: uppercase;
   border-top: 1px solid #e5e5e5;
-  text-decoration: none; }
+  text-decoration: none;
+  padding: 10px 0;
+}
 
 #main-menu ul a:hover,
 #main-menu ul li.active a {

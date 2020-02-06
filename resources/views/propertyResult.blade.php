@@ -16,12 +16,11 @@
                 <div style="float: left; margin-top: 20px;"> 
                     <h4 style="font-weight: bold; font-size: 25px;">
                         <span class="heading-icon"><i class="fa fa-map-marker"></i></span>
-                        <span class="hidden-sm-down">{{$addressInfo->address}}</span>
-                    </h4>
-                </div>                
-                <div style="float: right; margin-top: 20px;">
+                        <span>{{$addressInfo->address}}
+
+                            <div style="float: right;">
                     @if(Auth::check())
-{{--                    <i class="far fa-heart" style="font-size: 25px; margin-right: 10px;"></i>--}}
+
                         @if($addressInfo->favorite==0)
                             <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}"  class="far fa-heart" aria-hidden="true" style="color:red; font-size: 25px;"></i></a></td>
                         @else
@@ -30,9 +29,13 @@
                     @endif
                     <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
                 </div>
+                        </span>
+                    </h4>
+                </div>                
+                
                 <div class="clearfix"></div>
                     
-                <table width="80%" border="0" style="margin: 50px;">
+                <table width="100%" border="0" style="margin:15px 0">
                     <tr>
                         <th>{{$addressInfo['addressInfo']['bedroom']}}</th>
                         <th>{{$addressInfo['addressInfo']['bathroom']}}</th>
@@ -46,7 +49,7 @@
                     </tr>                    
                 </table>
                 
-                <table width="80%" border="0" style="margin: 50px ;">
+                <table width="100%" border="0" >
                    
                     <tr>
                         <th style="color:#6234eb;font-size:  15px;font-width:bold;">Estimated Value</th>
@@ -126,7 +129,7 @@
 
                 $link = "https://www.google.com/maps/embed/v1/streetview?location=".$lat_long."&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";
                  ?>
-                <iframe width="555" height="450" frameborder="0" style="border:0" src="{{$link}}" allowfullscreen></iframe>
+                <iframe height="450" frameborder="0" style="border:0;width: 100%;" src="{{$link}}" allowfullscreen></iframe>
 
                 <div style="margin-top: 5px;">
                 <div id="map"></div>

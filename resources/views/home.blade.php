@@ -5,7 +5,7 @@
                 <div class="container" >
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-8" >
+                    <div class="col-md-8 " >
                         <div class="card" style="background-color: #665EFF">
 
 
@@ -30,19 +30,32 @@
                         </div>
                     </div>
 
+                <div class="col-md-12">
+                    <div class="card" style="opacity: 1;margin-top: 5px; background-color: rgba(255,255,255,0.90);border-radius: 10px;">
 
-                </div>
-                    <div style="width: 100%;height: 50%;opacity: 1;margin: 20px;padding: 20px; background-color: rgba(255,255,255,0.90);border-radius: 10px;text-align: center;">
-                        <p style="text-align: center;font-size: 40px;font-weight: bold;">What is the highest and best use of your property?</p>
+<!-- 
+                        <blockquote class="blockquote">
+  <p class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+</blockquote> -->
+                       
+                        <p class="md-2" style="text-align: center;font-size: 25px;
+                       padding-top: 5px; font-weight: bold;">What is the highest and best use of your property?</p>
                     
-                        <p style="text-align: center;font-size: 20px;margin-top:20px; "><b>Our mission</b> is to help you understand,leverage and take advantage of the power of real estate. We will calculate the numbers and partner with you to help you aligh with your chosen strategy.</p>
-
-                        <a style="margin: 10px;padding: 10px;" class="btn btn-info"  role="button" href="{{url('/learnMore')}}">Learn More</a>
+                        <p style="text-align: center;font-size: 20px;margin-top:10px; "><b>Our mission</b> is to help you understand,leverage and take advantage of the power of real estate. We will calculate the numbers and partner with you to help you aligh with your chosen strategy.</p>
+                        <div class="row">
+                            <div class="col-md-2 offset-md-5 col-sm-1">
+                        <a style="margin: 10px;padding: 10px;" class="btn btn-info"  role="button"  href="{{url('/learnMore')}}">Learn More</a>
+                        </div>
+                        </div>
+                    </div>
                     </div>
 
+                </div>
+                
                    <!--  <div style="width: 100%;height: 50%;opacity: 1;margin: 20px;padding: 20px; background-color: #ffffff">
                         
                     </div> -->
+
                 </div>
 
 </section>
@@ -50,7 +63,7 @@
             <section class="partners" style="background-color: #b3b3ff" >
                 <div class="container" >
                     <div class="row">
-                                            <div class="col-md-8 offset-2">
+                                            <div class="col-md-8 offset-md-2  ">
 
                                                 <div class="card" style="margin-top: 25px;margin-bottom: 25px">
                                                     <div class="card-header" style="text-align: center;font-weight: bold;">Please Be With US</div>

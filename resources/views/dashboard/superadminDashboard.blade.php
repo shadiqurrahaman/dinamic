@@ -1,31 +1,119 @@
 @extends('layouts.app')
 
 @section('content')
+<style type="text/css">
 
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  /*position: fixed;*/
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.full{
+	text-align: center;
+    background-color: lightcoral;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 3px;
+}
+.full a{
+	text-decoration: none;
+	
+	color: white;
+}
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+@media screen and (min-width: 700px){
+	#fullbar2{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+ 
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  #fullbar{
+  	display: none;
+  }
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
 <!-- <h1>this is superadmin dashboard</h1> -->
 <div class="wrapper">
 	<!-- Sidebar  -->
-	<nav id="sidebar">
-		<div class="sidebar-header">
+	<div id='fullbar'>
+		<div id='fullbar' class="sidebar-header">
 			<h3>Admin Panel</h3>
 		</div>
 
-		<ul class="list-unstyled components">
-            @role('superadmin')
-			<li> <a href="{{route('userManagement')}}">All User</a> </li>
-			<li> <a href="{{route('adduser')}}">Add User</a> </li>
-            @endrole
-			<li><a href="{{route('mortgageSetings')}}">Mortgage Setings</a></li>
+		<div id='fullbar' class="sidebar">
+			   @role('superadmin')
+		  <a href="{{route('userManagement')}}">All User</a>
+		  <a href="{{route('adduser')}}">Add User</a>
+		     @endrole
+		 <a href="{{route('mortgageSetings')}}">Mortgage Setings</a>
+		</div>
 
-			
-		</ul>
-
-	</nav>
+</div>
 
 	<!-- Page Content  -->
 	<div id="content">
 
 		<div class="row">
+
+			<div class="col-md-12" id="fullbar2">
+				<div class="row" id="fullbar2">
+					@role('superadmin')
+					<div  class="col-md-3 full"><a href="{{route('userManagement')}}">All User</a></div>
+					<div  class="col-md-3 full"><a href="{{route('adduser')}}">Add User</a></div>
+					  @endrole
+					<div  class="col-md-3 full"><a href="{{route('mortgageSetings')}}">Mortgage Setings</a></div>
+				
+				
+					
+				</div>
+			</div>
+
+
+
 			<div class="col-md-3">
 				<div class="card-counter primary">
 					<i class="fa fa-code-fork"></i>
@@ -127,7 +215,7 @@
        						<div class="card-header">
            							 <h3>Favorite List</h3>
         					</div>
-	        				<div class="card-body" >
+	        				<div class="card-body" style="overflow-x:auto;" >
 	            				
 	        							<table class="table table-striped">
     										<thead>
@@ -203,7 +291,7 @@
        						<div class="card-header">
            							 <h3>Recent Batches</h3>
         					</div>
-	        				<div class="card-body" >
+	        				<div class="card-body"  style="overflow-x:auto;">
 	            				
 	        							<table class="table table-striped">
     										<thead>
@@ -243,7 +331,7 @@
        						<div class="card-header">
            							 <h3>Recent search Address</h3>
         					</div>
-	        				<div class="card-body" >
+	        				<div class="card-body" style="overflow-x:auto;">
 	            				
 	        							<table class="table table-striped">
     										<thead>

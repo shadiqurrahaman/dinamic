@@ -123,37 +123,22 @@
                 <a href="{{url('/')}}" class="logo">
                     <img src="{{ asset('images/logo.png') }}" alt="realhome">
                 </a>
-                <nav id="main-menu" class="collapse" style="margin-left: 0;width: 85%">
+                <nav id="main-menu" class="" style="margin-left: 0;width: 85%">
                     <ul>
                         <!-- STAR COLLAPSE MOBILE MENU -->
-                        <li class="hidden-lg-up">
-                            <div class="po">
-{{--                                @role('admin')--}}
-                                <a data-toggle="collapse" href="{{route('/home')}}" aria-expanded="false">Home</a>
-{{--                                @endrole--}}
-                            </div>
-                            <div class="collapse" id="home">
-                                <div class="card card-block">
-                                    <a  href="#">Home Map</a>
-                                   <!--  <a class="dropdown-item" href="index-2.html">Home Image</a>
-                                    <a class="dropdown-item" href="index-3.html">Home Video</a>
-                                    <a class="dropdown-item" href="index-4.html">Home Slider</a> -->
-                                    
-                                </div>
-                            </div>
-                        </li>
+                     
                         <!-- END COLLAPSE MOBILE MENU -->
-                        <li class="dropdown">
+                        <li>
 
                             @if(Auth::check())
                             @role('admin')
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}"><i class="fa fa-home" aria-hidden="true"></i></br>Home</a>
+                            <a    href="{{url('/dashboard/admin')}}"><i class="fa fa-home"></i> Home</a>
                             @endrole
                             @role('superadmin')
-                                <a   aria-haspopup="true" aria-expanded="false" href="{{url('/dashboard/admin')}}"><i class="fa fa-home" aria-hidden="true"></i></br>Home</a>
+                                <a    href="{{url('/dashboard/admin')}}"><i class="fa fa-home" ></i> Home</a>
                             @endrole
                             @else
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/')}}"><i class="fa fa-home" aria-hidden="true"></i></i></br>Home</a>
+                            <a    href="{{url('/')}}"><i class="fa fa-home"></i></i> Home</a>
                             @endif
                                 <!-- <div class="dropdown-menu">
                                     <a class="dropdown-item" href="index.html">Home Map</a>
@@ -162,65 +147,19 @@
 
                                 </div> -->
                         </li>
-                        <!-- STAR COLLAPSE MOBILE MENU -->
-                        <!-- <li class="dropdown">
-
-                                <a  aria-haspopup="true" aria-expanded="false"  href="{{url('/basic')}}" ><i class="fa fa-info-circle" aria-hidden="true"></i> </br>Basics</a>
-
-                        </li> -->
-                        <!-- END COLLAPSE MOBILE MENU -->
-{{--                        <li class="dropdown">--}}
-{{--                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/basic')}}">Basics</a>--}}
-{{--                        </li>--}}
-                        <!-- STAR COLLAPSE MOBILE MENU -->
-                       <!--  <li class="hidden-lg-up">
-
-                                <a data-toggle="collapse" href="{{url('/resource')}}" aria-expanded="false"><i class="fa fa-money" aria-hidden="true"></i></br>Resource</a>
-
-                        </li> -->
-                        <!-- END COLLAPSE MOBILE MENU -->
-                        <!-- <li class="dropdown">
-                            <a  aria-haspopup="true" aria-expanded="false" href="{{url('/resource')}}"><i class="fa fa-money" aria-hidden="true"></i></br>Resource</a>
-                        </li> -->
-                        <!-- STAR COLLAPSE MOBILE MENU -->
-                        <!-- <li class="hidden-lg-up">
-
-                                <a  href="{{route('tools')}}" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i></br>Tools</a>
-
-
-                        </li> -->
-                        <!-- END COLLAPSE MOBILE MENU -->
-                      <!--   <li class="dropdown">
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}"><i class="fa fa-cogs" aria-hidden="true"></i></br>Tools</a>
-
-                        </li> -->
-
-                         <!-- <li class="dropdown">
-                            <a   aria-haspopup="true" aria-expanded="false" href="{{url('/tools')}}"><i class="fa fa-hourglass-o" aria-hidden="true"></i></br>Action</a>
-
-                        </li> -->
-                        <!-- STAR COLLAPSE MOBILE MENU -->
-                        <!-- <li class="hidden-lg-up">
-
-                                <a  href="#" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i></br>My-profile</a>
-
-                        </li> -->
-                        <!-- END COLLAPSE MOBILE MENU -->
-                        <!-- <li class="dropdown ">
-                            <a  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-user-o" aria-hidden="true"></i></br>My-profile</a>
-                        </li> -->
+                       
                        
 
                         @guest
                             <li class="nav-item dropdown" style="text-align: center;margin-left: 30%;"></li>
                         @else
-                            <li class="nav-item dropdown" style="text-align: center;margin-left: 70%; float: right;" >
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user-o" aria-hidden="true"></i></br>
+                            <li class="dropdown" >
+                                <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user-o" aria-hidden="true"></i>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="    right: 9px!important;">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="    right: 9px!important;">
+                                    <a class="" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
