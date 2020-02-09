@@ -285,7 +285,7 @@ class AdminController extends Controller
         
 
            
-        return back();
+        return back()->with('success','File Uploaded successfully!');
     }
 
 

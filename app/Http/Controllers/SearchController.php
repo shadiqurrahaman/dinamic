@@ -109,7 +109,8 @@ class SearchController extends Controller
     public function propertyResult($propertyId)
     {
         $addressinfo = AddressList::where('id',$propertyId)->with('addressInfo')->first();
-
+        $addressinfo->search_time = Carbon::now();
+        $addressinfo->save();
         // dd($addressinfo);
         $recomendentAddresses = AddressList::inRandomOrder()->limit(4)->get();
         return view('propertyResult')

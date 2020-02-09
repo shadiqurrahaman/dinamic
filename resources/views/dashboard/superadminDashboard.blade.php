@@ -89,7 +89,7 @@ div.content {
 		  <a href="{{route('userManagement')}}">All User</a>
 		  <a href="{{route('adduser')}}">Add User</a>
 		     @endrole
-		 <a href="{{route('mortgageSetings')}}">Mortgage Setings</a>
+		
 		</div>
 
 </div>
@@ -157,6 +157,21 @@ div.content {
            							 <h3>Batch Upload</h3>
         					</div>
 	        				<div class="card-body">
+
+							@if ($message = Session::get('success'))
+									<div class="alert alert-success alert-block">
+										<button type="button" class="close" data-dismiss="alert">×</button>	
+											<strong>{{ $message }}</strong>
+									</div>
+									@endif
+
+
+									@if ($message = Session::get('error'))
+									<div class="alert alert-danger alert-block">
+										<button type="button" class="close" data-dismiss="alert">×</button>	
+											<strong>{{ $message }}</strong>
+									</div>
+							@endif
 
 								@if($errors->has('filerror'))
 									<h5 style="color: #ff5346;">{{$errors->first()}}</h5>
