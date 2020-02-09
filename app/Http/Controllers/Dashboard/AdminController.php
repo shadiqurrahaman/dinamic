@@ -25,11 +25,16 @@ class AdminController extends Controller
 
     public function index()
     {
+        $favoriteAddress = AddressList::where('favorite','1')
+                            ->with('addressInfo')
+                            ->paginate(5, ['*'], 'favoriteAddress');
+        $recentSearchAddress = AddressList::orderBy('search_time','desc')
+                            ->with('addressInfo')
+                            ->paginate(5, ['*'], 'recentSearchAddress');
+        
         $fileList = FileList::orderBy('uploaded_time', 'desc')->withCount('adress')
             ->has('adress', '>', 0)
-            ->paginate(5);
-        $favoriteAddress = AddressList::where('favorite','1')->with('addressInfo')->paginate(5);
-        $recentSearchAddress = AddressList::orderBy('search_time','desc')->with('addressInfo')->paginate(5);
+            ->paginate(5, ['*'], 'fileList');
 
         $date = Carbon::now();
 
