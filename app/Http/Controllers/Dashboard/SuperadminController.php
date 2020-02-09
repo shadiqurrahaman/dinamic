@@ -82,6 +82,7 @@ class SuperadminController extends Controller
         return view('dashboard.adduser');
     }
 
+    
     public function fileaddress($id)
     {
         $fileaddress = AddressList::where('file_list_id',$id)->with('addressInfo')->get();
