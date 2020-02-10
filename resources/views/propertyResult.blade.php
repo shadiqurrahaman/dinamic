@@ -22,9 +22,9 @@
                     @if(Auth::check())
 
                         @if($addressInfo->favorite==0)
-                            <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}"  class="far fa-heart" aria-hidden="true" style="color:red; font-size: 25px;"></i></a></td>
+                            <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}"  class="colorIcon_{{$addressInfo->id}} far fa-heart" aria-hidden="true" style="color:red; font-size: 25px;"></i></a></td>
                         @else
-                            <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}" class="fas fa-heart" aria-hidden="true" style="color:red;font-size: 25px;"></i></a></td>
+                            <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}" class="colorIcon_{{$addressInfo->id}} fas fa-heart" aria-hidden="true" style="color:red;font-size: 25px;"></i></a></td>
                         @endif
                     @endif
                     <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
