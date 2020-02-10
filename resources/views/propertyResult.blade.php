@@ -13,8 +13,43 @@
     <div class="container">
         <div class="row" >
             <div class="col-md-6" style="border-top:10px solid #7b88ff;">
-                <div style="float: left; margin-top: 20px;"> 
+                <div  style="float: left; margin-top: 20px; width:100%"> 
+                    <table width="100%" border="0">
+                    <tr>
+                    <th width="80%">
                     <h4 style="font-weight: bold; font-size: 25px;">
+                    {{$addressInfo->p_address}}
+                    </h4>
+                    </th>
+                    <th width="20%">
+                    
+                    <h4 style="font-weight: bold; font-size: 25px;">
+                    @if(Auth::check())
+
+                        @if($addressInfo->favorite==0)
+                            <a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}"  class="colorIcon_{{$addressInfo->id}} far fa-heart" aria-hidden="true" style="color:red; font-size: 25px;"></i></a>
+                        @else
+                            <a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}" class="colorIcon_{{$addressInfo->id}} fas fa-heart" aria-hidden="true" style="color:red;font-size: 25px;"></i></a>
+                        @endif
+                    @endif
+                    <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
+                   
+                    </h4> 
+                    
+                    </th>
+                    </tr>
+                    <tr>
+                    <th>
+                    <h4 style="font-weight: bold; font-size: 25px;">
+                    {{$addressInfo->p_city}}, {{$addressInfo->p_state}}, {{$addressInfo->p_zipcode}}
+                    </h4>
+                    </th>
+                    <th>
+                 
+                    </th>
+                    </tr>
+                    </table>
+                    <!-- <h4 style="font-weight: bold; font-size: 25px;">
                         <span class="heading-icon"><i class="fa fa-map-marker"></i></span>
                         <span>{{$addressInfo->address}}
 
@@ -30,7 +65,7 @@
                     <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
                 </div>
                         </span>
-                    </h4>
+                    </h4> -->
                 </div>                
                 
                 <div class="clearfix"></div>
@@ -49,11 +84,11 @@
                     </tr>                    
                 </table>
                 
-                <table width="100%" border="0" >
+                <table width="100%" border="0" style="margin:15px 0">
                    
                     <tr>
-                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">Estimated Value</th>
-                        <th style="color:#6234eb;font-size:  15px;font-width:bold;">${{number_format($addressInfo['addressInfo']['zestimate'])}}</th>                        
+                        <th width="40%" style="color:#6234eb;font-size:  15px;font-width:bold;">Estimated Value</th>
+                        <th width="60%" style="color:#6234eb;font-size:  15px;font-width:bold;">${{number_format($addressInfo['addressInfo']['zestimate'])}}</th>                        
                     </tr>
                     <tr>
                         <td>Year Built</td>
@@ -63,14 +98,17 @@
                         <td>Last sold date</td>
                         <td>{{$addressInfo['addressInfo']['last_sold_date']}}</td>
                     </tr>
-                    <tr>
+                    <tr >
                         <td>Last Sold Price</td>
                         <td>${{number_format($addressInfo['addressInfo']['last_sold_price'])}}</td>
                     </tr>
+                    </table>
+                    <table  width="100%" border="0" style="margin:15px 0">
+                   
                     <tr>
-                        <th style="color:#346eeb;font-size:  15px;font-width:bold;">Estimated Rents</th>
-                        <td style="color:#346eeb;font-size:  15px;font-weight: bold;"><div> 
-                          ${{number_format($addressInfo['addressInfo']['rent'])}}<span style="margin-left: 40px; color:#4abf4a;"><?php 
+                        <th width="40%" style="color:#346eeb;font-size:  15px;font-width:bold;">Estimated Rents</th>
+                        <td width="60%" style="color:#346eeb;font-size:  15px;font-weight: bold;"><div> 
+                          ${{number_format($addressInfo['addressInfo']['rent'])}}<span style="margin-left: 40px; color:#346eeb;"><?php 
                                                         if ($addressInfo['addressInfo']['zestimate']>1){
                                                             echo number_format(((isset($addressInfo['addressInfo']['rent'])>0?$addressInfo['addressInfo']['rent']*12:1)/(isset($addressInfo['addressInfo']['zestimate'])>0?$addressInfo['addressInfo']['zestimate']:1)*100),1);
                                                         }else{
@@ -80,13 +118,14 @@
                         </div></td>
 
                     </tr> 
-                    
+                    </table>
+                    <table  width="100%" border="0" style="margin:15px 0">
                     <tr>
-                        <th style="color:#34ebc6;font-size:  15px;font-width:bold;">STR Annual Revenue</th>
-                        <th style="color:#34ebc6;font-size:  15px;font-width:bold;">
+                        <th width="40%" style="color:#34ebc6;font-size:  15px;font-width:bold;">STR Annual Revenue</th>
+                        <th width="60%" style="color:#34ebc6;font-size:  15px;font-width:bold;">
 
                             <div> 
-                            ${{number_format($addressInfo['addressInfo']['air_dna_anual_revinue'])}} <span style="margin-left: 35px; color:red;">
+                            ${{number_format($addressInfo['addressInfo']['air_dna_anual_revinue'])}} <span style="margin-left: 35px; color:#34ebc6;">
 
                                 <?php 
                                                         if($addressInfo['addressInfo']['zestimate']>1){
