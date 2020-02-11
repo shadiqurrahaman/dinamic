@@ -235,6 +235,7 @@ div.content {
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
+													  <th>#</th>
                                                     <th>Favorite</th>
 											        <th>Address</th>
 											        <th>BD</th>
@@ -248,8 +249,9 @@ div.content {
 											    </thead>
 											    <tbody>
 
-												@foreach($favoriteAddress as $address)
+												@foreach($favoriteAddress as $key=> $address)
 											      <tr>
+												  <td>{{ $favoriteAddress->firstItem() + $key }}</td>
 													  @if($address->favorite==0)
 													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 											        @else
@@ -311,6 +313,7 @@ div.content {
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
+													  <th>#</th>
 											        <th>Date</th>
 											        <th>Count</th>
 											        <th>Name</th>
@@ -318,8 +321,9 @@ div.content {
 											      </tr>
 											    </thead>
 											    <tbody>
-											    	@foreach ($fileList as $file)
+											    	@foreach ($fileList as $key=>$file)
 											      <tr>
+												  <td>{{ $fileList->firstItem() + $key }}</td>
 											        <td>{{$file->uploaded_time}}</td>
 											        <td>{{$file->adress_count}}</td>
 											        <td><a style="text-decoration: none;color: black;" href="{{url('fileaddress/'.$file->id)}}">
@@ -351,6 +355,7 @@ div.content {
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
+													  <th>#</th>
 											      	<th>Favorite</th>
 											        <th>Address</th>
 											        <th>BD</th>
@@ -363,8 +368,9 @@ div.content {
 											      </tr>
 											    </thead>
 											    <tbody>
-                                                @foreach($recentSearchAddress as $address)
+                                                @foreach($recentSearchAddress as $key=>$address)
                                                     <tr>
+														<td>{{ $recentSearchAddress->firstItem() + $key }}</td>
                                                     	@if($address->favorite==0)
 													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 											        @else

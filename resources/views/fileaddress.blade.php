@@ -11,6 +11,7 @@
     <table class="table table-striped">
     										<thead>
 											      <tr>
+													  <th>#</th>
 											      	<th>Favorite</th>
 											        <th>Address</th>
 											        <th>BD</th>
@@ -23,8 +24,9 @@
 											      </tr>
 											    </thead>
 											    <tbody>
-                                                @foreach($fileaddress as $address)
+                                                @foreach($fileaddress as $key=>$address)
                                                     <tr>
+													<td>{{ $fileaddress->firstItem() + $key }}</td>
                                                     	@if($address->favorite==0)
 													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 											        @else

@@ -39,7 +39,7 @@ class SearchController extends Controller
 
         $array = json_decode($is_valid_address->getBody(), true);
         $formated_address = explode(',',$array['results'][0]['formatted_address']);
-        $final_address = $formated_address[0].','.$formated_address[1].','.$formated_address[2];
+        $final_address = $formated_address[0].', '.$formated_address[1].', '.$formated_address[2];
 
         $valid_address = preg_match('/^\d.*.\d$/', $final_address);
         

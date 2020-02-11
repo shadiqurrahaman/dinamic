@@ -111,7 +111,7 @@ class AdminController extends Controller
             if ($counter>0){
 
             // $address = isset($value[0])?$value[0].',':'';
-            $address = (isset($value[0])?$value[0].',':'').(isset($value[2])?$value[2].',':'').(isset($value[3])?$value[3].' '.$value[4]:'');
+            $address = (isset($value[0])?$value[0].', ':'').(isset($value[2])?$value[2].', ':'').(isset($value[3])?$value[3].' '.$value[4]:'');
 
 
 
