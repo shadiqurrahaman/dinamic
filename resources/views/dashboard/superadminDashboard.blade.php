@@ -182,7 +182,7 @@ div.content {
 	               					 <input type="file" name="file" class="form-control">
 	               					 <br>
                                     <input type="text" name="filename" placeholder="File Name" style="margin-top: 4px;margin-bottom: 4px;">
-	               					 <button class="btn btn-success">Import Address </button>
+	               					 <button class="btn btn-success">Import File </button>
 	               
 	            				</form>
 	        				</div>
@@ -235,7 +235,7 @@ div.content {
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
-                                                    <th>Mark</th>
+                                                    <th>Favorite</th>
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>
@@ -351,7 +351,7 @@ div.content {
 	        							<table class="table table-striped">
     										<thead>
 											      <tr>
-											      	<th>Mark</th>
+											      	<th>Favorite</th>
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>

@@ -11,7 +11,7 @@
     <table class="table table-striped">
     										<thead>
 											      <tr>
-											      	<th>Mark</th>
+											      	<th>Favorite</th>
 											        <th>Address</th>
 											        <th>BD</th>
 											        <th>BA</th>

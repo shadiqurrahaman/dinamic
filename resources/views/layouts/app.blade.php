@@ -94,7 +94,7 @@
                         <p><i class="fa fa-phone" aria-hidden="true"></i> (480)866-6000</p>
                     </div>
                     <div class="address-header">
-                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> 2303 N 44th St Ste 12-1489 Phoenix, AZ 85008</p>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> 2303 N 44th St Ste 14-1289 Phoenix, AZ 85008</p>
                     </div>
                     <div class="mail-header">
                         <p><i class="fa fa-envelope" aria-hidden="true"></i> admin@dynamic.re</p>
