@@ -164,14 +164,13 @@
                 <!-- <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width:100%;height: 45%; padding-left: 0" alt="First slide"> -->
 
                 <?php 
-                $addr = urlencode($addressInfo['address']);
-
-                // $link = "https://www.google.com/maps/embed/v1/streetview?location=".$addr."&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";
-                 $link = "https://maps.googleapis.com/maps/api/streetview?size=2000x2000&location=".$addr."&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";
+                               $lat_long = $addressInfo['addressInfo']['latatude'].','.$addressInfo['addressInfo']['longitude'];
+                $link = "https://www.google.com/maps/embed/v1/streetview?location=".$lat_long."&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";
                  ?>
-                 <!-- {{$link}} -->
-                <!-- <iframe height="450" frameborder="0" style="border:0;width: 100%;" src="{{$link}}" allowfullscreen></iframe> -->
-                                <img style="height: 370px;width: 541px;" src="{{$link}}" alt="{{$addressInfo['address']}}">
+                 
+                 {{-- <!-- {{$link}} --> --}}
+                <iframe height="450" frameborder="0" style="border:0;width: 100%;" src="{{$link}}" allowfullscreen></iframe>
+                                {{-- <img style="height: 370px;width: 541px;" src="{{$link}}" alt="{{$addressInfo['address']}}"> --}}
                 <div style="margin-top: 5px;">
                 <div id="map"></div>
                     

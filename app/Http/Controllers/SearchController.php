@@ -49,7 +49,7 @@ class SearchController extends Controller
 
         
         if($array['status']=='OK'){
-
+            
         if (Auth::check()) 
         {
             $user = Auth::user();
@@ -66,19 +66,17 @@ class SearchController extends Controller
 
         
         }
-
     	if(!Cache::has($final_address)){
-    	 	 
-
-              $addressInfoId = Helper::apicall(null,$final_address);
-
-
+            
+            
+            $addressInfoId = Helper::apicall(null,$final_address);
+        
 
               Cache::add($final_address, $addressInfoId ,now()->addYear(1));
-
+           
 
     	}else{
-    	       
+           
     		 $address = AddressList::where('address','=',$final_address)->with('addressInfo')->first();
     		 $address->search_time = Carbon::now();
     		 $address->save();

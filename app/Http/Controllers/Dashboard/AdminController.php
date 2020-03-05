@@ -31,7 +31,7 @@ class AdminController extends Controller
         $recentSearchAddress = AddressList::orderBy('search_time','desc')
                             ->with('addressInfo')
                             ->paginate(5, ['*'], 'recentSearchAddress');
-        
+        // dd($recentSearchAddress);
         $fileList = FileList::orderBy('uploaded_time', 'desc')->withCount('adress')
             ->has('adress', '>', 0)
             ->paginate(5, ['*'], 'fileList');
