@@ -114,17 +114,16 @@ class AdminController extends Controller
             $address = (isset($value[0])?$value[0].', ':'').(isset($value[2])?$value[2].', ':'').(isset($value[3])?$value[3].' '.$value[4]:'');
 
 
-
+                
             // dd($address);
 
             // $address = implode(", ", $value);
 
             $valid_address = preg_match('/^\d.*.\d$/', $address);
-
+            
             if($valid_address!=0){
-
-            if (Auth::check()) 
-            {
+                if (Auth::check()) 
+                {
               
             $user = Auth::user();
 
@@ -139,22 +138,23 @@ class AdminController extends Controller
         
              }
 
-            if(!Cache::has($address)){
-
+             if(!Cache::has($address)){
+                
                 // $addresslist = new AddressList;
                 // $addresslist->address =  $value[0];
                 // $addresslist->search_time =  Carbon::now();
                 // $addresslist->favorite = false;
                 // $filename->adress()->save($addresslist);
-
+                
                 //then call to api
-
-
+                
+                
                 $id = Helper::apicall($filename->id,$address);
-
+                
                 Cache::add($address, $id ,now()->addYear(1));
             }else{
 
+                
             $add = AddressList::where('address',$address)->with('addressInfo')->first();
 
 
@@ -212,8 +212,6 @@ class AdminController extends Controller
             $appinfo->lotSizeSqFt = isset($add->addressInfo->lotSizeSqFt)?$add->addressInfo->lotSizeSqFt:null;
 
              $addressList->addressInfo()->save($appinfo);
-
-
 
 
             }

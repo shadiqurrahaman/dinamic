@@ -26,7 +26,7 @@
 											    <tbody>
                                                 @foreach($fileaddress as $key=>$address)
                                                     <tr>
-													<td>{{ $fileaddress->firstItem() + $key }}</td>
+													<td>{{ $key+1 }}</td>
                                                     	@if($address->favorite==0)
 													  <td><a href="javascript:makeFavorite({{$address->id}})"><i id="colorIcon_{{$address->id}}" class="colorIcon_{{$address->id}} far fa-heart" aria-hidden="true" style="color:red"></i></a></td>
 											        @else
