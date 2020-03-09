@@ -32,7 +32,8 @@
                             <a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}" class="colorIcon_{{$addressInfo->id}} fas fa-heart" aria-hidden="true" style="color:red;font-size: 25px;"></i></a>
                         @endif
                     @endif
-                    <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
+                    {{-- {{$propertyId}} --}}
+                    <a href="{{route('printPdf',['propertyId' => $propertyId])}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
                    
                     </h4> 
                     
@@ -62,7 +63,6 @@
                             <td><a href="javascript:makeFavorite({{$addressInfo->id}})"><i id="colorIcon_{{$addressInfo->id}}" class="colorIcon_{{$addressInfo->id}} fas fa-heart" aria-hidden="true" style="color:red;font-size: 25px;"></i></a></td>
                         @endif
                     @endif
-                    <a href="{{route('printPdf')}}" style="text-decoration: none;color: black"><i class="fa fa-share-alt" style="font-size: 25px;"></i></a>
                 </div>
                         </span>
                     </h4> -->
@@ -164,13 +164,18 @@
                 <!-- <img src="{{$addressInfo['addressInfo']['photo']}}" style="margin-left: 0;    width:100%;height: 45%; padding-left: 0" alt="First slide"> -->
 
                 <?php 
-                               $lat_long = $addressInfo['addressInfo']['latatude'].','.$addressInfo['addressInfo']['longitude'];
+                $lat_long = $addressInfo['addressInfo']['latatude'].','.$addressInfo['addressInfo']['longitude'];
+                $address = $addressInfo->p_address.','.$addressInfo->p_city.','.$addressInfo->p_state.','.$addressInfo->p_zipcode;
+                $address = urlencode($address);
                 $link = "https://www.google.com/maps/embed/v1/streetview?location=".$lat_long."&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";
+                //  $link = 'https://maps.googleapis.com/maps/embed/v1/streetview?location=46.414382,10.013988&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA';
+                $src = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location=".$address."&pitch=20&fov=110&key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA";   
+                // print_r($address);
                  ?>
                  
                  {{-- <!-- {{$link}} --> --}}
+                 <img style="height: 370px;width: 541px;" src="{{$src}}" alt="{{$addressInfo['address']}}">
                 <iframe height="450" frameborder="0" style="border:0;width: 100%;" src="{{$link}}" allowfullscreen></iframe>
-                                {{-- <img style="height: 370px;width: 541px;" src="{{$link}}" alt="{{$addressInfo['address']}}"> --}}
                 <div style="margin-top: 5px;">
                 <div id="map"></div>
                     

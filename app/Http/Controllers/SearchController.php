@@ -19,10 +19,8 @@ class SearchController extends Controller
 	
     public function index(Request $request)
     {
-
-  		
+	
     	// $value =  Cache::add($request->input('search'), 'value',now()->addYear(1));
-
 
         try {
             // Validate the value...
@@ -38,8 +36,10 @@ class SearchController extends Controller
         $is_valid_address = $client->request('GET',$finalurl);
 
         $array = json_decode($is_valid_address->getBody(), true);
+        // dd($array);
         $formated_address = explode(',',$array['results'][0]['formatted_address']);
         $final_address = $formated_address[0].', '.$formated_address[1].', '.$formated_address[2];
+        
 
         $valid_address = preg_match('/^\d.*.\d$/', $final_address);
         
@@ -113,7 +113,8 @@ class SearchController extends Controller
         $recomendentAddresses = AddressList::inRandomOrder()->limit(4)->get();
         return view('propertyResult')
             ->with('addressInfo',$addressinfo)
-            ->with('recomendentAddresses',$recomendentAddresses);
+            ->with('recomendentAddresses',$recomendentAddresses)
+            ->with('propertyId',$propertyId);
     }
 
     public function validaddress($address)

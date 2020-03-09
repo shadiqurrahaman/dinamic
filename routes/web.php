@@ -57,7 +57,7 @@
         Route::get('propertyResult/{propertyId}','SearchController@propertyResult')->name('propertyResult');
 
         //pdf
-        Route::get('printPdf','PdfGenController@printPdf')->name('printPdf');
+        Route::get('printPdf/{propertyId}','PdfGenController@printPdf')->name('printPdf');
 
         
 

@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-10" style="margin-left: 40px;">
-                                <input style="height: 45px;" type="submit" value="Contanue" class="btn btn-primary">
+                                <input style="height: 45px;" type="submit" value="Continue" class="btn btn-primary">
                                    <!--  {{ __('Login') }} -->
                                 </input>
 
