@@ -192,8 +192,8 @@
                                 <a href="index.html" class="logo">
                                     <img src="{{asset('css/colors/icons/green/logo-footer_1.svg')}}" alt="logo">
                                 </a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus impedit perferendis, laudantium molestiae ipsam rem veniam facere quos! Temporibus, minima culpa deleniti magnam.</p>
-                                <a href="about.html" class="btn btn-secondary">Read More...</a>
+                                <p>Our mission is to help you understand,leverage and take advantage of the power of real estate. We will calculate the numbers and partner with you to help you aligh with your chosen strategy.</p>
+                                <a href="#" class="btn btn-secondary">Read More...</a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
@@ -201,24 +201,24 @@
                                 <h3>Navigation</h3>
                                 <div class="nav-footer">
                                     <ul>
-                                        <li><a href="index.html">Home One</a></li>
-                                        <li><a href="properties-right-sidebar.html">Properties Right</a></li>
-                                        <li><a href="properties-full-list.html">Properties List</a></li>
-                                        <li><a href="properties-details.html">Property Details</a></li>
-                                        <li class="no-mgb"><a href="agents-listing-grid.html">Agents Listing</a></li>
+                                        <li><a href="#">Home One</a></li>
+                                        <li><a href="#">Properties Right</a></li>
+                                        <li><a href="#">Properties List</a></li>
+                                        <li><a href="#">Property Details</a></li>
+                                        <li class="no-mgb"><a href="#">Agents Listing</a></li>
                                     </ul>
                                     <ul class="nav-right">
-                                        <li><a href="agent-details.html">Agents Details</a></li>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="blog.html">Blog Default</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                        <li class="no-mgb"><a href="contact-us.html">Contact Us</a></li>
+                                        <li><a href="#">Agents Details</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Blog Default</a></li>
+                                        <li><a href="#">Blog Details</a></li>
+                                        <li class="#"><a href="#">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
-                            <div class="widget">
+                            {{-- <div class="widget">
                                 <h3>Twitter Feeds</h3>
                                 <div class="twitter-widget contuct">
                                     <div class="twitter-area">
@@ -251,7 +251,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="contactus">
@@ -260,19 +260,19 @@
                                     <li>
                                         <div class="info">
                                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                            <p class="in-p">95 South Park Ave, USA</p>
+                                            <p class="in-p">2303 N 44th St Ste 14-1289 Phoenix, AZ 85008</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="info">
                                             <i class="fa fa-phone" aria-hidden="true"></i>
-                                            <p class="in-p">+456 875 369 208</p>
+                                            <p class="in-p"> (480)866-6000</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="info">
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                                            <p class="in-p ti">support@findhouses.com</p>
+                                            <p class="in-p ti">admin@dynamic.re</p>
                                         </div>
                                     </li>
                                 </ul>
