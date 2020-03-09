@@ -75,6 +75,20 @@ div.content {
     float: none;
   }
 }
+#progressBar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+  display: none;
+}
+
+#barStatus {
+  position: absolute;
+  width: 8%;
+  height: 100%;
+  background-color: #25F;
+}
 </style>
 <!-- <h1>this is superadmin dashboard</h1> -->
 <div class="wrapper">
@@ -182,7 +196,10 @@ div.content {
 	               					 <input type="file" name="file" class="form-control">
 	               					 <br>
                                     <input type="text" name="filename" placeholder="File Name" style="margin-top: 4px;margin-bottom: 4px;">
-	               					 <button class="btn btn-success">Import File </button>
+									<div id="progressBar">
+										<div id="barStatus"></div>
+									  </div>   
+									<button class="btn btn-success"  onclick="move()">Import File </button>
 	               
 	            				</form>
 	        				</div>
@@ -446,6 +463,29 @@ div.content {
 	// <script
 	// src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+	var width = 5;
+function move() {
+document.getElementById('progressBar').style.display = 'block';
+  var elem = document.getElementById("barStatus");   
+  
+  var id = setInterval(frame, 1000);
+  function frame() {
+    if (width >= 100) {
+      //clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+
+
+
+
+
+
+
+
 
 function validateForm(){
         // var patt =^\d+.*.\d$;
@@ -552,6 +592,7 @@ function validateForm(){
 	}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnSQ_kM3vMc0p2pjZkblR3osUx7sJ23kA&libraries=places,geometry&callback=initAutocomplete" async defer></script>
+
 
 
 
